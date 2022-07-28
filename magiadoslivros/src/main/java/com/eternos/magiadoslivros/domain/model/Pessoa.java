@@ -11,12 +11,13 @@ import org.springframework.data.annotation.Id;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.SuperBuilder;
 
 
 //@Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Data
-@Builder
+@SuperBuilder
 public class Pessoa {
     @Id
     @Column(name="id")

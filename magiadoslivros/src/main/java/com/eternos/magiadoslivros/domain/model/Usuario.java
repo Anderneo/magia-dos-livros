@@ -3,18 +3,16 @@ package com.eternos.magiadoslivros.domain.model;
 import java.util.Date;
 import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+@SuperBuilder
 //@Entity
 @Table(name = "Usuario")
 public class Usuario extends Pessoa{
-    Usuario(Integer id, String endereco, String email, String telefone, String observacao) {
-        super(id, endereco, email, telefone, observacao);
-        //TODO Auto-generated constructor stub
-    }
 
     @Column(name="nome")
     private String nome;
