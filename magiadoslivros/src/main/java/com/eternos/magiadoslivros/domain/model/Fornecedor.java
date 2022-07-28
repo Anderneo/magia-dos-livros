@@ -7,10 +7,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+@Data
 @SuperBuilder
-//@Entity
+@Entity
 @Table(name = "fornecedor")
 public class Fornecedor extends Pessoa {
+    
 
     @Column(name="nome_fantasia")
     private String nomeFantasia;

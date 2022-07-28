@@ -1,7 +1,6 @@
 package com.eternos.magiadoslivros.domain.model;
 
 import java.util.Date;
-import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
 
@@ -10,8 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @SuperBuilder
-//@Entity
-@Table(name = "Usuario")
+@Data
+@Entity
+@Table(name = "usuario")
 public class Usuario extends Pessoa{
 
     @Column(name="nome")
