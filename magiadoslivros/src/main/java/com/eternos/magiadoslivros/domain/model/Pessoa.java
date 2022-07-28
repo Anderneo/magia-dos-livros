@@ -6,18 +6,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Id;
 
-import org.springframework.data.annotation.Id;
-
-import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.SuperBuilder;
 
 
 //@Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+//@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@MappedSuperclass
 @Data
-@Builder
-public class Pessoa {
+@SuperBuilder
+public abstract class Pessoa {
     @Id
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
