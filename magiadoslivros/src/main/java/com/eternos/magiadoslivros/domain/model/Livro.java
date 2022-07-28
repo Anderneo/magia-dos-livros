@@ -7,14 +7,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import lombok.Builder;
 import lombok.Data;
 
 @Entity
 @Table(name = "livro")
 @Data
-@Builder
 public class Livro {
+    public Livro(){}
+    
     @Id
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
