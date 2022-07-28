@@ -9,14 +9,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import org.springframework.data.annotation.Id;
+import javax.persistence.Id;
 
 import lombok.Builder;
 import lombok.Data;
 import lombok.Builder.Default;
 
-//@Entity
+@Entity
 @Table(name = "pedido")
 @Data
 @Builder
@@ -51,7 +50,7 @@ public class Pedido {
    @JoinColumn(name = "id_usuario")
    private Usuario idUsuario;
    
-   @Default
+   @Column(name = "cancelada")@Default
    private Boolean vendaCancelada = false;
 
    public void cancelarVenda(){
