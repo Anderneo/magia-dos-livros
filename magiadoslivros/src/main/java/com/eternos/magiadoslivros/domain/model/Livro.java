@@ -1,18 +1,31 @@
 package com.eternos.magiadoslivros.domain.model;
 
+import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 @Entity
 @Table(name = "livro")
+@Builder
 @Data
-public class Livro {
+@AllArgsConstructor
+public class Livro implements Serializable{
+
+    private static final long serialVersionUID = 1L;
+
     public Livro(){}
     
     @Id
@@ -40,6 +53,13 @@ public class Livro {
     
     @Column(name="valor_venda")
     private Double valorVenda;
+
+    @ManyToOne
+    @JoinColumn(name = "id_fornecedor")
+    private Fornecedor fornecedor;
+
+    @ManyToMany(mappedBy="listaLivro")
+    private List<Pedido> listaPedido;
 
     //incluirLivro()  void
     //atualizarLivro()  void

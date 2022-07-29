@@ -1,12 +1,16 @@
 package com.eternos.magiadoslivros.domain.model;
 
-import java.util.Date;
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Id;
@@ -19,7 +23,10 @@ import lombok.Builder.Default;
 @Table(name = "pedido")
 @Data
 @Builder
-public class Pedido {
+public class Pedido implements Serializable{
+   
+   private static final long serialVersionUID = 1L;
+
    @Id
    @Column(name="id")
    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,20 +38,20 @@ public class Pedido {
    @Column(name="endereco_entrega", nullable = false)
    private String enderecoEntrega;
 
-   @Column(name="formaDePgto", nullable = false) 
+   @Column(name="forma_de_pagto", nullable = false) 
    private String formaDePgto;
 
    @Column(name="parcela", nullable = false)
    private Integer parcela;
 
    @Column(name="data_venda", nullable = false)
-   private Date dataVenda;
+   private LocalDate dataVenda;
 
    @Column(name="data_pagto", nullable = false)
-   private Date dataPgto;
+   private LocalDate dataPgto;
 
    @Column(name="data_entrega", nullable = false) 
-   private Date dataEntrega;
+   private LocalDate dataEntrega;
 
    @ManyToOne
    @JoinColumn(name = "id_usuario")
@@ -56,4 +63,10 @@ public class Pedido {
    public void cancelarVenda(){
         this.vendaCancelada = true;
    }
+
+   @ManyToMany
+   @JoinTable(name="pedido_livro",
+   joinColumns = {@JoinColumn(name="id_pedido")},
+   inverseJoinColumns = {@JoinColumn(name="id_livro")})
+   private List<Livro> listaLivro;
 }
