@@ -1,13 +1,11 @@
 package com.eternos.magiadoslivros.domain.model;
 
-import lombok.Data;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-@Data
 @SuperBuilder
 @Entity
 @Table(name = "fornecedor")
@@ -25,9 +23,6 @@ public class Fornecedor extends Pessoa {
 
     @Column(name="ins_estadual", nullable = false)
     private String insEstadual;
-
-    @Column(name="cpf", nullable = false)
-    private String cpf;
 
     //incluirFornecedor()  void
     //atualizarFornecedor()  void

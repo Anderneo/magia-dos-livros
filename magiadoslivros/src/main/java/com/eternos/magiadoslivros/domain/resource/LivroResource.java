@@ -4,15 +4,13 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.eternos.magiadoslivros.domain.model.Livro;
+import com.eternos.magiadoslivros.domain.request.LivroRequest;
 import com.eternos.magiadoslivros.domain.service.LivroService;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
@@ -26,7 +24,7 @@ public class LivroResource {
     private final LivroService livroService;
 
     @PostMapping
-    public Livro salvar(@RequestBody @Valid LivroRequest livroRequest){
+    public Livro salvar(@RequestBody LivroRequest livroRequest){
         return livroService.salvar(livroRequest);
     }
 

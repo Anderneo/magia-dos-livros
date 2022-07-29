@@ -1,7 +1,6 @@
 package com.eternos.magiadoslivros.domain.model;
 
-import java.util.Date;
-import lombok.Data;
+import java.time.LocalDate;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.Column;
@@ -9,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @SuperBuilder
-@Data
 @Entity
 @Table(name = "usuario")
 public class Usuario extends Pessoa{
@@ -20,23 +18,17 @@ public class Usuario extends Pessoa{
     @Column(name="rg")
     private String rg;
 
-    @Column(name="cpf")
-    protected String cpf; 
-
     @Column(name="genero")
     private Genero genero;
 
     @Column(name="perfil")
     private Perfil perfil;
 
-    @Column(name="doador")
-    private Boolean doador;
-
-    @Column(name="dataDeNas")
-    private Date dataDeNas;
+    @Column(name="data_de_nascimento")
+    private LocalDate dataDeNas;
     
-    @Column(name="dataDeCadastro")
-    private Date dataDeCadastro;
+    @Column(name="data_de_cadastro")
+    private LocalDate dataDeCadastro;
     
 
     //incluirUsuario()  void

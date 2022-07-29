@@ -5,6 +5,7 @@ endereco VARCHAR(150) NOT NULL,
 email VARCHAR(100) NOT NULL,
 telefone VARCHAR(15) NOT NULL,
 rg VARCHAR(15) NOT NULL,
+cpf VARCHAR(18) NOT NULL,
 data_de_nascimento DATE NOT NULL,
 genero VARCHAR(50) NOT NULL,
 data_de_cadastro DATE,
@@ -30,6 +31,19 @@ FOREIGN KEY (id_usuario)
         ON UPDATE RESTRICT ON DELETE CASCADE
 );
 
+CREATE TABLE IF NOT EXISTS fornecedor (
+id INT AUTO_INCREMENT,
+nome_fantasia VARCHAR(255),
+razao_social VARCHAR(255) NOT NULL,
+cnpj VARCHAR(18) NOT NULL,
+ins_estadual VARCHAR(45) NOT NULL,
+endereco VARCHAR(150) NOT NULL,
+telefone VARCHAR(15) NOT NULL,
+email VARCHAR(100) NOT NULL,
+observacao VARCHAR(255),
+PRIMARY KEY (id)
+);
+
 CREATE TABLE IF NOT EXISTS livro (
 id INT AUTO_INCREMENT,
 nome VARCHAR(255) NOT NULL,
@@ -39,24 +53,10 @@ isbn INT NOT NULL,
 valor_venda DOUBLE NOT NULL,
 valor_recebimento DOUBLE NOT NULL,
 quantidade_livro INT NOT NULL, 
-PRIMARY KEY (id)
-);
-
-CREATE TABLE IF NOT EXISTS fornecedor (
-id INT AUTO_INCREMENT,
-nome_fantasia VARCHAR(255),
-razao_social VARCHAR(255) NOT NULL,
-cnpj VARCHAR(18) NOT NULL,
-ins_estadual VARCHAR(45) NOT NULL,
-cpf VARCHAR(18) NOT NULL,
-endereco VARCHAR(150) NOT NULL,
-telefone VARCHAR(15) NOT NULL,
-email VARCHAR(100) NOT NULL,
-observacao VARCHAR(255),
-id_livro INT NOT NULL,
+id_fornecedor INT NOT NULL,
 PRIMARY KEY (id),
-FOREIGN KEY (id_livro)
-        REFERENCES livro (id)
+FOREIGN KEY (id_fornecedor)
+        REFERENCES fornecedor (id)
         ON UPDATE RESTRICT ON DELETE CASCADE
 );
 

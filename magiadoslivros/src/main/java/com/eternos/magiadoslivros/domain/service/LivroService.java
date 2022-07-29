@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.eternos.magiadoslivros.domain.model.Livro;
 import com.eternos.magiadoslivros.domain.repository.LivroRepository;
-import com.eternos.magiadoslivros.domain.resource.LivroRequest;
+import com.eternos.magiadoslivros.domain.request.LivroRequest;
 
 import lombok.AllArgsConstructor;
 
