@@ -56,10 +56,10 @@ public class Livro implements Serializable{
 
     @ManyToOne
     @JoinColumn(name = "id_fornecedor")
-    private Fornecedor fornecedor;
+    private Fornecedor id_fornecedor;
 
-    @ManyToMany(mappedBy="listaLivro")
-    private List<Pedido> listaPedido;
+    // @ManyToMany(mappedBy="listaLivro")
+    // private List<Pedido> listaPedido;
 
     //incluirLivro()  void
     //atualizarLivro()  void

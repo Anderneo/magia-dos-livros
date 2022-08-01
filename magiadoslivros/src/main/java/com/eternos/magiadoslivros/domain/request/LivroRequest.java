@@ -1,21 +1,28 @@
 package com.eternos.magiadoslivros.domain.request;
 
-import com.eternos.magiadoslivros.domain.model.Fornecedor;
-import com.eternos.magiadoslivros.domain.model.Livro;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import com.eternos.magiadoslivros.domain.model.Livro;
+import com.eternos.magiadoslivros.domain.service.FornecedorService;
+
+import lombok.Data;
+@Data
 public class LivroRequest {
 
     String descricao;
-    Fornecedor fornecedor;
+    Integer id_fornecedor;
     Integer isbn;
     String nome;
     Integer quantLivros;
     String tagEstoque;
     Double valorRecebimento;
-    Double valorVenda;
-    
+    Double valorVenda;    
     
     public Livro converterClasse(){
+
+        FornecedorService fornecedorService = new FornecedorService();
+        var fornecedor = fornecedorService.buscarPorIdOuFalhar(id_fornecedor);
+    
         return Livro.builder()
         .tagEstoque(this.tagEstoque)
         .nome(this.nome)
@@ -24,7 +31,7 @@ public class LivroRequest {
         .quantLivros(this.quantLivros)
         .valorRecebimento(this.valorRecebimento)
         .valorVenda(this.valorVenda)
-        .fornecedor(this.fornecedor)
+        .id_fornecedor(fornecedor)
         .build();
     }
 }
