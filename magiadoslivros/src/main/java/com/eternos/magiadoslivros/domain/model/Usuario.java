@@ -1,16 +1,37 @@
 package com.eternos.magiadoslivros.domain.model;
 
 import java.time.LocalDate;
-import lombok.experimental.SuperBuilder;
+
+import lombok.Builder;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
-@SuperBuilder
+@Builder
 @Entity
 @Table(name = "usuario")
-public class Usuario extends Pessoa{
+public class Usuario{
+
+    @Id
+    @Column(name="id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(name="endereco", nullable = false)
+    private String endereco;
+
+    @Column(name="email", nullable = false)
+    private String email;
+
+    @Column(name="telefone", nullable = false) 
+    private String telefone;
+      
+    @Column(name="observacao")
+    private String observacao;
 
     @Column(name="nome")
     private String nome;
