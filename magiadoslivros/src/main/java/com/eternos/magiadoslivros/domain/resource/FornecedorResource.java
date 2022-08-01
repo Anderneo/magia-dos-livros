@@ -17,6 +17,7 @@ import lombok.AllArgsConstructor;
 public class FornecedorResource {
 
     private final FornecedorService fornecedorService;
+    
     @GetMapping(path = "todos")
     public List<Fornecedor>  buscar() {
         return fornecedorService.buscarTodos();

@@ -9,18 +9,27 @@ import com.eternos.magiadoslivros.domain.repository.LivroRepository;
 import com.eternos.magiadoslivros.domain.request.LivroRequest;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 
 @Service
-@Builder
+@AllArgsConstructor
 public class LivroService {
     
+    private final FornecedorService fornecedorService;
     private final LivroRepository livroRepository;
-    
 
     public Livro salvar(LivroRequest livroRequest){
+        Livro livro = Livro.builder()
+        .tagEstoque(livroRequest.getTagEstoque())
+        .nome(livroRequest.getNome())
+        .descricao(livroRequest.getDescricao())
+        .isbn(livroRequest.getIsbn())
+        .quantLivros(livroRequest.getQuantLivros())
+        .valorRecebimento(livroRequest.getValorRecebimento())
+        .valorVenda(livroRequest.getValorVenda())
+        .fornecedor(fornecedorService.buscarPorIdOuFalhar(livroRequest.getId_fornecedor()))
+        .build();
 
-        return livroRepository.save(livroRequest.converterClasse());
+        return livroRepository.save(livro);
 
     }
 

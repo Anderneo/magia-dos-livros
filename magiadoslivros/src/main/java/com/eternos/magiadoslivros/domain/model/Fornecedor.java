@@ -18,33 +18,34 @@ import javax.persistence.Table;
 public class Fornecedor{
 
     public Fornecedor(){}
+
     @Id
-    @Column(name="id", nullable = false)
+    @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected Integer id;
+    private Integer id;
 
-    @Column(name="endereco", nullable = false)
-    protected String endereco;
+    @Column(name="endereco")
+    private String endereco;
 
-    @Column(name="email", nullable = false)
-    protected String email;
+    @Column(name="email")
+    private String email;
 
-    @Column(name="telefone", nullable = false) 
-    protected String telefone;
+    @Column(name="telefone") 
+    private String telefone;
       
     @Column(name="observacao")
-    protected String observacao;
+    private String observacao;
 
     @Column(name="nome_fantasia")
     private String nomeFantasia;
 
-    @Column(name="razao_social", nullable = false)
+    @Column(name="razao_social")
     private String razaoSocial;
 
-    @Column(name="cnpj", nullable = false)
+    @Column(name="cnpj")
     private String cnpj;
 
-    @Column(name="ins_estadual", nullable = false)
+    @Column(name="ins_estadual")
     private String insEstadual;
 
     //incluirFornecedor()  void

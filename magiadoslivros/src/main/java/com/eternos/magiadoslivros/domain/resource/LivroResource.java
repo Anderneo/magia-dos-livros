@@ -31,7 +31,7 @@ public class LivroResource {
 
     //PARAMETROS FORNECIDOS PELO QUERY STRING
     @GetMapping(path = "todos")
-    public List<Livro>  buscar() {
+    public List<Livro> buscar() {
         return livroService.buscarTodos();
     }
 

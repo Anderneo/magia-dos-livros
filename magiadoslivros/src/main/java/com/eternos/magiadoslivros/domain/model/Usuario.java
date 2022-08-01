@@ -19,19 +19,19 @@ public class Usuario{
     @Id
     @Column(name="id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected Integer id;
+    private Integer id;
 
     @Column(name="endereco", nullable = false)
-    protected String endereco;
+    private String endereco;
 
     @Column(name="email", nullable = false)
-    protected String email;
+    private String email;
 
     @Column(name="telefone", nullable = false) 
-    protected String telefone;
+    private String telefone;
       
     @Column(name="observacao")
-    protected String observacao;
+    private String observacao;
 
     @Column(name="nome")
     private String nome;

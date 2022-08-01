@@ -10,14 +10,13 @@ import com.eternos.magiadoslivros.domain.repository.FornecedorRepository;
 
 @Service
 public class FornecedorService {
-
+  
     @Autowired
     FornecedorRepository fornecedorRepository;
 
     public Fornecedor buscarPorIdOuFalhar(Integer id){
 
-        var teamu =  fornecedorRepository.findById(id);
-        return teamu.get();
+        return fornecedorRepository.findById(id).get();
         // .orElseThrow(new DefaultException(HttpStatus.BAD_REQUEST,"O fornecedor informado não existe"));
 
     }
@@ -25,6 +24,5 @@ public class FornecedorService {
     public List<Fornecedor> buscarTodos(){
         return fornecedorRepository.findAll();
     }
-    
-    public FornecedorService(){}
+
 }

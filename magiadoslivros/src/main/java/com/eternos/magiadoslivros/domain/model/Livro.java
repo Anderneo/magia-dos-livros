@@ -51,7 +51,7 @@ public class Livro{
     private Double valorVenda;
 
     @ManyToOne
-    @JoinColumn(name = "id_fornecedor", referencedColumnName = "id", nullable=true)
+    @JoinColumn(name = "id_fornecedor", referencedColumnName = "id")
     private Fornecedor fornecedor;
 
     // @ManyToMany(mappedBy="listaLivro")
