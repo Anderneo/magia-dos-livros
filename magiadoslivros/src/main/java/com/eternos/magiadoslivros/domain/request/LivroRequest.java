@@ -1,7 +1,5 @@
 package com.eternos.magiadoslivros.domain.request;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.eternos.magiadoslivros.domain.model.Livro;
 import com.eternos.magiadoslivros.domain.service.FornecedorService;
 
@@ -20,7 +18,7 @@ public class LivroRequest {
     
     public Livro converterClasse(){
 
-        FornecedorService fornecedorService = new FornecedorService();
+        FornecedorService fornecedorService= new FornecedorService();
         var fornecedor = fornecedorService.buscarPorIdOuFalhar(id_fornecedor);
     
         return Livro.builder()
@@ -31,7 +29,7 @@ public class LivroRequest {
         .quantLivros(this.quantLivros)
         .valorRecebimento(this.valorRecebimento)
         .valorVenda(this.valorVenda)
-        .id_fornecedor(fornecedor)
+        .fornecedor(fornecedor)
         .build();
     }
 }

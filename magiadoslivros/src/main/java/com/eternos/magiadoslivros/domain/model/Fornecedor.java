@@ -1,6 +1,8 @@
 package com.eternos.magiadoslivros.domain.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +13,11 @@ import javax.persistence.Table;
 @Builder
 @Entity
 @Table(name = "fornecedor")
+@AllArgsConstructor
+@Data
 public class Fornecedor{
+
+    public Fornecedor(){}
     @Id
     @Column(name="id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)

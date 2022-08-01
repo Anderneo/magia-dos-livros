@@ -12,9 +12,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 
 @Service
-@AllArgsConstructor
 @Builder
 public class LivroService {
+    
     private final LivroRepository livroRepository;
     
 
