@@ -1,5 +1,4 @@
 package com.eternos.magiadoslivros.domain.resource;
-
 import java.util.List;
 
 import javax.validation.Valid;
@@ -10,30 +9,27 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.eternos.magiadoslivros.domain.model.Livro;
-import com.eternos.magiadoslivros.domain.request.LivroRequest;
-import com.eternos.magiadoslivros.domain.service.LivroService;
+import com.eternos.magiadoslivros.domain.model.Pedido;
+import com.eternos.magiadoslivros.domain.request.PedidoRequest;
+import com.eternos.magiadoslivros.domain.service.PedidoService;
 
 import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping(value = "livro")
+@RequestMapping(value = "pedido")
 @AllArgsConstructor
-public class LivroResource {
-    
-    private final LivroService livroService;
+public class PedidoResource {
+
+    private final PedidoService pedidoService;
 
     @PostMapping
-    public Livro salvar(@RequestBody @Valid LivroRequest livroRequest){
-        return livroService.salvar(livroRequest);
+    public Pedido salvar(@RequestBody @Valid PedidoRequest pedidoRequest){
+        return pedidoService.salvar(pedidoRequest);
     }
 
     //PARAMETROS FORNECIDOS PELO QUERY STRING
     @GetMapping(path = "todos")
-    public List<Livro> buscar() {
-        return livroService.buscarTodos();
+    public List<Pedido> buscar() {
+        return pedidoService.buscarTodos();
     }
-
 }
-
-

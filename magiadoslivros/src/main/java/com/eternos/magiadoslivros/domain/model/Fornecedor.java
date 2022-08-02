@@ -1,7 +1,5 @@
 package com.eternos.magiadoslivros.domain.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -10,14 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-@Builder
 @Entity
 @Table(name = "fornecedor")
-@AllArgsConstructor
 @Data
 public class Fornecedor{
-
-    public Fornecedor(){}
 
     @Id
     @Column(name="id")
@@ -48,8 +42,4 @@ public class Fornecedor{
     @Column(name="ins_estadual")
     private String insEstadual;
 
-    //incluirFornecedor()  void
-    //atualizarFornecedor()  void
-    //consultaFornecedor()  void
-    //apagarFornecedor()  void
 }

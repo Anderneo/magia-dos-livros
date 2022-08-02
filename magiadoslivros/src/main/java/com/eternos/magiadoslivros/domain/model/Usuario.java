@@ -3,6 +3,7 @@ package com.eternos.magiadoslivros.domain.model;
 import java.time.LocalDate;
 
 import lombok.Builder;
+import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,9 +12,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Builder
+import com.eternos.magiadoslivros.domain.model.enums.Genero;
+import com.eternos.magiadoslivros.domain.model.enums.Perfil;
+
+
 @Entity
 @Table(name = "usuario")
+@Data
+@Builder
 public class Usuario{
 
     @Id
@@ -51,9 +57,4 @@ public class Usuario{
     @Column(name="data_de_cadastro")
     private LocalDate dataDeCadastro;
     
-
-    //incluirUsuario()  void
-    //atualizarUsuario()  void
-    //consultaUsuario()  void
-    //apagarUsuario()  void
 }

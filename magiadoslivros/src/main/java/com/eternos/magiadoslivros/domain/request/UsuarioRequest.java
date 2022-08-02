@@ -2,10 +2,11 @@ package com.eternos.magiadoslivros.domain.request;
 
 import java.time.LocalDate;
 
-import com.eternos.magiadoslivros.domain.model.Genero;
-import com.eternos.magiadoslivros.domain.model.Perfil;
-import com.eternos.magiadoslivros.domain.model.Usuario;
+import com.eternos.magiadoslivros.domain.model.enums.Genero;
+import com.eternos.magiadoslivros.domain.model.enums.Perfil;
 
+import lombok.Data;
+@Data
 public class UsuarioRequest {
 
     private String endereco;
@@ -19,18 +20,4 @@ public class UsuarioRequest {
     private LocalDate dataDeNas;
     private LocalDate dataDeCadastro;
 
-    public Usuario converterClasse(){
-        return Usuario.builder()
-        .endereco(this.endereco)
-        .email(this.email)
-        .telefone(this.telefone)
-        .observacao(this.observacao)
-        .nome(this.nome)
-        .rg(this.rg)
-        .genero(this.genero)
-        .perfil(this.perfil)
-        .dataDeNas(this.dataDeNas)
-        .dataDeCadastro(this.dataDeCadastro)
-        .build();
-    }
 }

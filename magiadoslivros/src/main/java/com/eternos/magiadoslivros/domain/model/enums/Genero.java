@@ -1,4 +1,4 @@
-package com.eternos.magiadoslivros.domain.model;
+package com.eternos.magiadoslivros.domain.model.enums;
 
 public enum Genero {
     HOMEMCIS("Homem cisgênero"),

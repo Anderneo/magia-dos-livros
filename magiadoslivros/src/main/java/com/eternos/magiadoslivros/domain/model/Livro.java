@@ -1,7 +1,5 @@
 package com.eternos.magiadoslivros.domain.model;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,19 +8,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 
 @Entity
 @Table(name = "livro")
-@Builder
 @Data
-@AllArgsConstructor
 public class Livro{
-
-    public Livro(){}
     
     @Id
     @Column(name="id")
@@ -54,11 +47,10 @@ public class Livro{
     @JoinColumn(name = "id_fornecedor", referencedColumnName = "id")
     private Fornecedor fornecedor;
 
+    @Transient
+    private Integer idFornecedor;
+
     // @ManyToMany(mappedBy="listaLivro")
     // private List<Pedido> listaPedido;
 
-    //incluirLivro()  void
-    //atualizarLivro()  void
-    //apagarLivro()  void
-    //consultaLivro()  void
 }
