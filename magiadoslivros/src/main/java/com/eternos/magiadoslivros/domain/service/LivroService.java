@@ -15,7 +15,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class LivroService {
     
-    private final FornecedorService fornecedorService;
+    //private final FornecedorService fornecedorService;
     private final LivroRepository livroRepository;
     private final LivroAssembler livroAssembler;
 
