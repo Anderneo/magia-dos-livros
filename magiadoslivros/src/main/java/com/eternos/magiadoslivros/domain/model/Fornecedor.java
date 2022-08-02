@@ -5,23 +5,43 @@ import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
-
+@Builder
 @Entity
 @Table(name = "fornecedor")
 @Data
-@Builder
-public class Fornecedor extends Pessoa {
-    @Column(name="nomeFantasia")
+public class Fornecedor{
+
+    @Id
+    @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(name="endereco")
+    private String endereco;
+
+    @Column(name="email")
+    private String email;
+
+    @Column(name="telefone") 
+    private String telefone;
+      
+    @Column(name="observacao")
+    private String observacao;
+
+    @Column(name="nome_fantasia")
     private String nomeFantasia;
 
-    @Column(name="razaoSocial")
+    @Column(name="razao_social")
     private String razaoSocial;
 
     @Column(name="cnpj")
     private String cnpj;
 
-    @Column(name="insEstadual")
+    @Column(name="ins_estadual")
     private String insEstadual;
 
     //incluirFornecedor()  void
