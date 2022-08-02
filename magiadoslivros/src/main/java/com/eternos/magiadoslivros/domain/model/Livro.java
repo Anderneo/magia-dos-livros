@@ -10,7 +10,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import lombok.Builder;
 import lombok.Data;
 
 @Entity
@@ -44,7 +43,7 @@ public class Livro{
     @Column(name="valor_venda")
     private Double valorVenda;
 
-    @ManyToOne @Transient
+    @ManyToOne
     @JoinColumn(name = "id_fornecedor", referencedColumnName = "id")
     private Fornecedor fornecedor;
 
@@ -54,8 +53,4 @@ public class Livro{
     // @ManyToMany(mappedBy="listaLivro")
     // private List<Pedido> listaPedido;
 
-    //incluirLivro()  void
-    //atualizarLivro()  void
-    //apagarLivro()  void
-    //consultaLivro()  void
 }

@@ -15,17 +15,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Id;
 
-import lombok.Builder;
 import lombok.Data;
-import lombok.Builder.Default;
 
 @Entity
 @Table(name = "pedido")
 @Data
-@Builder
-public class Pedido implements Serializable{
-   
-   private static final long serialVersionUID = 1L;
+public class Pedido{
 
    @Id
    @Column(name="id")
@@ -57,7 +52,7 @@ public class Pedido implements Serializable{
    @JoinColumn(name = "id_usuario")
    private Usuario idUsuario;
    
-   @Column(name = "cancelada")@Default
+   @Column(name = "cancelada", columnDefinition="boolean default false")
    private Boolean vendaCancelada = false;
 
    public void cancelarVenda(){

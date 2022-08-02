@@ -20,10 +20,10 @@ public class LivroAssembler {
         return modelMapper.map(livroRequest, Livro.class);
     }
 
-    public List<Livro> toCollectionModel(List<LivroRequest> salasRequest){
+    public List<Livro> toCollectionModel(List<LivroRequest> livroRequest){
         //lambda functions JAVA 8
-        return  salasRequest.stream()
-                             .map(sala -> toModel(sala))
+        return  livroRequest.stream()
+                             .map(livro -> toModel(livro))
                              .collect(Collectors.toList());                             
     }
 }

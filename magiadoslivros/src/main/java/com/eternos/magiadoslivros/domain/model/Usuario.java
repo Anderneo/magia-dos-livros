@@ -57,9 +57,4 @@ public class Usuario{
     @Column(name="data_de_cadastro")
     private LocalDate dataDeCadastro;
     
-
-    //incluirUsuario()  void
-    //atualizarUsuario()  void
-    //consultaUsuario()  void
-    //apagarUsuario()  void
 }

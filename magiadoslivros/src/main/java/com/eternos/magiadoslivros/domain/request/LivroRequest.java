@@ -5,12 +5,12 @@ import lombok.Data;
 public class LivroRequest {
 
     String descricao;
-    Integer idFornecedor;
     Integer isbn;
     String nome;
     Integer quantLivros;
     String tagEstoque;
     Double valorRecebimento;
     Double valorVenda; 
+    Integer idFornecedor;
     
 }
