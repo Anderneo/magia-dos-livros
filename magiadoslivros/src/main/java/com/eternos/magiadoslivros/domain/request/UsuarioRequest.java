@@ -9,15 +9,15 @@ import lombok.Data;
 @Data
 public class UsuarioRequest {
 
-    private String endereco;
-    private String email;
-    private String telefone;
-    private String observacao;
-    private String nome;
-    private String rg;
-    private Genero genero;
-    private Perfil perfil;
-    private LocalDate dataDeNas;
-    private LocalDate dataDeCadastro;
+    String endereco;
+    String email;
+    String telefone;
+    String observacao;
+    String nome;
+    String rg;
+    Genero genero;
+    Perfil perfil;
+    LocalDate dataDeNas;
+    LocalDate dataDeCadastro;
 
 }
