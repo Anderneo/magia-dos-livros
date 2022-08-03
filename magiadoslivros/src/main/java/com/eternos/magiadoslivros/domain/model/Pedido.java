@@ -1,6 +1,5 @@
 package com.eternos.magiadoslivros.domain.model;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
