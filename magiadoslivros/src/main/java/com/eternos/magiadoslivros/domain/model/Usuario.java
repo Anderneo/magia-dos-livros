@@ -43,6 +43,9 @@ public class Usuario{
     @Column(name="rg")
     private String rg;
 
+    @Column(name="cpf")
+    private String cpf;
+
     @Column(name="genero")
     private Genero genero;
 
