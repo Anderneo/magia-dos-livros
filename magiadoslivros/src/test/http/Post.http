@@ -1,0 +1,64 @@
+### Salva Um Registro Em Livro
+POST http://localhost:8080/livro HTTP/1.1
+Content-Type: application/json
+
+{
+  "idLivro": "13",
+  "descricao": "gf",
+  "isbn": "123",
+  "nome": "novo",
+  "quantLivros": "3",
+  "tagEstoque": "2b3",
+  "valorRecebimento": "30",
+  "valorVenda": "50",
+  "idFornecedor":2
+}
+
+### Salva Um Registro Em Fornecedor
+POST http://localhost:8080/fornecedor HTTP/1.1
+Content-Type: application/json
+
+{
+  "endereco": "Novo Fornecedor 8",
+  "email": "a@b",
+  "telefone": "123-213",
+  "observacao": "bla",
+  "nomeFantasia": "Novidade",
+  "razaoSocial": "Novo SA",
+  "cnpj": "1215467468",
+  "insEstadual": "SP"
+}
+
+### Salva Um Registro Em Usuario
+POST http://localhost:8080/usuario HTTP/1.1
+Content-Type: application/json
+
+{
+	"endereco": "rua Teste3",
+	"email": "t@t",
+	"telefone": "123-321",
+	"observacao": "testando",
+	"nome": "Testino",
+	"rg": "123-6",
+	"cpf": "2351-23",
+	"genero": 5,
+	"perfil": 1,
+	"dataDeNas": "02/02/2222",
+	"dataDeCadastro": "12/05/2225"
+}
+
+### Salva Um Registro Em Pedido
+POST http://localhost:8080/pedido HTTP/1.1
+Content-Type: application/json
+
+{
+  "valorVenda": "100",
+  "enderecoEntrega": "rua da entrega",
+  "formaDePgto": "cartao",
+  "parcela": "2",
+  "dataVenda": "03/01/2014",
+  "dataPgto": "03/02/2014",
+  "dataEntrega": "16/02/2014",
+  "vendaCancelada;": false,
+  "id": 1
+}

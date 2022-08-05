@@ -1,0 +1,12 @@
+### Recupera Todos os Regristros Em Livros
+GET http://localhost:8080/livro/todos HTTP/1.1
+
+### Recupera Todos os Regristros Em Fornecedor
+GET http://localhost:8080/fornecdor/todos HTTP/1.1
+
+### Recupera Todos os Regristros Em Usuario
+GET http://localhost:8080/usuario/todos HTTP/1.1
+
+### Recupera Todos os Regristros Em Pedido
+GET http://localhost:8080/pedido/todos HTTP/1.1
+

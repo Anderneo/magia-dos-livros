@@ -1,0 +1,14 @@
+### Deleta Um Registro Em Livro
+DELETE http://localhost:8080/livro/2 HTTP/1.1
+
+
+### Deleta Um Registro Em Livro
+DELETE http://localhost:8080/fornecedor/2 HTTP/1.1
+
+
+### Deleta Um Registro Em Livro
+DELETE http://localhost:8080/usuario/2 HTTP/1.1
+
+
+### Deleta Um Registro Em Livro
+DELETE http://localhost:8080/pedido/2 HTTP/1.1
