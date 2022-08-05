@@ -1,54 +1,66 @@
 package com.eternos.magiadoslivros.domain.model;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Id;
 
-import org.springframework.data.annotation.Id;
-
-import lombok.Builder;
 import lombok.Data;
-import lombok.Builder.Default;
 
 @Entity
 @Table(name = "pedido")
 @Data
-@Builder
-public class Pedido {
+public class Pedido{
+
    @Id
-   @Column(name="idVenda")
+   @Column(name="id")
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Integer idVenda;
 
-   @Column(name="valorVenda", nullable = false)  
+   @Column(name="valor_de_venda", nullable = false)  
    private Double valorVenda;
 
-   @Column(name="enderecoEntrega")
+   @Column(name="endereco_entrega", nullable = false)
    private String enderecoEntrega;
 
-   @Column(name="formaDePgto") 
+   @Column(name="forma_de_pagto", nullable = false) 
    private String formaDePgto;
 
-   @Column(name="parcelas")
-   private Integer parcelas;
+   @Column(name="parcela", nullable = false)
+   private Integer parcela;
 
-   @Column(name="dataVenda")
-   private Date dataVenda;
+   @Column(name="data_venda", nullable = false)
+   private LocalDate dataVenda;
 
-   @Column(name="dataPgto")
-   private Date dataPgto;
+   @Column(name="data_pagto", nullable = false)
+   private LocalDate dataPgto;
 
-   @Column(name="dataEntrega") 
-   private Date dataEntrega;
+   @Column(name="data_entrega", nullable = false) 
+   private LocalDate dataEntrega;
+
+   @ManyToOne
+   @JoinColumn(name = "id_usuario")
+   private Usuario idUsuario;
    
-   @Default
+   @Column(name = "cancelada", columnDefinition="boolean default false")
    private Boolean vendaCancelada = false;
 
    public void cancelarVenda(){
         this.vendaCancelada = true;
    }
+
+   @ManyToMany
+   @JoinTable(name="pedido_livro",
+   joinColumns = {@JoinColumn(name="id_pedido")},
+   inverseJoinColumns = {@JoinColumn(name="id_livro")})
+   private List<Livro> listaLivro;
 }

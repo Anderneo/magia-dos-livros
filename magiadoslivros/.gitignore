@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# propriedades
+magiadoslivros/src/main/resources/application.properties

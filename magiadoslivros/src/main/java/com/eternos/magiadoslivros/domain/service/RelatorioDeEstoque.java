@@ -1,15 +1,12 @@
 package com.eternos.magiadoslivros.domain.service;
 
-import java.util.Date;
+import org.springframework.stereotype.Service;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.AllArgsConstructor;
 
-@Data
-@Builder
+@Service
+@AllArgsConstructor
 public class RelatorioDeEstoque {
-    private Date dataInicio;
-    private Date dataFim;
 
     //gerarRelatorio()  void
 

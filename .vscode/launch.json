@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-MagiadoslivrosApplication<magiadoslivros>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.eternos.magiadoslivros.MagiadoslivrosApplication",
+            "projectName": "magiadoslivros",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
