@@ -23,14 +23,6 @@ public class LivroService {
 
     public Livro salvar(LivroRequest livroRequest){
 
-/*         if(livroRequest.getIdLivro() != null){
-
-            throw new DefaultException(
-                HttpStatus.BAD_REQUEST,
-                 "Esse registro já existe!!");
-
-        } */
-
         return livroRepository.save(livroAssembler.toModel(livroRequest));
 
     }
