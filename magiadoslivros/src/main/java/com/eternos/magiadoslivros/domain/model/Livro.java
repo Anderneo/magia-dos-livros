@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import lombok.Data;
 
@@ -42,12 +43,13 @@ public class Livro{
     @Column(name="valor_venda")
     private Double valorVenda;
 
-    @ManyToOne 
+    @ManyToOne
     @JoinColumn(name = "id_fornecedor", referencedColumnName = "id")
     private Fornecedor fornecedor;
 
+    
 
-    // @ManyToMany(mappedBy="listaLivro")
+    //@ManyToMany(mappedBy="listaLivro")
     // private List<Pedido> listaPedido;
 
 }
