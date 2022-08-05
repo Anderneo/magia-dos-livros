@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.eternos.magiadoslivros.domain.model.enums.Genero;
 import com.eternos.magiadoslivros.domain.model.enums.Perfil;
@@ -52,9 +54,11 @@ public class Usuario{
     @Column(name="perfil")
     private Perfil perfil;
 
+    @Temporal(TemporalType.DATE)
     @Column(name="data_de_nascimento")
     private LocalDate dataDeNas;
     
+    @Temporal(TemporalType.DATE)
     @Column(name="data_de_cadastro")
     private LocalDate dataDeCadastro;
     

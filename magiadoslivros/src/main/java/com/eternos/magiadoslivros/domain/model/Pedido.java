@@ -12,6 +12,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Id;
 
 import lombok.Data;
@@ -38,12 +40,15 @@ public class Pedido{
    @Column(name="parcela", nullable = false)
    private Integer parcela;
 
+   @Temporal(TemporalType.DATE)
    @Column(name="data_venda", nullable = false)
    private LocalDate dataVenda;
 
+   @Temporal(TemporalType.DATE)
    @Column(name="data_pagto", nullable = false)
    private LocalDate dataPgto;
 
+   @Temporal(TemporalType.DATE)
    @Column(name="data_entrega", nullable = false) 
    private LocalDate dataEntrega;
 
