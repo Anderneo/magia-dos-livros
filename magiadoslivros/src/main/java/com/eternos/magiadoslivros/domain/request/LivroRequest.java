@@ -11,6 +11,6 @@ public class LivroRequest {
     String tagEstoque;
     Double valorRecebimento;
     Double valorVenda; 
-    Integer idFornecedor;
-    
+    Integer fornecedor;
+
 }

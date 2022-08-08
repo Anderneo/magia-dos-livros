@@ -22,8 +22,11 @@ public class LivroService {
 
 
     public Livro salvar(LivroRequest livroRequest){
+        Livro livro = livroAssembler.toModel(livroRequest);
 
-        return livroRepository.save(livroAssembler.toModel(livroRequest));
+        //livro.setIdLivro(null);
+
+        return livroRepository.save(livro);
 
     }
 
@@ -38,6 +41,13 @@ public class LivroService {
         return livroRepository.findById(id)
             .orElseThrow(new DefaultException(
             HttpStatus.BAD_REQUEST,"O registro informado não existe!!"));
+
+    }
+
+    public Boolean checarId(Integer id){
+
+        if(livroRepository.findById(id) != null) return true;
+        return false;
 
     }
 
