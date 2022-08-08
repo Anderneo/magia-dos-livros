@@ -63,6 +63,8 @@ FOREIGN KEY (id_fornecedor)
 CREATE TABLE IF NOT EXISTS pedido_livro (
 id_livro INT,
 id_pedido INT,
+quantidade INT,
+PRIMARY KEY (id_livro,id_pedido),
 FOREIGN KEY (id_livro)
         REFERENCES livro (id)
         ON UPDATE RESTRICT ON DELETE CASCADE,

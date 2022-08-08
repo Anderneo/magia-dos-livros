@@ -31,7 +31,7 @@ public class PedidoRequest {
         this.dataEntrega = toDate(dataEntrega);
         this.vendaCancelada = vendaCancelada;
         this.idUsuario = idUsuario;
-        }
+    }
 
     private final LocalDate toDate(String data){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
