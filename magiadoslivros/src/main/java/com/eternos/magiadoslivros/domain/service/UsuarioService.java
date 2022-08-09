@@ -52,10 +52,34 @@ public class UsuarioService {
 
     }
 
-    public Usuario atualizarAtributoUsuario(Integer id, Object atributo){
-        var usuario = buscarId(id);
+    public Usuario buscarCpf(String cpf){
+            
+        return usuarioRepository.findByCpf(cpf)
+            .orElseThrow(new DefaultException(HttpStatus.NOT_FOUND, 
+                    "Não foi possivel encontrar nenhum registro com esse CPF!!"));
+
+    }
+
+    public List<Usuario> buscarNome(String nome){
+
+        List<Usuario> usuario = usuarioRepository.findByNomeContainingIgnoreCase(nome);
+
+        if(usuario.isEmpty()) throw new DefaultException(HttpStatus.NOT_FOUND, 
+                     "Não foi possivel encontrar nenhum registro com esse NOME!!");
 
         return usuario;
+
+    }
+
+    public void deletar(Integer id){
+
+        var objecto = buscarId(id);
+
+        usuarioRepository.delete(objecto);
+
+        throw new DefaultException(
+                                    HttpStatus.ACCEPTED,
+                                    "Registro " + id + " deletado com sucesso!!");
     }
 
 }
