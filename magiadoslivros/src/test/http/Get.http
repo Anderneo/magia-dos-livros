@@ -2,10 +2,23 @@
 GET http://localhost:8080/livro/todos HTTP/1.1
 
 ### Recupera Todos os Regristros Em Fornecedor
-GET http://localhost:8080/fornecdor/todos HTTP/1.1
+GET http://localhost:8080/fornecedor/todos HTTP/1.1
+
+### Recupera Todos os Regristros Em Fornecedor
+@razaosocial = Novidade
+GET http://localhost:8080/fornecedor/buscar?razaosocial={{razaosocial}} HTTP/1.1
+
 
 ### Recupera Todos os Regristros Em Usuario
 GET http://localhost:8080/usuario/todos HTTP/1.1
+
+### Recupera Os Regristros Em Usuario por CPF
+@cpf= 2351-23
+GET http://localhost:8080/usuario/busca/cpf?cpf={{cpf}} HTTP/1.1
+
+### Recupera Os Regristros Em Usuario por Nome
+@nome= Anderson
+GET http://localhost:8080/usuario/busca/nome?nome={{nome}} HTTP/1.1
 
 ### Recupera Todos os Regristros Em Pedido
 GET http://localhost:8080/pedido/todos HTTP/1.1
