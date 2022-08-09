@@ -1,12 +1,16 @@
 ### Recupera Todos os Regristros Em Livros
 GET http://localhost:8080/livro/todos HTTP/1.1
 
+### Recupera Todos os Regristros Em Livros
+@varNome= novo
+GET http://localhost:8080/livro/buscar/nome?nome={{varNome}} HTTP/1.1
+
 ### Recupera Todos os Regristros Em Fornecedor
 GET http://localhost:8080/fornecedor/todos HTTP/1.1
 
 ### Recupera Todos os Regristros Em Fornecedor
-@razaosocial = Novidade
-GET http://localhost:8080/fornecedor/buscar?razaosocial={{razaosocial}} HTTP/1.1
+@varRazaosocial = Novo SA
+GET http://localhost:8080/fornecedor/buscar?razaosocial={{varRazaosocial}} HTTP/1.1
 
 
 ### Recupera Todos os Regristros Em Usuario
