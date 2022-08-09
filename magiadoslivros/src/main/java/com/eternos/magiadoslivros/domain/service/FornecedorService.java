@@ -39,4 +39,12 @@ public class FornecedorService {
 
     }
 
+    public Fornecedor buscarCnpj(String cnpj){
+            
+        return fornecedorRepository.findByCnpj(cnpj)
+            .orElseThrow(new DefaultException(HttpStatus.NOT_FOUND, 
+                    "Não foi possivel encontrar nenhum registro !!!"));
+
+    }
+
 }

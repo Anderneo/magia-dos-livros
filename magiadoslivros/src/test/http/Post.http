@@ -24,7 +24,7 @@ Content-Type: application/json
   "observacao": "bla",
   "nomeFantasia": "Novidade",
   "razaoSocial": "teste t",
-  "cnpj": "1215467468",
+  "cnpj": "1123123",
   "insEstadual": "MG"
 }
 
