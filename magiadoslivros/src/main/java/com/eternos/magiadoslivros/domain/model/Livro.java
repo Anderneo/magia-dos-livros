@@ -12,11 +12,15 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 @Entity
 @Table(name = "livro")
 @Data
+@Builder
+@AllArgsConstructor
 public class Livro{
     
     @Id
@@ -54,18 +58,6 @@ public class Livro{
 
 
     public Livro() {
-    }
-
-    public Livro(Integer idLivro, String tagEstoque, String nome, String descricao, Integer isbn, Integer quantLivros, Double valorRecebimento, Double valorVenda, Fornecedor idFornecedor) {
-        this.idLivro = idLivro;
-        this.tagEstoque = tagEstoque;
-        this.nome = nome;
-        this.descricao = descricao;
-        this.isbn = isbn;
-        this.quantLivros = quantLivros;
-        this.valorRecebimento = valorRecebimento;
-        this.valorVenda = valorVenda;
-        this.idFornecedor = idFornecedor;
     }
 
 }

@@ -27,6 +27,14 @@ public class FornecedorService {
 
     }
 
+    public Fornecedor buscarId(Integer id){
+
+        return fornecedorRepository.findById(id)
+            .orElseThrow(new DefaultException(
+            HttpStatus.BAD_REQUEST,"O registro informado não existe!!"));
+
+    }
+
     public List<Fornecedor> buscarTodos(){
         return fornecedorRepository.findAll();
     }

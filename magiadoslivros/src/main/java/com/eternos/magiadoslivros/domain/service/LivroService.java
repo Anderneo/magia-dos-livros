@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import com.eternos.magiadoslivros.domain.assembler.LivroAssembler;
 import com.eternos.magiadoslivros.domain.exception.DefaultException;
 import com.eternos.magiadoslivros.domain.model.Fornecedor;
 import com.eternos.magiadoslivros.domain.model.Livro;
@@ -20,24 +19,23 @@ import lombok.AllArgsConstructor;
 public class LivroService {
     
     private final LivroRepository livroRepository;
-    private final LivroAssembler livroAssembler;
-    private final FornecedorRepository fornecedorRepository;
+    private final FornecedorService fornecedorService;
 
 
 
     public Livro salvar(LivroRequest livroRequest){
-        Fornecedor fornecedor = fornecedorRepository.findById(livroRequest.getIdFornecedor()).get();
-        Livro livro = new Livro( 
-        100,
-        livroRequest.getTagEstoque(), 
-        livroRequest.getNome(), 
-        livroRequest.getDescricao(), 
-        livroRequest.getIsbn(), 
-        livroRequest.getQuantLivros(), 
-        livroRequest.getValorRecebimento(), 
-        livroRequest.getValorVenda(),
-        fornecedor 
-        );
+        Fornecedor fornecedor = fornecedorService.buscarId(livroRequest.getIdFornecedor());
+
+        Livro livro = Livro.builder()
+        .descricao(livroRequest.getDescricao())
+        .isbn(livroRequest.getIsbn())
+        .nome(livroRequest.getNome())
+        .quantLivros(livroRequest.getQuantLivros())
+        .tagEstoque(livroRequest.getTagEstoque())
+        .valorRecebimento(livroRequest.getValorRecebimento())
+        .valorVenda(livroRequest.getValorVenda())
+        .idFornecedor(fornecedor)
+        .build();
 
         return livroRepository.save(livro);
 
