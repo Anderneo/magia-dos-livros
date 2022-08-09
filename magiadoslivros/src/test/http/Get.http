@@ -8,21 +8,24 @@ GET http://localhost:8080/livro/buscar/nome?nome={{varNome}} HTTP/1.1
 ### Recupera Todos os Regristros Em Fornecedor
 GET http://localhost:8080/fornecedor/todos HTTP/1.1
 
-### Recupera Todos os Regristros Em Fornecedor
+### Recupera os Regristros Em Fornecedor Por Razão Social
 @varRazaosocial = Novo SA
-GET http://localhost:8080/fornecedor/buscar?razaosocial={{varRazaosocial}} HTTP/1.1
+GET http://localhost:8080/fornecedor/buscar/razaosocial?razaosocial={{varRazaosocial}} HTTP/1.1
 
+### Recupera os Regristros Em Fornecedor Por CNPJ
+@varCnpj = 1123123
+GET http://localhost:8080/fornecedor/buscar/cnpj?cnpj={{varCnpj}} HTTP/1.1
 
 ### Recupera Todos os Regristros Em Usuario
 GET http://localhost:8080/usuario/todos HTTP/1.1
 
 ### Recupera Os Regristros Em Usuario por CPF
-@cpf= 2351-23
-GET http://localhost:8080/usuario/busca/cpf?cpf={{cpf}} HTTP/1.1
+@varCpf= 2351-23
+GET http://localhost:8080/usuario/busca/cpf?cpf={{varCpf}} HTTP/1.1
 
 ### Recupera Os Regristros Em Usuario por Nome
-@nome= Anderson
-GET http://localhost:8080/usuario/busca/nome?nome={{nome}} HTTP/1.1
+@varNome= Anderson
+GET http://localhost:8080/usuario/busca/nome?nome={{varNome}} HTTP/1.1
 
 ### Recupera Todos os Regristros Em Pedido
 GET http://localhost:8080/pedido/todos HTTP/1.1
