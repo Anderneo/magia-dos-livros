@@ -11,7 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import lombok.Data;
 
@@ -48,12 +47,25 @@ public class Livro{
 
     @ManyToOne
     @JoinColumn(name = "id_fornecedor", referencedColumnName = "id")
-    private Fornecedor fornecedor;
+    private Fornecedor idFornecedor;
 
-    @Transient
-    private Integer idFornecedor;
+    /* @ManyToMany(mappedBy="listaLivro")
+    private List<Pedido> listaPedido; */
 
-    // @ManyToMany(mappedBy="listaLivro")
-    // private List<Pedido> listaPedido;
+
+    public Livro() {
+    }
+
+    public Livro(Integer idLivro, String tagEstoque, String nome, String descricao, Integer isbn, Integer quantLivros, Double valorRecebimento, Double valorVenda, Fornecedor idFornecedor) {
+        this.idLivro = idLivro;
+        this.tagEstoque = tagEstoque;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.isbn = isbn;
+        this.quantLivros = quantLivros;
+        this.valorRecebimento = valorRecebimento;
+        this.valorVenda = valorVenda;
+        this.idFornecedor = idFornecedor;
+    }
 
 }

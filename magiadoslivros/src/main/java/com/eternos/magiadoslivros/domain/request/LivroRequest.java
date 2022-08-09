@@ -12,5 +12,5 @@ public class LivroRequest {
     Double valorRecebimento;
     Double valorVenda; 
     Integer idFornecedor;
-    
+
 }

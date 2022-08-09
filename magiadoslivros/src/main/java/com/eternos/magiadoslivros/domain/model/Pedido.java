@@ -1,6 +1,5 @@
 package com.eternos.magiadoslivros.domain.model;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -55,13 +54,14 @@ public class Pedido{
    @Column(name = "cancelada", columnDefinition="boolean default false")
    private Boolean vendaCancelada = false;
 
-   public void cancelarVenda(){
-        this.vendaCancelada = true;
-   }
-
    @ManyToMany
    @JoinTable(name="pedido_livro",
    joinColumns = {@JoinColumn(name="id_pedido")},
    inverseJoinColumns = {@JoinColumn(name="id_livro")})
    private List<Livro> listaLivro;
+
+   public void cancelarVenda(){
+      this.vendaCancelada = true;
+   }
+
 }

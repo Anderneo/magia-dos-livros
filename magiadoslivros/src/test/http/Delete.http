@@ -1,0 +1,16 @@
+@id = 1
+
+### Deleta Um Registro Em Livro
+DELETE http://localhost:8080/livro/{{id}} HTTP/1.1
+
+
+### Deleta Um Registro Em Fornecedor
+DELETE http://localhost:8080/fornecedor/{{id}} HTTP/1.1
+
+
+### Deleta Um Registro Em Usuario
+DELETE http://localhost:8080/usuario/{{id}} HTTP/1.1
+
+
+### Deleta Um Registro Em Pedido
+DELETE http://localhost:8080/pedido/{{id}} HTTP/1.1

@@ -2,7 +2,6 @@ package com.eternos.magiadoslivros.domain.model;
 
 import java.time.LocalDate;
 
-import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -19,7 +18,6 @@ import com.eternos.magiadoslivros.domain.model.enums.Perfil;
 @Entity
 @Table(name = "usuario")
 @Data
-@Builder
 public class Usuario{
 
     @Id
@@ -44,6 +42,9 @@ public class Usuario{
 
     @Column(name="rg")
     private String rg;
+
+    @Column(name="cpf")
+    private String cpf;
 
     @Column(name="genero")
     private Genero genero;

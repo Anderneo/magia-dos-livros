@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class FornecedorRequest {
+
      String endereco;
      String email;
      String telefone;
