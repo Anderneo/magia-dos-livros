@@ -1,0 +1,19 @@
+@id = 5
+
+### Altera Um Registro Em Usuário
+PUT http://localhost:8080/usuario/{{id}} HTTP/1.1
+Content-Type: application/json
+
+{
+	"endereco": "Testando Alteração5",
+	"email": "altt@t",
+	"telefone": "1233-321",
+	"observacao": "testando2",
+	"nome": "Testino2",
+	"rg": "123-62",
+	"cpf": "2351-232",
+	"genero": 5,
+	"perfil": 1,
+	"dataDeNas": "02/02/2223",
+	"dataDeCadastro": "12/05/2226"
+}

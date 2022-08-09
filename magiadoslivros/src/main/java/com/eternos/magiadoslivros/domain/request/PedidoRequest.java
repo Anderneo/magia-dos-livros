@@ -1,12 +1,12 @@
 package com.eternos.magiadoslivros.domain.request;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
-import com.eternos.magiadoslivros.domain.model.Usuario;
+import lombok.Getter;
+import lombok.Setter;
 
-import lombok.Data;
-
-@Data
+@Getter @Setter
 public class PedidoRequest {
     
     Double valorVenda;
@@ -17,6 +17,26 @@ public class PedidoRequest {
     LocalDate dataPgto;
     LocalDate dataEntrega;
     Boolean vendaCancelada;
-    Usuario idUsuario;
+    Integer idUsuario;
+
+    public PedidoRequest(Double valorVenda, String enderecoEntrega, String formaDePgto, 
+                          Integer parcela, String dataVenda, String dataPgto, String dataEntrega,
+                          Boolean vendaCancelada, Integer idUsuario){
+        this.valorVenda = valorVenda;
+        this.enderecoEntrega = enderecoEntrega;
+        this.formaDePgto = formaDePgto;
+        this.parcela = parcela;
+        this.dataVenda = toDate(dataVenda);
+        this.dataPgto = toDate(dataPgto);
+        this.dataEntrega = toDate(dataEntrega);
+        this.vendaCancelada = vendaCancelada;
+        this.idUsuario = idUsuario;
+    }
+
+    private final LocalDate toDate(String data){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return LocalDate.parse(data, formatter);
+    }
+
 
 }
