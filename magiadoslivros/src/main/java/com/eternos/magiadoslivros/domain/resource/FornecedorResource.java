@@ -30,9 +30,14 @@ public class FornecedorResource {
         return fornecedorService.salvar(fornecedorRequest);
     }
 
-    @GetMapping(path = "buscar")
+    @GetMapping(path = "buscar/razaosocial")
     public Fornecedor buscarRazaoSocial(@RequestParam String razaosocial ){
         return fornecedorService.buscarRazaoSocial(razaosocial);
+    }
+
+    @GetMapping(path = "buscar/cnpj")
+    public Fornecedor buscarCnpj(@RequestParam String cnpj ){
+        return fornecedorService.buscarCnpj(cnpj);
     }
 
     @GetMapping(path = "todos")

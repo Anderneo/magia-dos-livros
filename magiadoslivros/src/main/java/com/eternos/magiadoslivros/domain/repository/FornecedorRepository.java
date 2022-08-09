@@ -8,4 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface FornecedorRepository extends JpaRepository<Fornecedor, Integer>{
     Optional<Fornecedor> findByRazaoSocial(String razaoSocial);
+    Optional<Fornecedor> findByCnpj(String cnpj);
 }
