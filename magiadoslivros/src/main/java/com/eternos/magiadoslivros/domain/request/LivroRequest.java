@@ -1,7 +1,5 @@
 package com.eternos.magiadoslivros.domain.request;
 
-import com.eternos.magiadoslivros.domain.model.Livro;
-
 import lombok.Data;
 @Data
 public class LivroRequest {

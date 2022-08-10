@@ -23,7 +23,7 @@ parcela INT NOT NULL,
 data_venda DATE NOT NULL, 
 data_pagto DATE NOT NULL,
 data_entrega DATE NOT NULL,
-cancelada BOOLEAN NOT NULL,
+cancelada BOOLEAN,
 id_usuario INT NOT NULL,
 PRIMARY KEY (id),
 FOREIGN KEY (id_usuario)

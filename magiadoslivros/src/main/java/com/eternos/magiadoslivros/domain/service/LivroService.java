@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.eternos.magiadoslivros.domain.exception.DefaultException;
 import com.eternos.magiadoslivros.domain.model.Fornecedor;
 import com.eternos.magiadoslivros.domain.model.Livro;
-import com.eternos.magiadoslivros.domain.repository.FornecedorRepository;
 import com.eternos.magiadoslivros.domain.repository.LivroRepository;
 import com.eternos.magiadoslivros.domain.request.LivroRequest;
 
