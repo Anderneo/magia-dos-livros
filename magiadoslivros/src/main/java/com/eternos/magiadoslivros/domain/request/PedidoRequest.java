@@ -18,11 +18,12 @@ public class PedidoRequest {
     LocalDate dataPgto;
     LocalDate dataEntrega;
     Integer idUsuario;
+    Boolean vendaCancelada;
     ArrayList<PedidoLivroRequest> listaLivro;
 
     public PedidoRequest(Double valorVenda, String enderecoEntrega, String formaDePgto, 
                           Integer parcela, String dataVenda, String dataPgto, String dataEntrega,
-                          Integer idUsuario){
+                          Integer idUsuario, Boolean vendaCancelada){
         this.valorVenda = valorVenda;
         this.enderecoEntrega = enderecoEntrega;
         this.formaDePgto = formaDePgto;
@@ -31,6 +32,7 @@ public class PedidoRequest {
         this.dataPgto = toDate(dataPgto);
         this.dataEntrega = toDate(dataEntrega);
         this.idUsuario = idUsuario;
+        this.vendaCancelada = vendaCancelada;
     }
 
     private final LocalDate toDate(String data){
