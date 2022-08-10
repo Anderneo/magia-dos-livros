@@ -65,7 +65,7 @@ public class Pedido{
    @JoinTable(name="pedido_livro",
    joinColumns = {@JoinColumn(name="id_pedido")},
    inverseJoinColumns = {@JoinColumn(name="id_livro")})
-   private List<Livro> listaLivro = new ArrayList<>();;
+   private List<Livro> listaLivro = new ArrayList<>();
 
    public void cancelarVenda(){
       this.vendaCancelada = true;
