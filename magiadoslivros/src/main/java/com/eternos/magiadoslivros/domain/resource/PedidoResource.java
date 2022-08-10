@@ -4,6 +4,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +28,7 @@ public class PedidoResource {
         return pedidoService.salvar(pedidoRequest);
     }
 
-    @PostMapping(path = "cancelar/pedido")
+    @PatchMapping(path = "cancelar/pedido")
     public void cancelarPedido(@RequestBody @Valid Integer idPedido, Integer idUsuario){
         pedidoService.cancelarPedido(idPedido, idUsuario);
     }
