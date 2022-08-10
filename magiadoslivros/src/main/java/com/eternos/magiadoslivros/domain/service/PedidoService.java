@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.eternos.magiadoslivros.domain.exception.DefaultException;
 import com.eternos.magiadoslivros.domain.model.Livro;
-import com.eternos.magiadoslivros.domain.exception.DefaultException;
 import com.eternos.magiadoslivros.domain.model.Pedido;
 import com.eternos.magiadoslivros.domain.model.PedidoLivro;
 import com.eternos.magiadoslivros.domain.model.PedidoLivroId;
