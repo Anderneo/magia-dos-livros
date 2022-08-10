@@ -1,6 +1,7 @@
 package com.eternos.magiadoslivros.domain.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -36,9 +37,7 @@ public class LivroService {
         .idFornecedor(fornecedor)
         .build();
 
-        if( !buscarTodos().contains(livro.getIsbn())) throw new DefaultException(
-                                                        HttpStatus.BAD_REQUEST,
-                                                        "ISBN já existe!!");
+        checarIsbn(livro.getIsbn());
 
         return livroRepository.save(livro);
 
@@ -56,6 +55,13 @@ public class LivroService {
             .orElseThrow(new DefaultException(
             HttpStatus.BAD_REQUEST,"O registro informado não existe!!"));
 
+    }
+
+    public void checarIsbn(String isbn){
+
+        if(livroRepository.findByIsbn(isbn) != null) throw new DefaultException(
+                                                                 HttpStatus.BAD_REQUEST,
+                                                        "ISBN já existe!!");
     }
 
     public List<Livro> buscarNome(String nome){
