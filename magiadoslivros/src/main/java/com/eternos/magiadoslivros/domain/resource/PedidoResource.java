@@ -27,9 +27,16 @@ public class PedidoResource {
         return pedidoService.salvar(pedidoRequest);
     }
 
+    @PostMapping(path = "cancelar/pedido")
+    public void cancelarPedido(@RequestBody @Valid Integer idPedido, Integer idUsuario){
+        pedidoService.cancelarPedido(idPedido, idUsuario);
+    }
+
     //PARAMETROS FORNECIDOS PELO QUERY STRING
     @GetMapping(path = "todos")
     public List<Pedido> buscar() {
         return pedidoService.buscarTodos();
     }
+
+
 }

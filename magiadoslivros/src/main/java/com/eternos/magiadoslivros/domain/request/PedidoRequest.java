@@ -16,7 +16,6 @@ public class PedidoRequest {
     LocalDate dataVenda;
     LocalDate dataPgto;
     LocalDate dataEntrega;
-    Boolean vendaCancelada;
     Integer idUsuario;
 
     public PedidoRequest(Double valorVenda, String enderecoEntrega, String formaDePgto, 
@@ -29,7 +28,6 @@ public class PedidoRequest {
         this.dataVenda = toDate(dataVenda);
         this.dataPgto = toDate(dataPgto);
         this.dataEntrega = toDate(dataEntrega);
-        this.vendaCancelada = vendaCancelada;
         this.idUsuario = idUsuario;
     }
 
