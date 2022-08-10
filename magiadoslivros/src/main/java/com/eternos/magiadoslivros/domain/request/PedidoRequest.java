@@ -22,7 +22,7 @@ public class PedidoRequest {
 
     public PedidoRequest(Double valorVenda, String enderecoEntrega, String formaDePgto, 
                           Integer parcela, String dataVenda, String dataPgto, String dataEntrega,
-                          Boolean vendaCancelada, Integer idUsuario){
+                          Integer idUsuario){
         this.valorVenda = valorVenda;
         this.enderecoEntrega = enderecoEntrega;
         this.formaDePgto = formaDePgto;

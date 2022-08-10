@@ -48,7 +48,7 @@ public class PedidoService {
         .dataVenda(pedidoRequest.getDataVenda())
         .dataPgto(pedidoRequest.getDataPgto())
         .dataEntrega(pedidoRequest.getDataEntrega())
-        .vendaCancelada(pedidoRequest.getVendaCancelada())
+        .vendaCancelada(false)
         .idUsuario(usuario)
         .build();
 
@@ -86,13 +86,6 @@ public class PedidoService {
        return pedidoSalvo;
 
     }
-        
-        }
-
-       return pedidoSalvo;
-
-    }
-
 
     public List<Pedido> buscarTodos(){
         return pedidoRepository.findAll();
