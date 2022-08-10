@@ -2,6 +2,7 @@ package com.eternos.magiadoslivros.domain.request;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -17,6 +18,7 @@ public class PedidoRequest {
     LocalDate dataPgto;
     LocalDate dataEntrega;
     Integer idUsuario;
+    ArrayList<PedidoLivroRequest> listaLivro;
 
     public PedidoRequest(Double valorVenda, String enderecoEntrega, String formaDePgto, 
                           Integer parcela, String dataVenda, String dataPgto, String dataEntrega,
