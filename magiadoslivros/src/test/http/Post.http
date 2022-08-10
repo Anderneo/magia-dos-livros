@@ -6,11 +6,11 @@ Content-Type: application/json
   "descricao": "Livro 10",
   "isbn": "123",
   "nome": "novo",
-  "quantLivros": "3",
+  "quantLivros": "20",
   "tagEstoque": "2b3",
   "valorRecebimento": "30",
   "valorVenda": "50",
-  "fornecedor":1
+  "idFornecedor":1
 }
 
 ### Salva Um Registro Em Fornecedor
@@ -58,6 +58,17 @@ Content-Type: application/json
   "dataVenda": "03/01/2014",
   "dataPgto": "03/02/2014",
   "dataEntrega": "16/02/2014",
-  "vendaCancelada;": false,
-  "id": 1
+  "vendaCancelada": false,
+  "idUsuario": 1,
+  "listaLivro": [
+    {
+      "idLivro": 1,
+      "quantidade": 2
+    },
+    {
+      "idLivro": 2,
+      "quantidade": 3
+    }
+  ]
 }
+
