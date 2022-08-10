@@ -58,11 +58,10 @@ Content-Type: application/json
   "dataVenda": "03/01/2014",
   "dataPgto": "03/02/2014",
   "dataEntrega": "16/02/2014",
-  "idUsuario": 4,
-  "vendaCancelada": false,
+  "idUsuario": 3,
   "listaLivro": [
     {
-      "idLivro": 5,
+      "idLivro": 4,
       "quantidade": 1
     },
     {

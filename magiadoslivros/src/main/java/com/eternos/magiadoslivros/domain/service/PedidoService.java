@@ -51,7 +51,6 @@ public class PedidoService {
                               .dataVenda(pedidoRequest.getDataVenda())
                               .dataPgto(pedidoRequest.getDataPgto())
                               .dataEntrega(pedidoRequest.getDataEntrega())
-                              .vendaCancelada(pedidoRequest.getVendaCancelada())
                               .idUsuario(usuario)
                               .build();
 
