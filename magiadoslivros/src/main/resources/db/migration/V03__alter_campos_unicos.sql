@@ -1,12 +1,9 @@
-ALTER TABLE usuario(
-    ADD UNIQUE (rg),
-    ADD UNIQUE (cpf)
-);
+ALTER TABLE usuario
+ADD CONSTRAINT UC_Person UNIQUE (rg,cpf);
 
-ALTER TABLE fornecedor(
-    ADD UNIQUE (razao_social),
-    ADD UNIQUE (cnpj)
-);
+ALTER TABLE fornecedor
+ADD CONSTRAINT UC_Person UNIQUE (razao_social,cnpj);
 
 ALTER TABLE livro
-    ADD UNIQUE (isbn);
+ADD CONSTRAINT UC_Person UNIQUE (isbn);
+
