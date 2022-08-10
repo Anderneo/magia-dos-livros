@@ -2,9 +2,11 @@ package com.eternos.magiadoslivros.domain.service;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.eternos.magiadoslivros.domain.assembler.FornecedorAssembler;
+import com.eternos.magiadoslivros.domain.exception.DefaultException;
 import com.eternos.magiadoslivros.domain.model.Fornecedor;
 import com.eternos.magiadoslivros.domain.repository.FornecedorRepository;
 import com.eternos.magiadoslivros.domain.request.FornecedorRequest;
@@ -27,6 +29,22 @@ public class FornecedorService {
 
     public List<Fornecedor> buscarTodos(){
         return fornecedorRepository.findAll();
+    }
+
+    public Fornecedor buscarRazaoSocial(String razaosocial){
+            
+        return fornecedorRepository.findByRazaoSocial(razaosocial)
+            .orElseThrow(new DefaultException(HttpStatus.NOT_FOUND, 
+                    "Não foi possivel encontrar nenhum registro !!!"));
+
+    }
+
+    public Fornecedor buscarCnpj(String cnpj){
+            
+        return fornecedorRepository.findByCnpj(cnpj)
+            .orElseThrow(new DefaultException(HttpStatus.NOT_FOUND, 
+                    "Não foi possivel encontrar nenhum registro !!!"));
+
     }
 
 }
