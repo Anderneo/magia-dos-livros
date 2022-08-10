@@ -36,6 +36,10 @@ public class LivroService {
         .idFornecedor(fornecedor)
         .build();
 
+        if( !buscarTodos().contains(livro.getIsbn())) throw new DefaultException(
+                                                        HttpStatus.BAD_REQUEST,
+                                                        "ISBN já existe!!");
+
         return livroRepository.save(livro);
 
     }
