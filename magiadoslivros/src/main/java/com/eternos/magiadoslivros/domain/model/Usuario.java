@@ -40,10 +40,10 @@ public class Usuario{
     @Column(name="nome")
     private String nome;
 
-    @Column(name="rg, unique=true")
+    @Column(name="rg", unique=true)
     private String rg;
 
-    @Column(name="cpf, unique=true")
+    @Column(name="cpf", unique=true)
     private String cpf;
 
     @Column(name="genero")
