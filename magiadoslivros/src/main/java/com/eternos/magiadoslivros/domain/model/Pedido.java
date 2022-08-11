@@ -67,6 +67,8 @@ public class Pedido{
    inverseJoinColumns = {@JoinColumn(name="id_livro")})
    private List<Livro> listaLivro = new ArrayList<>();
 
+   public Pedido(){};
+
    public void cancelarVenda(){
       this.vendaCancelada = true;
    }

@@ -38,5 +38,4 @@ public class PedidoRequest {
         return LocalDate.parse(data, formatter);
     }
 
-
 }

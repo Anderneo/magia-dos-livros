@@ -5,6 +5,7 @@ import javax.validation.Valid;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,12 +29,14 @@ public class PedidoResource {
         return pedidoService.salvar(pedidoRequest);
     }
 
-    @PatchMapping(path = "cancelar/pedido")
-    public void cancelarPedido(@RequestBody @Valid Integer idPedido, Integer idUsuario){
+    @PatchMapping(path = "cancelar/pedido/{idPedido}/usuario/{idUsuario}")
+    public void cancelarPedido(@Valid @PathVariable("idPedido") Integer idPedido, 
+                               @Valid @PathVariable("idUsuario")Integer idUsuario){
+
         pedidoService.cancelarPedido(idPedido, idUsuario);
+
     }
 
-    //PARAMETROS FORNECIDOS PELO QUERY STRING
     @GetMapping(path = "todos")
     public List<Pedido> buscar() {
         return pedidoService.buscarTodos();

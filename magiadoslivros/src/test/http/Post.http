@@ -58,24 +58,17 @@ Content-Type: application/json
   "dataVenda": "03/01/2014",
   "dataPgto": "03/02/2014",
   "dataEntrega": "16/02/2014",
-  "idUsuario": 3,
+  "idUsuario": 1,
   "listaLivro": [
     {
-      "idLivro": 4,
+      "idLivro": 1,
       "quantidade": 1
     },
     {
       "idLivro": 2,
-      "quantidade": 3
+      "quantidade": 1
     }
   ]
 }
 
-### Aletara o Atributo vendaCancelada Para True
-POST http://localhost:8080/pedido/cancelar/pedido HTTP/1.1
-Content-Type: application/json
 
-{
-  "id": 1,
-  "usuario":"administrador"
-}

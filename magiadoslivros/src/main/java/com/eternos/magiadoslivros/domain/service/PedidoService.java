@@ -101,7 +101,7 @@ public class PedidoService {
 
         return pedidoRepository.findById(id)
             .orElseThrow(new DefaultException(
-            HttpStatus.BAD_REQUEST,"O registro informado não existe!!"));
+            HttpStatus.BAD_REQUEST,"Não foi encontrado pedido com esse id!!"));
 
     }
 
@@ -115,6 +115,8 @@ public class PedidoService {
                  "Apenas o administrador pode cancelar um pedido!!");
 
         pedido.setVendaCancelada(true);
+
+        pedidoRepository.save(pedido);
 
         throw new DefaultException(HttpStatus.ACCEPTED, "O pedido foi cancelado!!!");
     }

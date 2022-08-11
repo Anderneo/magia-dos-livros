@@ -1,0 +1,5 @@
+### Aletara o Atributo vendaCancelada Para True
+
+@idPedido=5
+@idUsuario=3
+PATCH  http://localhost:8080/pedido/cancelar/pedido/{{idPedido}}/usuario/{{idUsuario}} HTTP/1.1
