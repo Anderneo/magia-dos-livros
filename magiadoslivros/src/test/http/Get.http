@@ -9,7 +9,7 @@ GET http://localhost:8080/livro/buscar/nome?nome={{varNome}} HTTP/1.1
 GET http://localhost:8080/fornecedor/todos HTTP/1.1
 
 ### Recupera os Regristros Em Fornecedor Por Razão Social
-@varRazaosocial = Novo SA
+@varRazaosocial = teste t
 GET http://localhost:8080/fornecedor/buscar/razaosocial?razaosocial={{varRazaosocial}} HTTP/1.1
 
 ### Recupera os Regristros Em Fornecedor Por CNPJ

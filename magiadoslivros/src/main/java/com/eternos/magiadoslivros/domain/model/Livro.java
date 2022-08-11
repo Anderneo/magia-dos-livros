@@ -37,8 +37,8 @@ public class Livro{
     @Column(name="descricao")
     private String descricao;
 
-    @Column(name="isbn")
-    private Integer isbn;
+    @Column(name="isbn", unique=true)
+    private String isbn;
 
     @Column(name="quantidade_livro")
     private Integer quantLivros;

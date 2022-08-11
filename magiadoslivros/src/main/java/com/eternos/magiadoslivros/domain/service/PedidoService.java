@@ -31,7 +31,11 @@ public class PedidoService {
     private final PedidoLivroRepository pedidoLivroRepository;
 
     public PedidoLivro findById(PedidoLivroId pedidoLivroId){
-        return pedidoLivroRepository.findById(pedidoLivroId).orElseThrow(new DefaultException(HttpStatus.BAD_REQUEST, "Pedido ou produto não encontrado"));
+
+        return pedidoLivroRepository.findById(pedidoLivroId).
+                orElseThrow(new DefaultException(HttpStatus.BAD_REQUEST, 
+                                        "Pedido ou produto não encontrado"));
+
     }
 
 
@@ -40,16 +44,15 @@ public class PedidoService {
         Usuario usuario = usuarioService.buscarId(pedidoRequest.getIdUsuario());
 
         Pedido pedido = Pedido.builder()
-        .valorVenda(pedidoRequest.getValorVenda())
-        .enderecoEntrega(pedidoRequest.getEnderecoEntrega())
-        .formaDePgto(pedidoRequest.getFormaDePgto())
-        .parcela(pedidoRequest.getParcela())
-        .dataVenda(pedidoRequest.getDataVenda())
-        .dataPgto(pedidoRequest.getDataPgto())
-        .dataEntrega(pedidoRequest.getDataEntrega())
-        .vendaCancelada(pedidoRequest.getVendaCancelada())
-        .idUsuario(usuario)
-        .build();
+                              .valorVenda(pedidoRequest.getValorVenda())
+                              .enderecoEntrega(pedidoRequest.getEnderecoEntrega())
+                              .formaDePgto(pedidoRequest.getFormaDePgto())
+                              .parcela(pedidoRequest.getParcela())
+                              .dataVenda(pedidoRequest.getDataVenda())
+                              .dataPgto(pedidoRequest.getDataPgto())
+                              .dataEntrega(pedidoRequest.getDataEntrega())
+                              .idUsuario(usuario)
+                              .build();
 
         Pedido pedidoSalvo = pedidoRepository.save(pedido);
 
@@ -57,22 +60,26 @@ public class PedidoService {
         JSONArray listaLivroArray = obj.getJSONArray("listaLivro");
 
         for(int i = 0; i < listaLivroArray.length(); i++) {
+
             JSONObject livroPedidoJSON = listaLivroArray.getJSONObject(i);
             Integer idLivro = livroPedidoJSON.getInt("idLivro");
-            Integer quantidade = livroPedidoJSON.getInt("quantidade");    
+            Integer quantidade = livroPedidoJSON.getInt("quantidade");               
             Livro livro = livroService.buscarId(idLivro);
+
             if( quantidade > livro.getQuantLivros()){
                 throw new DefaultException(HttpStatus.BAD_REQUEST, "Sem estoque suficiente");
             }
             else {
-                PedidoLivroId pedidoLivroId = new PedidoLivroId(livro.getIdLivro(), pedidoSalvo.getIdVenda());
+
+                PedidoLivroId pedidoLivroId = new PedidoLivroId(livro.getIdLivro(), 
+                                                                pedidoSalvo.getIdVenda());
 
                 PedidoLivro pedidoLivro = PedidoLivro.builder()
-                .pedidoLivroId(pedidoLivroId)
-                .id_livro(idLivro)
-                .id_pedido(pedidoSalvo.getIdVenda())
-                .quantidade(quantidade)
-                .build();
+                                                     .pedidoLivroId(pedidoLivroId)
+                                                     .id_livro(idLivro)
+                                                     .id_pedido(pedidoSalvo.getIdVenda())
+                                                     .quantidade(quantidade)
+                                                     .build();
                 
                 pedidoLivroRepository.save(pedidoLivro);
                 livro.setQuantLivros(livro.getQuantLivros() - quantidade);
@@ -86,8 +93,31 @@ public class PedidoService {
 
     }
 
-
     public List<Pedido> buscarTodos(){
         return pedidoRepository.findAll();
+    }
+
+    public Pedido buscarId(Integer id){
+
+        return pedidoRepository.findById(id)
+            .orElseThrow(new DefaultException(
+            HttpStatus.BAD_REQUEST,"Não foi encontrado pedido com esse id!!"));
+
+    }
+
+    public void cancelarPedido(Integer idPedido, Integer idUsuario){
+
+        Pedido pedido = buscarId(idPedido);
+        Usuario usuario = usuarioService.buscarId(idUsuario);
+
+        if (usuario.getPerfil().toString().compareToIgnoreCase("administrador") != 0) 
+                throw new DefaultException(HttpStatus.FORBIDDEN,
+                 "Apenas o administrador pode cancelar um pedido!!");
+
+        pedido.setVendaCancelada(true);
+
+        pedidoRepository.save(pedido);
+
+        throw new DefaultException(HttpStatus.ACCEPTED, "O pedido foi cancelado!!!");
     }
 }

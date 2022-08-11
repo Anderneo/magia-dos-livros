@@ -36,6 +36,8 @@ public class LivroService {
         .idFornecedor(fornecedor)
         .build();
 
+        checarIsbn(livro.getIsbn());
+
         return livroRepository.save(livro);
 
     }
@@ -52,6 +54,13 @@ public class LivroService {
             .orElseThrow(new DefaultException(
             HttpStatus.BAD_REQUEST,"O registro informado não existe!!"));
 
+    }
+
+    public void checarIsbn(String isbn){
+
+        if(livroRepository.findByIsbn(isbn) != null) throw new DefaultException(
+                                                                 HttpStatus.BAD_REQUEST,
+                                                        "ISBN já existe!!");
     }
 
     public List<Livro> buscarNome(String nome){
