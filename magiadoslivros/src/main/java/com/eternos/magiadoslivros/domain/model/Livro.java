@@ -53,8 +53,8 @@ public class Livro{
     @JoinColumn(name = "id_fornecedor", referencedColumnName = "id")
     private Fornecedor idFornecedor;
 
-    @ManyToMany(mappedBy = "listaLivro")
-    private List<Pedido> listaPedido;
+    // @ManyToMany(mappedBy = "listaLivro")
+    // private List<Pedido> listaPedido;
 
 
     public Livro() {
