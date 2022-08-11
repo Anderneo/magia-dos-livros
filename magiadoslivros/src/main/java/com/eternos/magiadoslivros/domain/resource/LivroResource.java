@@ -4,8 +4,10 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.json.JSONObject;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -45,6 +47,11 @@ public class LivroResource {
     @DeleteMapping(path = "{id}")
     public void deletar(@PathVariable Integer id){
         livroService.deletar(id);
+    }
+
+    @PatchMapping(path = "adicionarestoque/{id}")
+    public Livro atualizarEstoque(@PathVariable Integer id, @RequestBody Integer quantLivros ){
+        return livroService.atualizarQtdeLivro(id, quantLivros);
     }
 
 }

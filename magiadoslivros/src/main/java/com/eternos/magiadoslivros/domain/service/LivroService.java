@@ -84,4 +84,16 @@ public class LivroService {
                                     HttpStatus.ACCEPTED,
                                     "Registro " + id + " deletado com sucesso!!");
     }
+
+    public Livro atualizarQtdeLivro(Integer id, Integer quantLivros){
+
+        var livro = buscarId(id);
+
+        if(livro.getQuantLivros() < 0) throw new DefaultException(HttpStatus.INTERNAL_SERVER_ERROR, 
+                "O estoque está com o valor negativo!!");
+
+        livro.setQuantLivros(quantLivros + livro.getQuantLivros());;
+
+        return livroRepository.save(livro);
+    }
 }
