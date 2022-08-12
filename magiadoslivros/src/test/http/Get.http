@@ -30,3 +30,9 @@ GET http://localhost:8080/usuario/busca/nome?nome={{varNome}} HTTP/1.1
 ### Recupera Todos os Regristros Em Pedido
 GET http://localhost:8080/pedido/todos HTTP/1.1
 
+### Gera Relatório de Vendas
+GET http://localhost:8080/relatorio/vendas HTTP/1.1
+
+### Gera Relatório Estoque de Livros
+GET http://localhost:8080/relatorio/estoquelivro HTTP/1.1
+
