@@ -21,9 +21,6 @@ public class LivroService {
     
     private final LivroRepository livroRepository;
     private final FornecedorService fornecedorService;
-    private final LivroAssembler livroAssembler;
-
-
 
     public Livro salvar(LivroRequest livroRequest){
         Fornecedor fornecedor = fornecedorService.buscarId(livroRequest.getIdFornecedor());

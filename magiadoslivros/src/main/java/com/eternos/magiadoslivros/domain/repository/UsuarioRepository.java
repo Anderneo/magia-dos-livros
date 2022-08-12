@@ -10,5 +10,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
     Optional<Usuario> findByCpf(String cpf);
+    Optional<Usuario> findByRg(String rg);
     List<Usuario> findByNomeContainingIgnoreCase(String nome);
 }
