@@ -55,6 +55,9 @@ public class PedidoService {
                               .build();
 
         Pedido pedidoSalvo = pedidoRepository.save(pedido);
+        pedidoRequest.getListaLivro().forEach(item -> 
+        
+        item.getQuantidade());
 
         JSONObject obj = new JSONObject(pedidoRequest);
         JSONArray listaLivroArray = obj.getJSONArray("listaLivro");
@@ -71,19 +74,26 @@ public class PedidoService {
             }
             else {
 
-                PedidoLivroId pedidoLivroId = new PedidoLivroId(livro.getIdLivro(), 
-                                                                pedidoSalvo.getIdVenda());
-
-                PedidoLivro pedidoLivro = PedidoLivro.builder()
-                                                     .pedidoLivroId(pedidoLivroId)
-                                                     .id_livro(idLivro)
-                                                     .id_pedido(pedidoSalvo.getIdVenda())
-                                                     .quantidade(quantidade)
-                                                     .build();
+                PedidoLivroId pedidoLivroId = new PedidoLivroId(livro.getIdLivro(), pedidoSalvo.getIdVenda());
                 
+                PedidoLivro pedidoLivro;
+                
+                pedidoRequest.getListaLivro().forEach(item -> 
+                    
+                pedidoLivro = PedidoLivro.builder()
+                                .pedidoLivroId(pedidoLivroId)
+                                .id_livro(idLivro)
+                                .id_pedido(pedidoSalvo.getIdVenda())
+                                .quantidade(quantidade)
+                                .build();
+
                 pedidoLivroRepository.save(pedidoLivro);
                 livro.setQuantLivros(livro.getQuantLivros() - quantidade);
                 livroRepository.save(livro); 
+                item.getQuantidade()
+                
+                );
+
                 
             }     
         
