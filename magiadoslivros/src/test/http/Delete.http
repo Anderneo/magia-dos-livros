@@ -1,7 +1,7 @@
 @id = 1
 
 ### Deleta Um Registro Em Livro
-DELETE http://localhost:8080/livro/{{id}} HTTP/1.1
+DELETE http://localhost:8080/livro/deletar/{{id}} HTTP/1.1
 
 
 ### Deleta Um Registro Em Fornecedor
