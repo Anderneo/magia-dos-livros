@@ -4,13 +4,13 @@ Content-Type: application/json
 
 {
   "descricao": "Livro 5",
-  "isbn": "5-5-5-5",
+  "isbn": "5-5-5-56891012",
   "nome": "novo3",
   "quantLivros": "20",
   "tagEstoque": "2b3",
   "valorRecebimento": "30",
   "valorVenda": "50",
-  "idFornecedor":2
+  "idFornecedor":1
 }
 
 ### Salva Um Registro Em Fornecedor

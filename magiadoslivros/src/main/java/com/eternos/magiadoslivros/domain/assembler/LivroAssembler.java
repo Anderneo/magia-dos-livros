@@ -4,10 +4,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeMap;
 import org.springframework.stereotype.Component;
 
+import com.eternos.magiadoslivros.domain.model.Fornecedor;
 import com.eternos.magiadoslivros.domain.model.Livro;
 import com.eternos.magiadoslivros.domain.request.LivroRequest;
+import com.eternos.magiadoslivros.domain.service.FornecedorService;
 
 import lombok.AllArgsConstructor;
 
@@ -15,11 +18,26 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class LivroAssembler {
     private final ModelMapper modelMapper;
+    private final FornecedorService fornecedorService;
+    
 
     public Livro toModel(LivroRequest livroRequest){
+
+        Fornecedor fornecedor = fornecedorService.buscarId(livroRequest.getIdFornecedor());
+
+        TypeMap<LivroRequest, Livro> typeMap = modelMapper.getTypeMap(LivroRequest.class, Livro.class);
         
-        return modelMapper.map(livroRequest, Livro.class);
-        
+        if (typeMap == null) {
+		    modelMapper.createTypeMap(LivroRequest.class, Livro.class)
+            .addMappings(mapper-> mapper.skip(Livro::setIdLivro))
+		    .addMapping(LivroRequest::getIdFornecedor, Livro::setIdFornecedor);
+        }
+
+        var livroRequestModel = modelMapper.map(livroRequest, Livro.class);
+
+        livroRequestModel.setIdFornecedor(fornecedor);
+
+        return livroRequestModel;
     }
 
     public List<Livro> toCollectionModel(List<LivroRequest> livroRequest){

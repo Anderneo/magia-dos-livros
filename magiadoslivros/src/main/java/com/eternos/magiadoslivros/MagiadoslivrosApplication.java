@@ -20,8 +20,8 @@ public class MagiadoslivrosApplication {
 
 		var modelMapper =  new ModelMapper();
 
-		modelMapper.createTypeMap(LivroRequest.class, Livro.class)
-		.addMapping(LivroRequest::getIdFornecedor, Livro::setIdFornecedor);
+		// modelMapper.createTypeMap(LivroRequest.class, Livro.class)
+		// .addMapping(LivroRequest::getIdFornecedor, Livro::setIdFornecedor);
 		
 
 		return modelMapper;
