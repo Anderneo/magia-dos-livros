@@ -23,7 +23,11 @@ public class FornecedorService {
 
     public Fornecedor salvar(FornecedorRequest fornecedorRequest){
 
-        return fornecedorRepository.save(fornecedorAssembler.toModel(fornecedorRequest));
+        Fornecedor fornecedor = fornecedorAssembler.toModel(fornecedorRequest);
+
+        checarConstraintFornecedor(fornecedor);       
+
+        return fornecedorRepository.save(fornecedor);
 
     }
 
@@ -37,6 +41,20 @@ public class FornecedorService {
 
     public List<Fornecedor> buscarTodos(){
         return fornecedorRepository.findAll();
+    }
+
+    public void checarConstraintFornecedor(Fornecedor fornecedor){
+
+        if (fornecedorRepository.findByCnpj(fornecedor.getCnpj()).isPresent())
+            throw new DefaultException(HttpStatus.FOUND, 
+                                            "Já existe um registro com CNPJ: " 
+                                            + fornecedor.getCnpj());
+                            
+        if (fornecedorRepository.findByRazaoSocial(fornecedor.getRazaoSocial()).isPresent())
+            throw new DefaultException(HttpStatus.FOUND, 
+                                            "Já existe um registro com razao social: " 
+                                            + fornecedor.getRazaoSocial());
+
     }
 
     public Fornecedor buscarRazaoSocial(String razaosocial){

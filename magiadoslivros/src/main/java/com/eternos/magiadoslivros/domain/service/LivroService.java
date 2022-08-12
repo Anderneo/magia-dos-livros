@@ -6,7 +6,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import com.eternos.magiadoslivros.domain.assembler.LivroAssembler;
 import com.eternos.magiadoslivros.domain.exception.DefaultException;
 import com.eternos.magiadoslivros.domain.model.Fornecedor;
 import com.eternos.magiadoslivros.domain.model.Livro;
@@ -21,9 +20,6 @@ public class LivroService {
     
     private final LivroRepository livroRepository;
     private final FornecedorService fornecedorService;
-    private final LivroAssembler livroAssembler;
-
-
 
     public Livro salvar(LivroRequest livroRequest){
         Fornecedor fornecedor = fornecedorService.buscarId(livroRequest.getIdFornecedor());
@@ -102,26 +98,15 @@ public class LivroService {
 
     public Livro atualizarLivro(Integer id, LivroRequest livroRequest){
 
-        Livro livro = buscarId(id);
+        var livro = buscarId(id);
 
         Fornecedor fornecedor = fornecedorService.buscarId(livroRequest.getIdFornecedor());
-
-        Livro request = Livro.builder()
-        .descricao(livroRequest.getDescricao())
-        .isbn(livroRequest.getIsbn())
-        .nome(livroRequest.getNome())
-        .quantLivros(livroRequest.getQuantLivros())
-        .tagEstoque(livroRequest.getTagEstoque())
-        .valorRecebimento(livroRequest.getValorRecebimento())
-        .valorVenda(livroRequest.getValorVenda())
-        .idFornecedor(fornecedor)
-        .build();
      
-        BeanUtils.copyProperties(request, livro, "id, idFornecedor"); 
+        BeanUtils.copyProperties(livroRequest, livro, "id", "isbn");
+
+        //checarIsbn(livro.getIsbn());
 
         livro.setIdFornecedor(fornecedor);
-
-        livro.setIdLivro(id);
 
         return livroRepository.save(livro);
 

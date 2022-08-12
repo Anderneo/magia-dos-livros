@@ -18,13 +18,13 @@ POST http://localhost:8080/fornecedor HTTP/1.1
 Content-Type: application/json
 
 {
-  "endereco": "Novo Fornecedor 2",
+  "endereco": "Novo Fornecedor ",
   "email": "a@b",
   "telefone": "123-213",
   "observacao": "bla",
   "nomeFantasia": "Novidade",
   "razaoSocial": "novo 2",
-  "cnpj": "22222222",
+  "cnpj": "222222225",
   "insEstadual": "MG"
 }
 
@@ -37,9 +37,9 @@ Content-Type: application/json
 	"email": "t@t",
 	"telefone": "123-321",
 	"observacao": "testando",
-	"nome": "Anderson Nardi2",
-	"rg": "123-62324",
-	"cpf": "2351-232324",
+	"nome": "Anderson Nardi1",
+	"rg": "123-6232413",
+	"cpf": "2351-2323241",
 	"genero": 0,
 	"perfil": 1,
 	"dataDeNas": "02/02/2222",
