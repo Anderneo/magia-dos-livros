@@ -2,6 +2,7 @@ package com.eternos.magiadoslivros.domain.request;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -16,12 +17,12 @@ public class PedidoRequest {
     LocalDate dataVenda;
     LocalDate dataPgto;
     LocalDate dataEntrega;
-    Boolean vendaCancelada;
     Integer idUsuario;
+    ArrayList<PedidoLivroRequest> listaLivro;
 
     public PedidoRequest(Double valorVenda, String enderecoEntrega, String formaDePgto, 
                           Integer parcela, String dataVenda, String dataPgto, String dataEntrega,
-                          Boolean vendaCancelada, Integer idUsuario){
+                          Integer idUsuario){
         this.valorVenda = valorVenda;
         this.enderecoEntrega = enderecoEntrega;
         this.formaDePgto = formaDePgto;
@@ -29,7 +30,6 @@ public class PedidoRequest {
         this.dataVenda = toDate(dataVenda);
         this.dataPgto = toDate(dataPgto);
         this.dataEntrega = toDate(dataEntrega);
-        this.vendaCancelada = vendaCancelada;
         this.idUsuario = idUsuario;
     }
 
@@ -37,6 +37,5 @@ public class PedidoRequest {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return LocalDate.parse(data, formatter);
     }
-
 
 }

@@ -1,6 +1,7 @@
 package com.eternos.magiadoslivros.domain.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -14,11 +15,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Id;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 @Entity
 @Table(name = "pedido")
 @Data
+@Builder
+@AllArgsConstructor
 public class Pedido{
 
    @Id
@@ -51,14 +56,18 @@ public class Pedido{
    @JoinColumn(name = "id_usuario")
    private Usuario idUsuario;
    
+   @Builder.Default
    @Column(name = "cancelada", columnDefinition="boolean default false")
    private Boolean vendaCancelada = false;
 
+   @Builder.Default
    @ManyToMany
    @JoinTable(name="pedido_livro",
    joinColumns = {@JoinColumn(name="id_pedido")},
    inverseJoinColumns = {@JoinColumn(name="id_livro")})
-   private List<Livro> listaLivro;
+   private List<Livro> listaLivro = new ArrayList<>();
+
+   public Pedido(){};
 
    public void cancelarVenda(){
       this.vendaCancelada = true;

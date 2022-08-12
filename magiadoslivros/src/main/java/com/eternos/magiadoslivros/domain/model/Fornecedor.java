@@ -33,10 +33,10 @@ public class Fornecedor{
     @Column(name="nome_fantasia")
     private String nomeFantasia;
 
-    @Column(name="razao_social")
+    @Column(name="razao_social", unique=true)
     private String razaoSocial;
 
-    @Column(name="cnpj")
+    @Column(name="cnpj", unique=true)
     private String cnpj;
 
     @Column(name="ins_estadual")
