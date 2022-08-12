@@ -1,17 +1,17 @@
 ### Altera Um Registro Em Livro
-@idLivro = 5
+@idLivro = 4
 PUT http://localhost:8080/livro/atualizar/{{idLivro}} HTTP/1.1
 Content-Type: application/json
 
 {
   "descricao": "Livro 5 - Alterado Agora mesmo5",
-  "isbn": "5-3-2-9",
+  "isbn": "74/1-1/1-",
   "nome": "novo5",
   "quantLivros": "20",
   "tagEstoque": "2b3",
   "valorRecebimento": "30",
   "valorVenda": "20",
-  "idFornecedor":3
+  "idFornecedor":6
 }
 
 ### Altera Um Registro Em Usuário
