@@ -2,9 +2,11 @@ package com.eternos.magiadoslivros.domain.service;
 
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import com.eternos.magiadoslivros.domain.assembler.LivroAssembler;
 import com.eternos.magiadoslivros.domain.exception.DefaultException;
 import com.eternos.magiadoslivros.domain.model.Fornecedor;
 import com.eternos.magiadoslivros.domain.model.Livro;
@@ -19,6 +21,7 @@ public class LivroService {
     
     private final LivroRepository livroRepository;
     private final FornecedorService fornecedorService;
+    private final LivroAssembler livroAssembler;
 
 
 
@@ -52,7 +55,7 @@ public class LivroService {
 
         return livroRepository.findById(id)
             .orElseThrow(new DefaultException(
-            HttpStatus.BAD_REQUEST,"O registro informado não existe!!"));
+            HttpStatus.BAD_REQUEST,"Não foi encontrado nenhum liro com id: " + id));
 
     }
 
@@ -68,7 +71,7 @@ public class LivroService {
         List<Livro> livro = livroRepository.findByNomeContainingIgnoreCase(nome);
 
         if(livro.isEmpty()) throw new DefaultException(HttpStatus.NOT_FOUND, 
-                     "Não foi possivel encontrar nenhum registro com esse NOME!!");
+                     "Não foi possivel encontrar nenhum registro com nome:" + nome);
 
         return livro;
 
@@ -95,5 +98,32 @@ public class LivroService {
         livro.setQuantLivros(quantLivros + livro.getQuantLivros());;
 
         return livroRepository.save(livro);
+    }
+
+    public Livro atualizarLivro(Integer id, LivroRequest livroRequest){
+
+        Livro livro = buscarId(id);
+
+        Fornecedor fornecedor = fornecedorService.buscarId(livroRequest.getIdFornecedor());
+
+        Livro request = Livro.builder()
+        .descricao(livroRequest.getDescricao())
+        .isbn(livroRequest.getIsbn())
+        .nome(livroRequest.getNome())
+        .quantLivros(livroRequest.getQuantLivros())
+        .tagEstoque(livroRequest.getTagEstoque())
+        .valorRecebimento(livroRequest.getValorRecebimento())
+        .valorVenda(livroRequest.getValorVenda())
+        .idFornecedor(fornecedor)
+        .build();
+     
+        BeanUtils.copyProperties(request, livro, "id, idFornecedor"); 
+
+        livro.setIdFornecedor(fornecedor);
+
+        livro.setIdLivro(id);
+
+        return livroRepository.save(livro);
+
     }
 }
