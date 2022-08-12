@@ -31,7 +31,7 @@ public class FornecedorService {
 
         return fornecedorRepository.findById(id)
             .orElseThrow(new DefaultException(
-            HttpStatus.BAD_REQUEST,"O registro informado não existe!!"));
+            HttpStatus.NOT_FOUND,"Não foi encontrado Fornecedor com o id : " + id));
 
     }
 
