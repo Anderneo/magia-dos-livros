@@ -1,9 +1,8 @@
 package com.eternos.magiadoslivros.domain.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +12,12 @@ import com.eternos.magiadoslivros.domain.model.Pedido;
 import com.eternos.magiadoslivros.domain.model.PedidoLivro;
 import com.eternos.magiadoslivros.domain.model.PedidoLivroId;
 import com.eternos.magiadoslivros.domain.model.Usuario;
+import com.eternos.magiadoslivros.domain.repository.LivroRepository;
 import com.eternos.magiadoslivros.domain.repository.PedidoLivroRepository;
 import com.eternos.magiadoslivros.domain.repository.PedidoRepository;
 import com.eternos.magiadoslivros.domain.request.PedidoRequest;
+import com.eternos.magiadoslivros.domain.assembler.PedidoAssembler;
+import com.eternos.magiadoslivros.domain.assembler.PedidoLivroAssembler;
 
 import lombok.AllArgsConstructor;
 
@@ -26,8 +28,10 @@ public class PedidoService {
     private final PedidoRepository pedidoRepository;
     private final UsuarioService usuarioService;
     private final LivroService livroService;
-    //private final LivroRepository livroRepository;
+    private final LivroRepository livroRepository;
     private final PedidoLivroRepository pedidoLivroRepository;
+    private final PedidoAssembler pedidoAssembler;
+    private final PedidoLivroAssembler pedidoLivroAssembler;
 
     public PedidoLivro findById(PedidoLivroId pedidoLivroId){
 
@@ -40,59 +44,36 @@ public class PedidoService {
 
     public Pedido salvar(PedidoRequest pedidoRequest){
 
-        Usuario usuario = usuarioService.buscarId(pedidoRequest.getIdUsuario());
+        var pedido = pedidoAssembler.toModel(pedidoRequest);
 
-        Pedido pedido = Pedido.builder()
-                              .valorVenda(pedidoRequest.getValorVenda())
-                              .enderecoEntrega(pedidoRequest.getEnderecoEntrega())
-                              .formaDePgto(pedidoRequest.getFormaDePgto())
-                              .parcela(pedidoRequest.getParcela())
-                              .dataVenda(pedidoRequest.getDataVenda())
-                              .dataPgto(pedidoRequest.getDataPgto())
-                              .dataEntrega(pedidoRequest.getDataEntrega())
-                              .idUsuario(usuario)
-                              .build();
+        pedidoRepository.save(pedido);
 
-        Pedido pedidoSalvo = pedidoRepository.save(pedido);
-        pedidoRequest.getListaLivro().forEach(item -> 
-        
-        item.getQuantidade());
+        ArrayList<Livro> listaLivro = new ArrayList<Livro>();
 
-        JSONObject obj = new JSONObject(pedidoRequest);
-        JSONArray listaLivroArray = obj.getJSONArray("listaLivro");
+        for( int i = 0; i < pedidoRequest.getListaLivro().size(); i++) {
+      
+            Livro livro = livroService.buscarId(pedidoRequest.getListaLivro().get(i).getIdLivro());
 
-        for(int i = 0; i < listaLivroArray.length(); i++) {
-
-            JSONObject livroPedidoJSON = listaLivroArray.getJSONObject(i);
-            Integer idLivro = livroPedidoJSON.getInt("idLivro");
-            Integer quantidade = livroPedidoJSON.getInt("quantidade");               
-            Livro livro = livroService.buscarId(idLivro);
-
-            if( quantidade > livro.getQuantLivros()){
+            if( pedidoRequest.getListaLivro().get(i).getQuantidade() > livro.getQuantLivros()){
                 throw new DefaultException(HttpStatus.BAD_REQUEST, "Sem estoque suficiente");
             }
-            else {
+                
+            var pedidoLivroRequest =  pedidoRequest.getListaLivro().get(i);
+            var pedidoLivro = pedidoLivroAssembler.toModel( pedidoLivroRequest, pedido.getIdVenda());
 
-                // PedidoLivroId pedidoLivroId = new PedidoLivroId(livro.getIdLivro(), pedidoSalvo.getIdVenda());
-                
-                // PedidoLivro pedidoLivro;
-                
-                // pedidoRequest.getListaLivro().forEach(item -> 
+            pedidoLivroRepository.save(pedidoLivro);
+            
+            livro.setQuantLivros(livro.getQuantLivros() - pedidoRequest.getListaLivro().get(i).getQuantidade());
                     
-                // pedidoLivro = PedidoLivro.builder()
-                //                 .pedidoLivroId(pedidoLivroId)
-                //                 .id_livro(idLivro)
-                //                 .id_pedido(pedidoSalvo.getIdVenda())
-                //                 .quantidade(quantidade)
-                //                 .build();
+            livroRepository.save(livro); 
+            
+            listaLivro.add(livro);
 
-                // pedidoLivroRepository.save(pedidoLivro);
-                // livro.setQuantLivros(livro.getQuantLivros() - quantidade);
-                // livroRepository.save(livro); 
-                // item.getQuantidade());               
-           }        
         }
-       return pedidoSalvo;
+
+        pedido.setListaLivro(listaLivro);
+
+       return pedido;
 
     }
 
