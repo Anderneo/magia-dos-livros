@@ -10,6 +10,7 @@ import com.eternos.magiadoslivros.domain.exception.DefaultException;
 import com.eternos.magiadoslivros.domain.model.Fornecedor;
 import com.eternos.magiadoslivros.domain.repository.FornecedorRepository;
 import com.eternos.magiadoslivros.domain.request.FornecedorRequest;
+import org.springframework.beans.BeanUtils;
 
 import lombok.AllArgsConstructor;
 
@@ -70,6 +71,26 @@ public class FornecedorService {
         return fornecedorRepository.findByCnpj(cnpj)
             .orElseThrow(new DefaultException(HttpStatus.NOT_FOUND, 
                     "Não foi possivel encontrar nenhum registro !!!"));
+
+    }
+
+    public Fornecedor buscarPorIdOuFalhar(Integer id){
+        return fornecedorRepository.findById(id)
+        .orElseThrow(new DefaultException(HttpStatus.BAD_REQUEST,"O fornecedor informado não existe"));  
+    }
+    
+    public void deletar(Integer id){
+        var objeto = buscarPorIdOuFalhar(id);
+        fornecedorRepository.delete(objeto);
+    }
+
+    public Fornecedor atualizarFornecedor(Integer id, FornecedorRequest fornecedorRequest){
+
+        var entity = buscarPorIdOuFalhar(id);         
+        BeanUtils.copyProperties(fornecedorRequest, entity, "id");
+
+        return fornecedorRepository.save(entity);
+
 
     }
 

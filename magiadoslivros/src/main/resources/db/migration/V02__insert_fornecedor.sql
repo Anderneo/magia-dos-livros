@@ -1,16 +1,22 @@
 INSERT INTO fornecedor (nome_fantasia, razao_social, cnpj, ins_estadual, 
 endereco, telefone, email, observacao)
 VALUES ('Teste do Livro', 'Testando Livro SA', 
-'02.514.876/001-01', '1234', 'Rua testei, n1234', '12345678', 'teste1@teste.com', 'Se funcionar já era!!!');
+'02.514.876/001-01', '1234', 'Rua testei, n1234', '12345678', 'teste1@teste.com', 'Se funcionar já era!!!'); 
 
-INSERT INTO fornecedor (nome_fantasia, razao_social, cnpj, ins_estadual, endereco, telefone, email, observacao)
-VALUES ('Grupo Todolivro', 'TODOLIVRO DISTRIBUIDORA LTDA', '03.163.884/0001-93', 'SC', 'Rua das Missões, 696 - Pintora Aguda', '(47)3221-2222', 'atendimento@todolivro.com.br', ''); 
+INSERT INTO fornecedor (nome_fantasia, razao_social, cnpj, ins_estadual, 
+endereco, telefone, email, observacao)
+VALUES ('Grupo Todolivro', 'TODOLIVRO DISTRIBUIDORA LTDA', 
+'03.163.884/0001-93', 'SC', 'Rua das Missões, 696 - Pintora Aguda', '(47)3221-2222', 'atendimento@todolivro.com.br', ''); 
 
-INSERT INTO fornecedor (nome_fantasia, razao_social, cnpj, ins_estadual, endereco, telefone, email, observacao)
-VALUES ('A Página – Distribuidora de Livros', 'A PAGINA DISTRIBUIDORA DE LIVROS LTDA', '01.795.809/0001-10', 'PR', 'Major Fabriciano do Rego Barros, 1050, Hauer', '(41)3213–5600', 'atendimento@apaginadistribuidora.com.br', '');
+INSERT INTO fornecedor (nome_fantasia, razao_social, cnpj, ins_estadual, 
+endereco, telefone, email, observacao)
+VALUES ('A Página – Distribuidora de Livros', 'A PAGINA DISTRIBUIDORA DE LIVROS LTDA', 
+'01.795.809/0001-10', 'PR', 'Major Fabriciano do Rego Barros, 1050, Hauer', '(41)3213–5600', 'atendimento@apaginadistribuidora.com.br', '');
 
-INSERT INTO fornecedor (nome_fantasia, razao_social, cnpj, ins_estadual, endereco, telefone, email, observacao)
-VALUES ('Livros para Revenda', 'Livros Para Revenda LTDA', '04.552.534/0001-10', 'MS', 'Rua 14 de Julho 800 (Depósito) CG-MS', '(67)992127935', 'pedidos@livrospararevenda.com.br', ''); 
+INSERT INTO fornecedor (nome_fantasia, razao_social, cnpj, ins_estadual, 
+endereco, telefone, email, observacao)
+VALUES ('Livros para Revenda', 'Livros Para Revenda LTDA', 
+'04.552.534/0001-10', 'MS', 'Rua 14 de Julho 800 (Depósito) CG-MS', '(67)992127935', 'pedidos@livrospararevenda.com.br', ''); 
 
 INSERT INTO fornecedor (nome_fantasia, razao_social, cnpj, ins_estadual, 
 endereco, telefone, email, observacao)
@@ -111,7 +117,7 @@ INSERT INTO livro ( nome, descricao, localizacao_estoque, isbn, valor_venda, val
 VALUES ( "Os segredos da mente milionária", "Dicas financeiras", "SP_00006", 667244403,  21.78 , 23.54, 80, 5 );
  
 INSERT INTO livro ( nome, descricao, localizacao_estoque, isbn, valor_venda, valor_recebimento, quantidade_livro, id_fornecedor)
-VALUES ( "Minutos de sabedoria", "Dicas espirituais", "SP_00007", 667244405,  21.78 , 22.54, 50, 10 ) ;
+VALUES ( "Minutos de sabedoria", "Dicas espirituais", "SP_00007", 667244403,  21.78 , 22.54, 50, 10 ) ;
 
 INSERT INTO livro ( nome, descricao, localizacao_estoque, isbn, valor_venda, valor_recebimento, quantidade_livro, id_fornecedor)
 VALUES ( "O poder da cura", "Dicas espirituais", "SP_00008", 664244403,  21.78 , 23.54, 40, 10 ) ;
@@ -140,7 +146,8 @@ VALUES(40.35, 'DEBITO', 'Rua Copacabana, 1009 - RJ', 1, '2022-07-25', '2022-07-2
 insert into pedido(valor_de_venda, forma_de_pagto, endereco_entrega, parcela, data_venda, data_pagto, data_entrega, cancelada, id_usuario)
 VALUES(40.35, 'DEBITO', 'Rua Brigadeiro Galvão, 566, Alto da Lapa - SP', 1, '2022-01-09', '2022-01-09','2022-01-11',false,3);
 
-insert into pedido_livro(id_livro, id_pedido,quantidade)
+ 
+  insert into pedido_livro(id_livro, id_pedido,quantidade)
 values(2,1,3);
 insert into pedido_livro(id_livro, id_pedido,quantidade)
 values(1,2,5);
@@ -153,6 +160,8 @@ values(7,3,1);
 insert into pedido_livro(id_livro, id_pedido,quantidade)
 values(8,4,1);
 insert into pedido_livro(id_livro, id_pedido,quantidade)
+values(7,4,1);
+insert into pedido_livro(id_livro, id_pedido,quantidade)
 values(6,4,1);
 insert into pedido_livro(id_livro, id_pedido,quantidade)
 values(1,5,1);
@@ -164,4 +173,6 @@ insert into pedido_livro(id_livro, id_pedido,quantidade)
 values(5,7,2);
 insert into pedido_livro(id_livro, id_pedido,quantidade)
 values(3,8,4);
+insert into pedido_livro(id_livro, id_pedido,quantidade)
+values(8,9,1);  
 
