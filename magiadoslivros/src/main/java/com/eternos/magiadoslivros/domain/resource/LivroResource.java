@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.hibernate.validator.constraints.ISBN;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -46,7 +45,7 @@ public class LivroResource {
     }
     
     @GetMapping(path = "buscar/isbn")
-    public List<Livro> buscarIsbn(@RequestParam Integer isbn){
+    public Livro buscarIsbn(@RequestParam String isbn){
             return livroService.buscarIsbn(isbn);
     }
 
