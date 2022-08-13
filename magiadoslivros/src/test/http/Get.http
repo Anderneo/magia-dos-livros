@@ -1,7 +1,7 @@
 ### Recupera Todos os Regristros Em Livros
 GET http://localhost:8080/livro/todos HTTP/1.1
 
-### Recupera Todos os Regristros Em Livros
+### Recupera Lista De Livros Filtrados Por Nome
 @varNome= novo
 GET http://localhost:8080/livro/buscar/nome?nome={{varNome}} HTTP/1.1
 
@@ -9,7 +9,7 @@ GET http://localhost:8080/livro/buscar/nome?nome={{varNome}} HTTP/1.1
 GET http://localhost:8080/fornecedor/todos HTTP/1.1
 
 ### Recupera os Regristros Em Fornecedor Por Razão Social
-@varRazaosocial = Novo SA
+@varRazaosocial = teste t
 GET http://localhost:8080/fornecedor/buscar/razaosocial?razaosocial={{varRazaosocial}} HTTP/1.1
 
 ### Recupera os Regristros Em Fornecedor Por CNPJ
@@ -29,4 +29,10 @@ GET http://localhost:8080/usuario/busca/nome?nome={{varNome}} HTTP/1.1
 
 ### Recupera Todos os Regristros Em Pedido
 GET http://localhost:8080/pedido/todos HTTP/1.1
+
+### Gera Relatório de Vendas
+GET http://localhost:8080/relatorio/vendas HTTP/1.1
+
+### Gera Relatório Estoque de Livros
+GET http://localhost:8080/relatorio/estoquelivro HTTP/1.1
 

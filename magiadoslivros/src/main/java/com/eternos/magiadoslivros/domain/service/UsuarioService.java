@@ -24,12 +24,30 @@ public class UsuarioService {
 
     public Usuario salvar(UsuarioRequest usuarioRequest){
 
-        return usuarioRepository.save(usuarioAssembler.toModel(usuarioRequest));
+        Usuario usuario = usuarioAssembler.toModel(usuarioRequest);
+
+        checarConstraintUsuario(usuario);
+
+        return usuarioRepository.save(usuario);
 
     }
 
     public List<Usuario> buscarTodos(){
         return usuarioRepository.findAll();
+    }
+
+    public void checarConstraintUsuario(Usuario usuario){
+
+        if (usuarioRepository.findByRg(usuario.getRg()).isPresent())
+            throw new DefaultException(HttpStatus.FOUND, 
+                                            "Já existe um registro com RG: " 
+                                            + usuario.getRg());
+                            
+        if (usuarioRepository.findByCpf(usuario.getCpf()).isPresent())
+            throw new DefaultException(HttpStatus.FOUND, 
+                                            "Já existe um registro com CPF: " 
+                                            + usuario.getCpf());
+
     }
 
     public Usuario buscarId(Integer id){
