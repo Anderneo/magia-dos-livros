@@ -68,6 +68,18 @@ public class LivroService {
 
     }
 
+    public List<Livro> buscarIsbn(Integer isbn){
+
+       List<Livro> livro = livroRepository.findByIsbn(isbn);
+      //' String nome=Integer.toString(isbn);
+      
+       //List<Livro> livro = livroRepository.findByNomeContainingIgnoreCase(nome);
+       if(livro.isEmpty()) throw new DefaultException(HttpStatus.NOT_FOUND, 
+                     "Não foi possivel encontrar nenhum registro com esse NOME!!");
+
+        return livro;
+
+    }
     public void deletar(Integer id){
 
         var objecto = buscarId(id);

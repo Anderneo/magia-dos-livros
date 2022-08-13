@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,5 +44,10 @@ public class FornecedorResource {
     @GetMapping(path = "todos")
     public List<Fornecedor> buscar() {
         return fornecedorService.buscarTodos();
+    }
+
+    @DeleteMapping(path = "{id}")
+    public void deletar(@PathVariable Integer id){
+        fornecedorService.deletar(id);
     }
 }
