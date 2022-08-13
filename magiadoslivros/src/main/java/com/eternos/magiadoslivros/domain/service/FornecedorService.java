@@ -86,10 +86,19 @@ public class FornecedorService {
 
     public Fornecedor atualizarFornecedor(Integer id, FornecedorRequest fornecedorRequest){
 
-        var entity = buscarPorIdOuFalhar(id);         
-        BeanUtils.copyProperties(fornecedorRequest, entity, "id");
+        //var entity = buscarPorIdOuFalhar(id);         
+        //BeanUtils.copyProperties(fornecedorRequest, entity, "id");
 
-        return fornecedorRepository.save(entity);
+       // return fornecedorRepository.save(entity);
+
+        
+        Fornecedor fornecedor = buscarId(id);
+
+        Fornecedor request = fornecedorAssembler.toModel(fornecedorRequest);
+     
+        BeanUtils.copyProperties(request, fornecedor, "id");
+
+        return fornecedorRepository.save(fornecedor);
 
 
     }

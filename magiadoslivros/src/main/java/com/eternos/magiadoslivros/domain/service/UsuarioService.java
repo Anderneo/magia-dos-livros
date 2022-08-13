@@ -58,7 +58,7 @@ public class UsuarioService {
 
     }
 
-    public Usuario atualizarUsuario(Integer id, UsuarioRequest usuarioRequest){
+    public Usuario  atualizarUsuario(Integer id, UsuarioRequest usuarioRequest){
 
         Usuario usuario = buscarId(id);
 
