@@ -13,7 +13,6 @@ import com.eternos.magiadoslivros.domain.model.Pedido;
 import com.eternos.magiadoslivros.domain.model.PedidoLivro;
 import com.eternos.magiadoslivros.domain.model.PedidoLivroId;
 import com.eternos.magiadoslivros.domain.model.Usuario;
-import com.eternos.magiadoslivros.domain.repository.LivroRepository;
 import com.eternos.magiadoslivros.domain.repository.PedidoLivroRepository;
 import com.eternos.magiadoslivros.domain.repository.PedidoRepository;
 import com.eternos.magiadoslivros.domain.request.PedidoRequest;
@@ -27,7 +26,7 @@ public class PedidoService {
     private final PedidoRepository pedidoRepository;
     private final UsuarioService usuarioService;
     private final LivroService livroService;
-    private final LivroRepository livroRepository;
+    //private final LivroRepository livroRepository;
     private final PedidoLivroRepository pedidoLivroRepository;
 
     public PedidoLivro findById(PedidoLivroId pedidoLivroId){
@@ -74,31 +73,25 @@ public class PedidoService {
             }
             else {
 
-                PedidoLivroId pedidoLivroId = new PedidoLivroId(livro.getIdLivro(), pedidoSalvo.getIdVenda());
+                // PedidoLivroId pedidoLivroId = new PedidoLivroId(livro.getIdLivro(), pedidoSalvo.getIdVenda());
                 
-                PedidoLivro pedidoLivro;
+                // PedidoLivro pedidoLivro;
                 
-                pedidoRequest.getListaLivro().forEach(item -> 
+                // pedidoRequest.getListaLivro().forEach(item -> 
                     
-                pedidoLivro = PedidoLivro.builder()
-                                .pedidoLivroId(pedidoLivroId)
-                                .id_livro(idLivro)
-                                .id_pedido(pedidoSalvo.getIdVenda())
-                                .quantidade(quantidade)
-                                .build();
+                // pedidoLivro = PedidoLivro.builder()
+                //                 .pedidoLivroId(pedidoLivroId)
+                //                 .id_livro(idLivro)
+                //                 .id_pedido(pedidoSalvo.getIdVenda())
+                //                 .quantidade(quantidade)
+                //                 .build();
 
-                pedidoLivroRepository.save(pedidoLivro);
-                livro.setQuantLivros(livro.getQuantLivros() - quantidade);
-                livroRepository.save(livro); 
-                item.getQuantidade()
-                
-                );
-
-                
-            }     
-        
+                // pedidoLivroRepository.save(pedidoLivro);
+                // livro.setQuantLivros(livro.getQuantLivros() - quantidade);
+                // livroRepository.save(livro); 
+                // item.getQuantidade());               
+           }        
         }
-
        return pedidoSalvo;
 
     }
