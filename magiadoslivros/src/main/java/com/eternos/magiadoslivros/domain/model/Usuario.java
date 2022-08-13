@@ -6,6 +6,8 @@ import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -46,9 +48,11 @@ public class Usuario{
     @Column(name="cpf", unique=true)
     private String cpf;
 
+    @Enumerated(value = EnumType.STRING)
     @Column(name="genero")
     private Genero genero;
 
+    @Enumerated(value = EnumType.STRING)
     @Column(name="perfil")
     private Perfil perfil;
 

@@ -117,7 +117,7 @@ INSERT INTO livro ( nome, descricao, localizacao_estoque, isbn, valor_venda, val
 VALUES ( "Os segredos da mente milionária", "Dicas financeiras", "SP_00006", 667244403,  21.78 , 23.54, 80, 5 );
  
 INSERT INTO livro ( nome, descricao, localizacao_estoque, isbn, valor_venda, valor_recebimento, quantidade_livro, id_fornecedor)
-VALUES ( "Minutos de sabedoria", "Dicas espirituais", "SP_00007", 667244403,  21.78 , 22.54, 50, 10 ) ;
+VALUES ( "Minutos de sabedoria", "Dicas espirituais", "SP_00007", 667244404,  21.78 , 22.54, 50, 10 ) ;
 
 INSERT INTO livro ( nome, descricao, localizacao_estoque, isbn, valor_venda, valor_recebimento, quantidade_livro, id_fornecedor)
 VALUES ( "O poder da cura", "Dicas espirituais", "SP_00008", 664244403,  21.78 , 23.54, 40, 10 ) ;
