@@ -1,16 +1,23 @@
-@id = 1
-
+==============================================================================================================================
+                Livros
 ### Deleta Um Registro Em Livro
-DELETE http://localhost:8080/livro/deletar/{{id}} HTTP/1.1
+@idLivro = 1
+DELETE http://localhost:8080/livro/deletar/{{idLivro}} HTTP/1.1
 
-
+==============================================================================================================================
+                Fornecedor
 ### Deleta Um Registro Em Fornecedor
-DELETE http://localhost:8080/fornecedor/{{id}} HTTP/1.1
+@idFornecedor = 1
+DELETE http://localhost:8080/fornecedor/{{idFornecedor}} HTTP/1.1
 
-
+==============================================================================================================================
+                Usuario
 ### Deleta Um Registro Em Usuario
-DELETE http://localhost:8080/usuario/{{id}} HTTP/1.1
+@idUsuario = 1
+DELETE http://localhost:8080/usuario/{{idUsuario}} HTTP/1.1
 
-
+==============================================================================================================================
+                Pedido
 ### Deleta Um Registro Em Pedido
-DELETE http://localhost:8080/pedido/{{id}} HTTP/1.1
+@idPedido = 1
+DELETE http://localhost:8080/pedido/{{idPedido}} HTTP/1.1
