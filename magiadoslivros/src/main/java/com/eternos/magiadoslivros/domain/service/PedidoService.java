@@ -21,7 +21,6 @@ import lombok.AllArgsConstructor;
 public class PedidoService {
     
     private final PedidoRepository pedidoRepository;
-    private final UsuarioService usuarioService;
     private final PedidoAssembler pedidoAssembler;
     private final UsuarioUtil usuarioUtil;
     private final PedidoUtil pedidoUtil;
@@ -56,7 +55,7 @@ public class PedidoService {
     public void cancelarPedido(Integer idPedido, Integer idUsuario){
 
         Pedido pedido = pedidoUtil.buscarId(idPedido);
-        Usuario usuario = usuarioService.buscarId(idUsuario);
+        Usuario usuario = usuarioUtil.buscarId(idUsuario);
 
         usuarioUtil.checarUsuario(usuario);
 
