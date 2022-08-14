@@ -6,7 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
 import org.springframework.stereotype.Component;
 
-import com.eternos.magiadoslivros.domain.service.UsuarioService;
+import com.eternos.magiadoslivros.domain.util.UsuarioUtil;
 import com.eternos.magiadoslivros.domain.model.Pedido;
 import com.eternos.magiadoslivros.domain.model.Usuario;
 import com.eternos.magiadoslivros.domain.request.PedidoRequest;
@@ -17,11 +17,11 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class PedidoAssembler {
     private final ModelMapper modelMapper;
-    private final UsuarioService usuarioService;
+    private final UsuarioUtil usuarioUtil;
 
     public Pedido toModel(PedidoRequest pedidoRequest){
 
-        Usuario usuario = usuarioService.buscarId(pedidoRequest.getIdUsuario());
+        Usuario usuario = usuarioUtil.buscarId(pedidoRequest.getIdUsuario());
 
         TypeMap<PedidoRequest, Pedido> typeMap = modelMapper.getTypeMap(
                                                             PedidoRequest.class, 

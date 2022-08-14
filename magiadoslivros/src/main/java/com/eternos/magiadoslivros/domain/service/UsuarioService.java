@@ -11,6 +11,7 @@ import com.eternos.magiadoslivros.domain.exception.DefaultException;
 import com.eternos.magiadoslivros.domain.model.Usuario;
 import com.eternos.magiadoslivros.domain.repository.UsuarioRepository;
 import com.eternos.magiadoslivros.domain.request.UsuarioRequest;
+import com.eternos.magiadoslivros.domain.util.UsuarioUtil;
 
 import lombok.AllArgsConstructor;
 
@@ -20,13 +21,14 @@ public class UsuarioService {
     
     private final UsuarioRepository usuarioRepository;
     private final UsuarioAssembler usuarioAssembler;
+    private final UsuarioUtil usuarioUtil;
 
 
     public Usuario salvar(UsuarioRequest usuarioRequest){
 
         Usuario usuario = usuarioAssembler.toModel(usuarioRequest);
 
-        checarConstraintUsuario(usuario);
+        usuarioUtil.checarConstraintUsuario(usuario);
 
         return usuarioRepository.save(usuario);
 
@@ -36,31 +38,9 @@ public class UsuarioService {
         return usuarioRepository.findAll();
     }
 
-    public void checarConstraintUsuario(Usuario usuario){
-
-        if (usuarioRepository.findByRg(usuario.getRg()).isPresent())
-            throw new DefaultException(HttpStatus.FOUND, 
-                                            "Já existe um registro com RG: " 
-                                            + usuario.getRg());
-                            
-        if (usuarioRepository.findByCpf(usuario.getCpf()).isPresent())
-            throw new DefaultException(HttpStatus.FOUND, 
-                                            "Já existe um registro com CPF: " 
-                                            + usuario.getCpf());
-
-    }
-
-    public Usuario buscarId(Integer id){
-
-        return usuarioRepository.findById(id)
-            .orElseThrow(new DefaultException(
-            HttpStatus.BAD_REQUEST,"O registro informado não existe!!"));
-
-    }
-
     public Usuario atualizarUsuario(Integer id, UsuarioRequest usuarioRequest){
 
-        Usuario usuario = buscarId(id);
+        Usuario usuario = usuarioUtil.buscarId(id);
 
         Usuario request = usuarioAssembler.toModel(usuarioRequest);
      
@@ -91,7 +71,7 @@ public class UsuarioService {
 
     public void deletar(Integer id){
 
-        var objecto = buscarId(id);
+        var objecto = usuarioUtil.buscarId(id);
 
         usuarioRepository.delete(objecto);
 
