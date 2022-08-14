@@ -10,6 +10,8 @@ import com.eternos.magiadoslivros.domain.exception.DefaultException;
 import com.eternos.magiadoslivros.domain.model.Fornecedor;
 import com.eternos.magiadoslivros.domain.repository.FornecedorRepository;
 import com.eternos.magiadoslivros.domain.request.FornecedorRequest;
+import com.eternos.magiadoslivros.domain.util.FornecedorUtil;
+
 import org.springframework.beans.BeanUtils;
 
 import lombok.AllArgsConstructor;
@@ -20,41 +22,22 @@ public class FornecedorService {
   
     private final FornecedorRepository fornecedorRepository;
     private final FornecedorAssembler fornecedorAssembler;
+    private final FornecedorUtil fornecedorUtil;
 
 
     public Fornecedor salvar(FornecedorRequest fornecedorRequest){
 
         Fornecedor fornecedor = fornecedorAssembler.toModel(fornecedorRequest);
 
-        checarConstraintFornecedor(fornecedor);       
+        fornecedorUtil.checarConstraintFornecedor(fornecedor);       
 
         return fornecedorRepository.save(fornecedor);
 
     }
 
-    public Fornecedor buscarId(Integer id){
-
-        return fornecedorRepository.findById(id)
-            .orElseThrow(new DefaultException(
-            HttpStatus.NOT_FOUND,"Não foi encontrado Fornecedor com o id : " + id));
-
-    }
-
     public List<Fornecedor> buscarTodos(){
+
         return fornecedorRepository.findAll();
-    }
-
-    public void checarConstraintFornecedor(Fornecedor fornecedor){
-
-        if (fornecedorRepository.findByCnpj(fornecedor.getCnpj()).isPresent())
-            throw new DefaultException(HttpStatus.FOUND, 
-                                            "Já existe um registro com CNPJ: " 
-                                            + fornecedor.getCnpj());
-                            
-        if (fornecedorRepository.findByRazaoSocial(fornecedor.getRazaoSocial()).isPresent())
-            throw new DefaultException(HttpStatus.FOUND, 
-                                            "Já existe um registro com razao social: " 
-                                            + fornecedor.getRazaoSocial());
 
     }
 
@@ -62,7 +45,7 @@ public class FornecedorService {
             
         return fornecedorRepository.findByRazaoSocial(razaosocial)
             .orElseThrow(new DefaultException(HttpStatus.NOT_FOUND, 
-                    "Não foi possivel encontrar nenhum registro !!!"));
+                    "Não foi possivel encontrar nenhum fornecedor com Razão Social: " + razaosocial));
 
     }
 
@@ -70,27 +53,26 @@ public class FornecedorService {
             
         return fornecedorRepository.findByCnpj(cnpj)
             .orElseThrow(new DefaultException(HttpStatus.NOT_FOUND, 
-                    "Não foi possivel encontrar nenhum registro !!!"));
+            "Não foi possivel encontrar nenhum fornecedor com CNPJ: " + cnpj));
 
     }
 
-    public Fornecedor buscarPorIdOuFalhar(Integer id){
-        return fornecedorRepository.findById(id)
-        .orElseThrow(new DefaultException(HttpStatus.BAD_REQUEST,"O fornecedor informado não existe"));  
-    }
     
     public void deletar(Integer id){
-        var objeto = buscarPorIdOuFalhar(id);
+
+        var objeto = fornecedorUtil.buscarFornecedor(id);
+
         fornecedorRepository.delete(objeto);
+
     }
 
     public Fornecedor atualizarFornecedor(Integer id, FornecedorRequest fornecedorRequest){
 
-        var entity = buscarPorIdOuFalhar(id);         
+        var entity = fornecedorUtil.buscarFornecedor(id);
+
         BeanUtils.copyProperties(fornecedorRequest, entity, "id");
 
         return fornecedorRepository.save(entity);
-
 
     }
 

@@ -12,6 +12,7 @@ import com.eternos.magiadoslivros.domain.model.Fornecedor;
 import com.eternos.magiadoslivros.domain.model.Livro;
 import com.eternos.magiadoslivros.domain.repository.LivroRepository;
 import com.eternos.magiadoslivros.domain.request.LivroRequest;
+import com.eternos.magiadoslivros.domain.util.FornecedorUtil;
 
 import lombok.AllArgsConstructor;
 
@@ -20,7 +21,7 @@ import lombok.AllArgsConstructor;
 public class LivroService {
     
     private final LivroRepository livroRepository;
-    private final FornecedorService fornecedorService;
+    private final FornecedorUtil fornecedorUtil;
     private final LivroAssembler livroAssembler;
 
 
@@ -102,7 +103,7 @@ public class LivroService {
 
         var livro = buscarId(id);
 
-        Fornecedor fornecedor = fornecedorService.buscarId(livroRequest.getIdFornecedor());
+        Fornecedor fornecedor = fornecedorUtil.buscarId(livroRequest.getIdFornecedor());
      
         BeanUtils.copyProperties(livroRequest, livro, "id", "isbn");
 
