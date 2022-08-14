@@ -1,23 +1,18 @@
 package com.eternos.magiadoslivros.domain.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.eternos.magiadoslivros.domain.exception.DefaultException;
-import com.eternos.magiadoslivros.domain.model.Livro;
 import com.eternos.magiadoslivros.domain.model.Pedido;
-import com.eternos.magiadoslivros.domain.model.PedidoLivro;
-import com.eternos.magiadoslivros.domain.model.PedidoLivroId;
 import com.eternos.magiadoslivros.domain.model.Usuario;
-import com.eternos.magiadoslivros.domain.repository.LivroRepository;
-import com.eternos.magiadoslivros.domain.repository.PedidoLivroRepository;
 import com.eternos.magiadoslivros.domain.repository.PedidoRepository;
 import com.eternos.magiadoslivros.domain.request.PedidoRequest;
+import com.eternos.magiadoslivros.domain.util.PedidoUtil;
+import com.eternos.magiadoslivros.domain.util.UsuarioUtil;
 import com.eternos.magiadoslivros.domain.assembler.PedidoAssembler;
-import com.eternos.magiadoslivros.domain.assembler.PedidoLivroAssembler;
 
 import lombok.AllArgsConstructor;
 
@@ -27,19 +22,17 @@ public class PedidoService {
     
     private final PedidoRepository pedidoRepository;
     private final UsuarioService usuarioService;
-    private final LivroService livroService;
-    private final LivroRepository livroRepository;
-    private final PedidoLivroRepository pedidoLivroRepository;
     private final PedidoAssembler pedidoAssembler;
-    private final PedidoLivroAssembler pedidoLivroAssembler;
+    private final UsuarioUtil usuarioUtil;
+    private final PedidoUtil pedidoUtil;
 
-    public PedidoLivro findById(PedidoLivroId pedidoLivroId){
+    /* public PedidoLivro findById(PedidoLivroId pedidoLivroId){
 
         return pedidoLivroRepository.findById(pedidoLivroId).
                 orElseThrow(new DefaultException(HttpStatus.BAD_REQUEST, 
                                         "Pedido ou produto não encontrado"));
 
-    }
+    } */
 
 
     public Pedido salvar(PedidoRequest pedidoRequest){
@@ -48,56 +41,27 @@ public class PedidoService {
 
         pedidoRepository.save(pedido);
 
-        ArrayList<Livro> listaLivro = new ArrayList<Livro>();
+        pedido.setListaLivro(pedidoUtil.listaLivro(pedido, pedidoRequest));
 
-        for( int i = 0; i < pedidoRequest.getListaLivro().size(); i++) {
-      
-            Livro livro = livroService.buscarId(pedidoRequest.getListaLivro().get(i).getIdLivro());
-
-            if( pedidoRequest.getListaLivro().get(i).getQuantidade() > livro.getQuantLivros()){
-                throw new DefaultException(HttpStatus.BAD_REQUEST, "Sem estoque suficiente");
-            }
-                
-            var pedidoLivroRequest =  pedidoRequest.getListaLivro().get(i);
-            var pedidoLivro = pedidoLivroAssembler.toModel( pedidoLivroRequest, pedido.getIdVenda());
-
-            pedidoLivroRepository.save(pedidoLivro);
-            
-            livro.setQuantLivros(livro.getQuantLivros() - pedidoRequest.getListaLivro().get(i).getQuantidade());
-                    
-            livroRepository.save(livro); 
-            
-            listaLivro.add(livro);
-
-        }
-
-        pedido.setListaLivro(listaLivro);
-
-       return pedido;
-
+        return pedido;
+        
     }
-
+    
     public List<Pedido> buscarTodos(){
+
         return pedidoRepository.findAll();
-    }
-
-    public Pedido buscarId(Integer id){
-
-        return pedidoRepository.findById(id)
-            .orElseThrow(new DefaultException(
-            HttpStatus.BAD_REQUEST,"Não foi encontrado pedido com esse id!!"));
 
     }
 
     public void cancelarPedido(Integer idPedido, Integer idUsuario){
 
-        Pedido pedido = buscarId(idPedido);
+        Pedido pedido = pedidoUtil.buscarId(idPedido);
         Usuario usuario = usuarioService.buscarId(idUsuario);
 
-        if (usuario.getPerfil().toString().compareToIgnoreCase("administrador") != 0) 
-                throw new DefaultException(HttpStatus.FORBIDDEN,
-                 "Apenas o administrador pode cancelar um pedido!!");
+        usuarioUtil.checarUsuario(usuario);
 
+        if (pedido.getVendaCancelada() == true) throw new DefaultException(HttpStatus.ALREADY_REPORTED, "O pedido já foi cancelado!!!");
+        
         pedido.setVendaCancelada(true);
 
         pedidoRepository.save(pedido);
