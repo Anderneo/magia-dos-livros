@@ -68,14 +68,14 @@ public class LivroService {
 
     public Livro buscarIsbn(String isbn){
 
-       Livro livro = livroRepository.findByIsbn(isbn);
-      //' String nome=Integer.toString(isbn);
-      
-       //List<Livro> livro = livroRepository.findByNomeContainingIgnoreCase(nome);
+        Livro livro = livroRepository.findByIsbn(isbn);
+
+        checarIsbn(isbn);
 
         return livro;
 
     }
+
     public void deletar(Integer id){
 
         var objecto = buscarId(id);
@@ -94,9 +94,10 @@ public class LivroService {
         if(livro.getQuantLivros() < 0) throw new DefaultException(HttpStatus.INTERNAL_SERVER_ERROR, 
                 "O estoque está com o valor negativo!!");
 
-        livro.setQuantLivros(quantLivros + livro.getQuantLivros());;
+        livro.setQuantLivros(quantLivros + livro.getQuantLivros());
 
         return livroRepository.save(livro);
+
     }
 
     public Livro atualizarLivro(Integer id, LivroRequest livroRequest){
@@ -112,4 +113,5 @@ public class LivroService {
         return livroRepository.save(livro);
 
     }
+
 }

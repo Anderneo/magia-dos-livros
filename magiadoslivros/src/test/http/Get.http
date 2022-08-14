@@ -5,8 +5,12 @@
 GET http://localhost:8080/livro/todos HTTP/1.1
 
 ### Recupera Lista De Livros Filtrados Por Nome
-@varNome= novo
-GET http://localhost:8080/livro/buscar/nome?nome={{varNome}} HTTP/1.1
+@varLivro= novo
+GET http://localhost:8080/livro/buscar/nome?nome={{varLivro}} HTTP/1.1
+
+### Recupera Livro Filtrado Por ISBN
+@varIsbn= 667244404
+GET http://localhost:8080/livro/buscar/isbn?isbn={{varIsbn}} HTTP/1.1
 
 ==============================================================================================================================
                 Fornecedor
@@ -33,14 +37,18 @@ GET http://localhost:8080/usuario/todos HTTP/1.1
 GET http://localhost:8080/usuario/busca/cpf?cpf={{varCpf}} HTTP/1.1
 
 ### Recupera Os Regristros Em Usuario por Nome
-@varNome= Anderson
-GET http://localhost:8080/usuario/busca/nome?nome={{varNome}} HTTP/1.1
+@varUsuario= Anderson
+GET http://localhost:8080/usuario/busca/nome?nome={{varUsuario}} HTTP/1.1
 
 ==============================================================================================================================
                 Pedido
                 
 ### Recupera Todos os Regristros Em Pedido
 GET http://localhost:8080/pedido/todos HTTP/1.1
+
+
+==============================================================================================================================
+                Relatórios
 
 ### Gera Relatório de Vendas
 GET http://localhost:8080/relatorio/vendas HTTP/1.1
