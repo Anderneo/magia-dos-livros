@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import com.eternos.magiadoslivros.domain.model.Fornecedor;
 import com.eternos.magiadoslivros.domain.model.Livro;
 import com.eternos.magiadoslivros.domain.request.LivroRequest;
-import com.eternos.magiadoslivros.domain.service.FornecedorService;
+import com.eternos.magiadoslivros.domain.util.FornecedorUtil;
 
 import lombok.AllArgsConstructor;
 
@@ -18,12 +18,12 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class LivroAssembler {
     private final ModelMapper modelMapper;
-    private final FornecedorService fornecedorService;
+    private final FornecedorUtil fornecedorUtil;
     
 
     public Livro toModel(LivroRequest livroRequest){
 
-        Fornecedor fornecedor = fornecedorService.buscarId(livroRequest.getIdFornecedor());
+        Fornecedor fornecedor = fornecedorUtil.buscarFornecedor(livroRequest.getIdFornecedor());
 
         TypeMap<LivroRequest, Livro> typeMap = modelMapper.getTypeMap(
                                                             LivroRequest.class, 
