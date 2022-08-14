@@ -67,5 +67,6 @@ public class PedidoService {
         pedidoRepository.save(pedido);
 
         throw new DefaultException(HttpStatus.ACCEPTED, "O pedido foi cancelado!!!");
+        
     }
 }

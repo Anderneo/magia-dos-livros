@@ -14,7 +14,6 @@ import com.eternos.magiadoslivros.domain.repository.PedidoLivroRepository;
 import com.eternos.magiadoslivros.domain.repository.PedidoRepository;
 import com.eternos.magiadoslivros.domain.request.PedidoLivroRequest;
 import com.eternos.magiadoslivros.domain.request.PedidoRequest;
-import com.eternos.magiadoslivros.domain.service.LivroService;
 
 import lombok.AllArgsConstructor;
 
@@ -23,7 +22,7 @@ import lombok.AllArgsConstructor;
 public class PedidoUtil {
 
     private final PedidoLivroAssembler pedidoLivroAssembler;
-    private final LivroService livroService;
+    private final LivroUtil livroUtil;
     private final LivroRepository livroRepository;
     private final PedidoLivroRepository pedidoLivroRepository;
     private final PedidoRepository pedidoRepository;
@@ -37,7 +36,7 @@ public class PedidoUtil {
 
         for( int i = 0; i < getListaLivro.size(); i++) {
       
-            Livro livro = livroService.buscarId(getListaLivro.get(i).getIdLivro());
+            Livro livro = livroUtil.buscarId(getListaLivro.get(i).getIdLivro());
 
             checarEstoque(getListaLivro, livro, i);
 

@@ -12,6 +12,8 @@ import com.eternos.magiadoslivros.domain.model.Fornecedor;
 import com.eternos.magiadoslivros.domain.model.Livro;
 import com.eternos.magiadoslivros.domain.repository.LivroRepository;
 import com.eternos.magiadoslivros.domain.request.LivroRequest;
+import com.eternos.magiadoslivros.domain.util.FornecedorUtil;
+import com.eternos.magiadoslivros.domain.util.LivroUtil;
 
 import lombok.AllArgsConstructor;
 
@@ -20,15 +22,16 @@ import lombok.AllArgsConstructor;
 public class LivroService {
     
     private final LivroRepository livroRepository;
-    private final FornecedorService fornecedorService;
+    private final FornecedorUtil fornecedorUtil;
     private final LivroAssembler livroAssembler;
+    private final LivroUtil livroUtil;
 
 
     public Livro salvar(LivroRequest livroRequest){
 
-        var livro = livroAssembler.toModel(livroRequest);
+        livroUtil.checarIsbn(livroRequest.getIsbn());
 
-        checarIsbn(livro.getIsbn());
+        var livro = livroAssembler.toModel(livroRequest);
 
         return livroRepository.save(livro);
     }
@@ -37,21 +40,6 @@ public class LivroService {
 
         return livroRepository.findAll();
 
-    }
-
-    public Livro buscarId(Integer id){
-
-        return livroRepository.findById(id)
-            .orElseThrow(new DefaultException(
-            HttpStatus.BAD_REQUEST,"Não foi encontrado nenhum liro com id: " + id));
-
-    }
-
-    public void checarIsbn(String isbn){
-
-        if(livroRepository.findByIsbn(isbn) != null) throw new DefaultException(
-                                                                 HttpStatus.BAD_REQUEST,
-                                                        "ISBN já existe!!");
     }
 
     public List<Livro> buscarNome(String nome){
@@ -67,42 +55,44 @@ public class LivroService {
 
     public Livro buscarIsbn(String isbn){
 
-       Livro livro = livroRepository.findByIsbn(isbn);
-      //' String nome=Integer.toString(isbn);
-      
-       //List<Livro> livro = livroRepository.findByNomeContainingIgnoreCase(nome);
+        livroUtil.checarIsbn(isbn);
+
+        Livro livro = livroRepository.findByIsbn(isbn);
 
         return livro;
 
     }
+
     public void deletar(Integer id){
 
-        var objecto = buscarId(id);
+        var objecto = livroUtil.buscarId(id);
 
         livroRepository.delete(objecto);
 
         throw new DefaultException(
                                     HttpStatus.ACCEPTED,
                                     "Registro " + id + " deletado com sucesso!!");
+                                    
     }
 
     public Livro atualizarQtdeLivro(Integer id, Integer quantLivros){
 
-        var livro = buscarId(id);
+        var livro = livroUtil.buscarId(id);
 
         if(livro.getQuantLivros() < 0) throw new DefaultException(HttpStatus.INTERNAL_SERVER_ERROR, 
                 "O estoque está com o valor negativo!!");
 
-        livro.setQuantLivros(quantLivros + livro.getQuantLivros());;
+        livro.setQuantLivros(quantLivros + livro.getQuantLivros());
 
         return livroRepository.save(livro);
+
     }
 
     public Livro atualizarLivro(Integer id, LivroRequest livroRequest){
 
-        var livro = buscarId(id);
+        var livro = livroUtil.buscarId(id);
 
-        Fornecedor fornecedor = fornecedorService.buscarId(livroRequest.getIdFornecedor());
+        Fornecedor fornecedor = fornecedorUtil.buscarId(livroRequest.getIdFornecedor());
      
         BeanUtils.copyProperties(livroRequest, livro, "id", "isbn");
 
@@ -111,4 +101,5 @@ public class LivroService {
         return livroRepository.save(livro);
 
     }
+
 }

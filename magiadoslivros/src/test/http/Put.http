@@ -1,3 +1,5 @@
+==============================================================================================================================
+                Livro
 ### Altera Um Registro Em Livro
 @idLivro = 4
 PUT http://localhost:8080/livro/atualizar/{{idLivro}} HTTP/1.1
@@ -13,6 +15,28 @@ Content-Type: application/json
   "valorVenda": "20",
   "idFornecedor":6
 }
+
+==============================================================================================================================
+                Fornecedor
+
+### Altera Um Registro Em Fornecedor
+@idFornecedor = 1
+PUT http://localhost:8080/usuario/{{idFornecedor}} HTTP/1.1
+Content-Type: application/json
+
+{
+  "endereco": "Novo Fornecedor ",
+  "email": "a@b",
+  "telefone": "123-213",
+  "observacao": "bla",
+  "nomeFantasia": "Novidade",
+  "razaoSocial": "novo 2",
+  "cnpj": "222222225",
+  "insEstadual": "MG"
+}
+
+==============================================================================================================================
+                Usuário
 
 ### Altera Um Registro Em Usuário
 @idUsuario = 1
@@ -31,4 +55,23 @@ Content-Type: application/json
 	"perfil": 0,
 	"dataDeNas": "02/02/2223",
 	"dataDeCadastro": "12/05/2226"
+}
+
+==============================================================================================================================
+                Pedido
+
+### Altera Um Registro Em Pedido
+@idPedido = 1
+PUT http://localhost:8080/usuario/{{idPedido}} HTTP/1.1
+Content-Type: application/json
+
+{
+  "valorVenda": "5000",
+  "enderecoEntrega": "rua da entrega 14",
+  "formaDePgto": "cartao",
+  "parcela": "10",
+  "dataVenda": "03/01/2014",
+  "dataPgto": "03/02/2014",
+  "dataEntrega": "16/02/2014",
+  "idUsuario": 6,
 }
