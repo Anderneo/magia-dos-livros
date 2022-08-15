@@ -1,6 +1,7 @@
 package com.eternos.magiadoslivros.domain.util;
 
 import java.util.ArrayList;
+import java.util.stream.IntStream;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
@@ -34,21 +35,38 @@ public class PedidoUtil {
 
         ArrayList<Livro> listaLivro = new ArrayList<Livro>();
 
-        for( int i = 0; i < getListaLivro.size(); i++) {
+        // for( int i = 0; i < getListaLivro.size(); i++) {
       
-            Livro livro = livroUtil.buscarId(getListaLivro.get(i).getIdLivro());
+        //     Livro livro = livroUtil.buscarId(getListaLivro.get(i).getIdLivro());
 
-            checarEstoque(getListaLivro, livro, i);
+        //     checarEstoque(getListaLivro, livro, i);
 
-            pedidoLivroRepository.save(pedidoLivroAssembler.toModel( getListaLivro.get(i), pedido.getIdVenda()));
+        //     pedidoLivroRepository.save(pedidoLivroAssembler.toModel( getListaLivro.get(i), pedido.getIdVenda()));
             
-            livro.setQuantLivros(livro.getQuantLivros() - getListaLivro.get(i).getQuantidade());
+        //     livro.setQuantLivros(livro.getQuantLivros() - getListaLivro.get(i).getQuantidade());
                     
-            livroRepository.save(livro); 
+        //     livroRepository.save(livro); 
             
-            listaLivro.add(livro);
+        //     listaLivro.add(livro);
+        // }
+        
+        IntStream.range(0, getListaLivro.size())
+				.forEach(item  -> {
 
-        }
+                    Livro livro = livroUtil.buscarId(getListaLivro.get(item).getIdLivro());
+
+                    checarEstoque(getListaLivro, livro, item);
+
+                    pedidoLivroRepository.save(pedidoLivroAssembler.toModel( getListaLivro.get(item), pedido.getIdVenda()));
+                    
+                    livro.setQuantLivros(livro.getQuantLivros() - getListaLivro.get(item).getQuantidade());
+                            
+                    livroRepository.save(livro); 
+                    
+                    listaLivro.add(livro);    
+                
+                
+                });
 
         return listaLivro;
     }
