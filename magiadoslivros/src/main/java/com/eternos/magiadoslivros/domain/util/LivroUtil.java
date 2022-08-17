@@ -19,7 +19,7 @@ public class LivroUtil {
 
         return livroRepository.findById(id)
             .orElseThrow(new DefaultException(
-            HttpStatus.BAD_REQUEST,"Não foi encontrado nenhum liro com id: " + id));
+            HttpStatus.NOT_FOUND,"Não foi encontrado nenhum liro com id: " + id));
 
     }
 
