@@ -34,21 +34,6 @@ public class PedidoUtil {
         ArrayList<PedidoLivroRequest>  getListaLivro = pedidoRequest.getListaLivro();
 
         ArrayList<Livro> listaLivro = new ArrayList<Livro>();
-
-        // for( int i = 0; i < getListaLivro.size(); i++) {
-      
-        //     Livro livro = livroUtil.buscarId(getListaLivro.get(i).getIdLivro());
-
-        //     checarEstoque(getListaLivro, livro, i);
-
-        //     pedidoLivroRepository.save(pedidoLivroAssembler.toModel( getListaLivro.get(i), pedido.getIdVenda()));
-            
-        //     livro.setQuantLivros(livro.getQuantLivros() - getListaLivro.get(i).getQuantidade());
-                    
-        //     livroRepository.save(livro); 
-            
-        //     listaLivro.add(livro);
-        // }
         
         IntStream.range(0, getListaLivro.size())
 				.forEach(item  -> {

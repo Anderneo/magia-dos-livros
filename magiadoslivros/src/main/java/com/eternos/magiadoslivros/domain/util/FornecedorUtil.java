@@ -14,14 +14,7 @@ import lombok.AllArgsConstructor;
 public class FornecedorUtil {
 
     private final FornecedorRepository fornecedorRepository;
-
-    public Fornecedor buscarId(Integer id){
-
-        return fornecedorRepository.findById(id)
-            .orElseThrow(new DefaultException(
-            HttpStatus.NOT_FOUND,"Não foi encontrado Fornecedor com o id : " + id));
-
-    }
+    
 
     public void checarConstraintFornecedor(Fornecedor fornecedor){
 
@@ -40,7 +33,8 @@ public class FornecedorUtil {
     public Fornecedor buscarFornecedor(Integer id){
 
         return fornecedorRepository.findById(id)
-        .orElseThrow(new DefaultException(HttpStatus.NOT_FOUND,"Não foi encontrado nenhum fornecedor com id: " + id));  
+            .orElseThrow(new DefaultException(HttpStatus.NOT_FOUND,
+                                             "Não foi encontrado nenhum fornecedor com id: " + id));  
 
     }
 
