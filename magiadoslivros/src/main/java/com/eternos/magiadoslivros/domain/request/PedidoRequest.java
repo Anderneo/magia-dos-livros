@@ -4,20 +4,48 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.PositiveOrZero;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
 public class PedidoRequest {
     
+    @NotNull(message = "O Campo Valor de Venda não pode ser vazio")
+    @Pattern(regexp="(^$|[0-9])", message = "O Campo valorVenda tem que ser um valor válido")//mesmo assim não funciona
     Double valorVenda;
+    
+    @NotNull
+    @NotBlank(message = "O Campo Forma de Pagamento não pode ser vazio")
     String enderecoEntrega;
+    
+    @NotNull
+    @NotBlank(message = "O Campo Forma de Pagamento não pode ser vazio")
     String formaDePgto;
+    
+    @NotNull(message = "O Campo Quantidade de Parcelas não pode ser vazio")
+    @PositiveOrZero
     Integer parcela;
+    
+    @DateTimeFormat(fallbackPatterns = { "dd/MM/yyyy" })
     LocalDate dataVenda;
+    
+    @DateTimeFormat(fallbackPatterns = { "dd/MM/yyyy" })
     LocalDate dataPgto;
+    
+    @DateTimeFormat(fallbackPatterns = { "dd/MM/yyyy" })
     LocalDate dataEntrega;
+    
+    @NotNull(message = "O idUsuario não pode ser vazio")
+    @PositiveOrZero
     Integer idUsuario;
+    
     ArrayList<PedidoLivroRequest> listaLivro;
 
     public PedidoRequest(Double valorVenda, String enderecoEntrega, String formaDePgto, 

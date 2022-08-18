@@ -6,8 +6,8 @@ PUT http://localhost:8080/livro/atualizar/{{idLivro}} HTTP/1.1
 Content-Type: application/json
 
 {
-  "descricao": "Livro 5 - Alterado Agora mesmo5",
-  "isbn": "74/1-1/1-",
+  "descricao": "Livro 4 - Alterado Agora mesmo4",
+  "isbn": "979-0-67-651636-3",
   "nome": "novo5",
   "quantLivros": "20",
   "tagEstoque": "2b3",
