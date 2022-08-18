@@ -1,9 +1,5 @@
 package com.eternos.magiadoslivros.domain.exception;
 
-import java.sql.Timestamp;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
 import java.util.function.Supplier;
 
 import org.springframework.http.HttpStatus;
