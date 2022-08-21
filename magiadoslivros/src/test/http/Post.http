@@ -59,14 +59,14 @@ POST http://localhost:8080/pedido HTTP/1.1
 Content-Type: application/json
 
 {
-  "valorVenda": "500",
+  "valorVenda": 450,
   "enderecoEntrega": "rua da entrega 14",
   "formaDePgto": "cartao",
-  "parcela": "10",
+  "parcela": 2,
   "dataVenda": "03/01/2014",
   "dataPgto": "03/02/2014",
   "dataEntrega": "16/02/2014",
-  "idUsuario": 6,
+  "idUsuario": 1,
   "listaLivro": [
     {
       "idLivro": 1,

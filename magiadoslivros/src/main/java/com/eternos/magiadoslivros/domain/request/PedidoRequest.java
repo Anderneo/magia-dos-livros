@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.PositiveOrZero;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -18,7 +17,7 @@ import lombok.Setter;
 public class PedidoRequest {
     
     @NotNull(message = "O Campo Valor de Venda não pode ser vazio")
-    @Pattern(regexp="(^$|[0-9])", message = "O Campo valorVenda tem que ser um valor válido")//mesmo assim não funciona
+    @PositiveOrZero
     Double valorVenda;
     
     @NotNull

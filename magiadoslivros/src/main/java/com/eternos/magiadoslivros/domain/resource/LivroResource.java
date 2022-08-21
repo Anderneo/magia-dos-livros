@@ -31,7 +31,7 @@ public class LivroResource {
 
     @PostMapping
     public Livro salvar(@Validated @RequestBody LivroRequest livroRequest){
-        
+  
         return livroService.salvar(livroRequest);
     }
 
