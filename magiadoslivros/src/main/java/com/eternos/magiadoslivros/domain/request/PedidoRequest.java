@@ -16,19 +16,19 @@ import lombok.Setter;
 @Getter @Setter
 public class PedidoRequest {
     
-    @NotNull(message = "O Campo Valor de Venda não pode ser vazio")
+    @NotNull(message = "O Campo Valor de Venda não pode estar vazio")
     @PositiveOrZero
     Double valorVenda;
     
     @NotNull
-    @NotBlank(message = "O Campo Forma de Pagamento não pode ser vazio")
+    @NotBlank(message = "O Campo Forma de Pagamento não pode estar vazio")
     String enderecoEntrega;
     
     @NotNull
-    @NotBlank(message = "O Campo Forma de Pagamento não pode ser vazio")
+    @NotBlank(message = "O Campo Forma de Pagamento não pode estar vazio")
     String formaDePgto;
     
-    @NotNull(message = "O Campo Quantidade de Parcelas não pode ser vazio")
+    @NotNull(message = "O Campo Quantidade de Parcelas não pode estar vazio")
     @PositiveOrZero
     Integer parcela;
     
@@ -41,7 +41,7 @@ public class PedidoRequest {
     @DateTimeFormat(fallbackPatterns = { "dd/MM/yyyy" })
     LocalDate dataEntrega;
     
-    @NotNull(message = "O idUsuario não pode ser vazio")
+    @NotNull(message = "O idUsuario não pode estar vazio")
     @PositiveOrZero
     Integer idUsuario;
     

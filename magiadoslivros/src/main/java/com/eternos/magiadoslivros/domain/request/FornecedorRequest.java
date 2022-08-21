@@ -11,7 +11,7 @@ import lombok.Data;
 @Data
 public class FornecedorRequest {
 
-     @NotBlank(message = "O Campo descrição não pode ser vazio")
+     @NotBlank(message = "O Campo descrição não pode estar vazio")
      String endereco;
      
      @Email(message = "O Campo Email é inválido")
@@ -22,16 +22,16 @@ public class FornecedorRequest {
      
      String observacao;
      
-     @NotBlank(message = "O Campo Nome Fantasia não pode ser vazio")
+     @NotBlank(message = "O Campo Nome Fantasia não pode estar vazio")
      String nomeFantasia;
      
-     @NotBlank(message = "O Campo Razao Social não pode ser vazio")
+     @NotBlank(message = "O Campo Razao Social não pode estar vazio")
      String razaoSocial;
      
      @CNPJ(message = "O Campo CNPJ é inválido")
      String cnpj;
      
-     @NotBlank(message = "O Campo Instituição Estadual não pode ser vazio")
+     @NotBlank(message = "O Campo Instituição Estadual não pode estar vazio")
      String insEstadual;
     
 }

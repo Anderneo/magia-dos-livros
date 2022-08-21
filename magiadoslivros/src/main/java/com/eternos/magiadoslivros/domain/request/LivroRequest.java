@@ -15,24 +15,24 @@ public class LivroRequest {
     @ISBN(message = "O Campo ISBN é inválido")
     String isbn;
     
-    @NotBlank(message = "O Campo nome não pode ser vazio")
+    @NotBlank(message = "O Campo nome não pode estar vazio")
     String nome;
     
-    @NotNull(message = "O Campo quantidade não pode ser vazio")
+    @NotNull(message = "O Campo quantidade não pode estar vazio")
     @PositiveOrZero(message = "O Campo quantLivros deve ser um inteiro")
     Integer quantLivros;
     
     String tagEstoque;
     
-    @NotNull(message = "O Campo Valor de Recebimento não pode ser vazio")
+    @NotNull(message = "O Campo Valor de Recebimento não pode estar vazio")
     @PositiveOrZero(message = "O Campo valorRecebimento deve ser um inteiro")
     Double valorRecebimento;
     
-    @NotNull(message = "O Campo Valor de Venda não pode ser vazio")
+    @NotNull(message = "O Campo Valor de Venda não pode estar vazio")
     @PositiveOrZero(message = "O Campo valorVenda deve ser um inteiro")
     Double valorVenda; 
     
-    @NotNull(message = "O Campo Id Fornecedor não pode ser vazio")
+    @NotNull(message = "O Campo Id Fornecedor não pode estar vazio")
     @PositiveOrZero(message = "O Campo idFornecedor deve ser um inteiro")
     Integer idFornecedor;
 

@@ -22,7 +22,7 @@ public class UsuarioRequest {
 
     String endereco;
     
-    @Email
+    @Email(message = "O Campo Email é inválido")
     String email;
     
     @Pattern(regexp="(^$|[0-9]{9,11})", message = "O Campo telefone é inválido")
@@ -37,13 +37,13 @@ public class UsuarioRequest {
     @Pattern(regexp="(^$|[0-9.-]{9})", message = "O Campo RG é inválido")
     String rg;
     
-    @CPF
+    @CPF(message = "O Campo CPF é inválido")
     String cpf;
     
-    @NotNull(message = "O Campo Perfil não pode ser vazio")
+    @NotNull(message = "O Campo Perfil não pode estar vazio")
     Genero genero;
     
-    @NotNull(message = "O Campo Perfil não pode ser vazio")
+    @NotNull(message = "O Campo Perfil não pode estar vazio")
     Perfil perfil;
     
     @DateTimeFormat(fallbackPatterns = { "dd/MM/yyyy" })
