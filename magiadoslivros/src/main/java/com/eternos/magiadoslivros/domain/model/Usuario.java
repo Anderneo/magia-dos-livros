@@ -48,11 +48,11 @@ public class Usuario{
     @Column(name="cpf", unique=true)
     private String cpf;
     
-    @Enumerated(EnumType.STRING)
-    @Column(name="genero")
+//  @Enumerated(EnumType.STRING)
+   @Column(name="genero")
     private Genero genero;
     
-    @Enumerated(EnumType.STRING)
+   // @Enumerated(EnumType.STRING)
     @Column(name="perfil")
     private Perfil perfil;
 
