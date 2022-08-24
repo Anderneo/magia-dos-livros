@@ -3,18 +3,20 @@ package com.eternos.magiadoslivros.LivroTeste;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.eternos.magiadoslivros.domain.model.Fornecedor;
 import com.eternos.magiadoslivros.domain.model.Livro;
 import com.eternos.magiadoslivros.domain.request.LivroRequest;
 import com.eternos.magiadoslivros.domain.resource.LivroResource;
@@ -24,14 +26,7 @@ import com.eternos.magiadoslivros.domain.service.LivroService;
 public class LivroResourceTeste {
 
     private static final Integer idLivro = 1;
-    private static final String descricao = "Livro 5";
-    private static final String isbn = "SP-667244404";
-    private static final String nome = "Diário de Anne Frank";
     private static final Integer quantLivros = 20;
-    private static final String tagEstoque = "2b3";
-    private static final Double valorRecebimento = 30.15;
-    private static final Double valorVenda = 50.00;
-    //private static final Integer idFornecedor = 1;
 
     @InjectMocks
     private LivroResource livroResource;
@@ -45,80 +40,113 @@ public class LivroResourceTeste {
     @Mock
     private Livro livro;
 
-    @BeforeEach
-    void setup() {
-        startLivro();
-    }
-
     @Test
     public void testarSalvarLivro() {
-        when(livroService.salvar(any())).thenReturn(livro);
+        var obj = livroMock();
+        when(livroService.salvar(any())).thenReturn(obj);
 
-        Livro response = livroResource.salvar(livroRequest);
+        var mock = livroResource.salvar(livroRequest);
 
-        assertEquals(livro, response);
-        assertNotNull(response);
-        assertEquals(Livro.class, response.getClass());
-
+        assertEquals(mock, obj);
+        assertNotNull(mock);
+        assertEquals(Livro.class, mock.getClass());
     }
 
     @Test
     void testarBuscarTodosLivros(){
-        when(livroService.buscarTodos()).thenReturn(List.of(livro));
+        var obj = listaLivroMocada();
+        when(livroService.buscarTodos()).thenReturn(obj);
 
-        List<Livro> response = livroResource.buscar();
-        assertNotNull(response);
+        var mock = livroResource.buscar();
+        
+        assertEquals(mock, obj);
+        assertNotNull(mock);
+        assertEquals(obj.getClass(), mock.getClass());
     }
 
     @Test
     void testarBuscarPorNome(){
-        when(livroService.buscarNome(any())).thenReturn(List.of(livro));
+        var obj = listaLivroMockPorNome();
+        when(livroService.buscarNome(any())).thenReturn(obj);
 
-        List<Livro> response = livroResource.buscarNome("Diário de Anne Frank");
-        assertNotNull(response);
+        var mock = livroResource.buscarNome("Diário de Anne Frank");
+        
+        assertEquals(mock, obj);
+        assertNotNull(mock);
+        assertEquals(obj.getClass(), mock.getClass());
         
     }
 
     @Test
     void testarBuscarIsbn(){
-        when(livroService.buscarIsbn(any())).thenReturn(livro);
+        var obj = livroMock();
+        when(livroService.buscarIsbn(any())).thenReturn(obj);
 
-        Livro response = livroResource.buscarIsbn("SP-667244404");
-        assertEquals(livro, response);
-        assertNotNull(response);
-        assertEquals(Livro.class, response.getClass());
+        var mock = livroResource.buscarIsbn("SP-667244404");
+        
+        assertEquals(mock, obj);
+        assertNotNull(mock);
+        assertEquals(Livro.class, mock.getClass());
     }
 
-    // @Test
-    // void testarDeletarLivro(){
-    //       doNothing().when(livroService).deleteById(any());
-    // }
+    @Test
+    void testarDeletarLivro(){
+        doNothing().when(livroService).deletar(any());
+        livroResource.deletar(1);
+
+        verify(livroService, times(1)).deletar(any());
+    }
 
     @Test
-    void testaraAualizarEstoque(){
-        when(livroService.atualizarQtdeLivro(any(), any())).thenReturn(livro);
-        var response = livroResource.atualizarEstoque(idLivro, quantLivros);
+    void testarAtualizarEstoque(){
+        var obj = livroMock();
+        when(livroService.atualizarQtdeLivro(any(), any())).thenReturn(obj);
+        var mock = livroResource.atualizarEstoque(idLivro, quantLivros);
 
-        assertEquals(livro, response);
-        assertNotNull(response);
-        assertEquals(Livro.class, response.getClass());
+        assertEquals(mock, obj);
+        assertNotNull(mock);
+        assertEquals(Livro.class, mock.getClass());
 
     }
 
     @Test
     void testarUpdateLivro(){
-        when(livroService.atualizarLivro(any(), any())).thenReturn(livro);
-        var response = livroResource.update(idLivro, livroRequest);
+        var obj = livroMock();
+        when(livroService.atualizarLivro(any(), any())).thenReturn(obj);
+        var mock = livroResource.update(idLivro, livroRequest);
 
-        
+        assertEquals(mock, obj);
+        assertNotNull(mock);
+        assertEquals(Livro.class, mock.getClass());
     }
     
-    public void startLivro(){
-        LivroRequest livroRequest = new LivroRequest();
-        Fornecedor fornecedor = new Fornecedor();
-        livro = new Livro(idLivro, tagEstoque, nome, descricao, isbn, quantLivros, valorRecebimento, valorVenda, fornecedor);
-     
+    private Livro livroMock() {
+        Livro livro = new Livro();
+        livro.setIdLivro(1);
+        livro.setIsbn("Teste_Teste");
+        livro.setQuantLivros(0);
+        return livro;
     }
+
+    private List<Livro> listaLivroMocada(){
+
+        List<Livro> livros = new ArrayList<>();
+
+        return livros;
+    }
+
+    private List<Livro> listaLivroMockPorNome() {
+        List<Livro> livros = new ArrayList<>();
+
+        Livro livro = new Livro();
+        livro.setNome("O diário de Anne Frank");
+        livro.setIdLivro(1);
+        livro.setIsbn("Teste_Teste");
+        livros.add(livro);
+
+        return livros;
+    }
+
 
 }
 ;

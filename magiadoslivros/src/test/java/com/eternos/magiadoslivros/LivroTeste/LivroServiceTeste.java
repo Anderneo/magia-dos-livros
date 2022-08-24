@@ -46,8 +46,11 @@ public class LivroServiceTeste {
     @Mock
     private LivroAssembler livroAssembler;
 
+    @Mock
+    private LivroRequest livroRequest;
+
     @Test
-    public void testarBuscarTodos(){
+    void testarBuscarTodos(){
         var obj = listaLivroMocada();
         when(livroRepository.findAll()).thenReturn(obj);
         var mock = livroService.buscarTodos();
@@ -56,18 +59,18 @@ public class LivroServiceTeste {
     }
 
     @Test
-    public void testarSalvarLivro(){
+    void testarSalvarLivro(){
         var obj = livroMock();
         when(livroUtil.buscarId(any())).thenReturn(obj);
         when(livroAssembler.toModel(any())).thenReturn(obj);
         when(livroRepository.save(any())).thenReturn(obj);
-        var mock = livroService.salvar(mockLivroRequest());
+        var mock = livroService.salvar(livroRequest);
         assertEquals(mock, obj); 
         assertNotNull(mock);         
     }
 
     @Test
-    public void testarBuscarPorNome(){
+    void testarBuscarPorNome(){
         var obj = listaLivroMockPorNome();
         when(livroRepository.findByNomeContainingIgnoreCase(any())).thenReturn(obj);
         var mock = livroService.buscarNome("O diário de Anne Frank");
@@ -76,7 +79,7 @@ public class LivroServiceTeste {
     }
 
     @Test
-    public void testarChecarExcecaBuscarPorNome(){
+    void testarChecarExcecaBuscarPorNome(){
         var obj = listaLivroMocada();
         when(livroRepository.findByNomeContainingIgnoreCase(any())).thenReturn(obj);
 
@@ -89,7 +92,7 @@ public class LivroServiceTeste {
     }
 
     @Test
-    public void testarBuscarPorIsbn(){
+    void testarBuscarPorIsbn(){
         var obj = livroMock();
         when(livroRepository.findByIsbn(any())).thenReturn(obj);
         var mock = livroService.buscarIsbn("Teste_Teste");
@@ -98,7 +101,7 @@ public class LivroServiceTeste {
     }
     
     @Test
-    public void testarChecarExcecaoBuscarPorIsbn(){
+    void testarChecarExcecaoBuscarPorIsbn(){
         when(livroRepository.findByIsbn(any())).thenReturn(null);
 
         var excecao = assertThrows(DefaultException.class, () ->{
@@ -110,7 +113,7 @@ public class LivroServiceTeste {
     }
 
     @Test
-    public void testarDeletarLivro(){
+    void testarDeletarLivro(){
         var obj = livroMock();
         when(livroUtil.buscarId(any())).thenReturn(obj);
         doNothing().when(livroRepository).deleteById(any());
@@ -122,7 +125,7 @@ public class LivroServiceTeste {
     }
 
     @Test
-    public void testarAtualizarQuantEstoqueLivro(){
+    void testarAtualizarQuantEstoqueLivro(){
         var obj = livroMock();
         var objAtualizado = livroMockComMaisCinco();
         when(livroUtil.buscarId(any())).thenReturn(obj);
@@ -136,15 +139,15 @@ public class LivroServiceTeste {
     }
 
     @Test
-    public void testarAtualizarLivro(){
+    void testarAtualizarLivro(){
         var obj = livroMock();
         var objFornecedor = fornecedorMock();
         var objAtualizado = livroMockFornecedor();
         when(livroUtil.buscarId(any())).thenReturn(obj);
-        when(fornecedorUtil.buscarId(any())).thenReturn(objFornecedor);
+        when(fornecedorUtil.buscarFornecedor(any())).thenReturn(objFornecedor);
         when(livroRepository.save(any())).thenReturn(objAtualizado);
         
-        var mock = livroService.atualizarLivro(1, mockLivroRequest());
+        var mock = livroService.atualizarLivro(1, livroRequest);
       
         assertNotNull(mock);
         assertEquals(Livro.class, mock.getClass());
@@ -195,13 +198,6 @@ public class LivroServiceTeste {
 
         return livros;
     } 
-
-    private LivroRequest mockLivroRequest(){
-        LivroRequest livroRequest = new LivroRequest();
-        livroRequest.setIsbn("Teste_Teste");
-        livroRequest.setIdFornecedor(1);
-        return livroRequest;
-    }
 
     private Fornecedor fornecedorMock(){
         Fornecedor fornecedor = new Fornecedor();

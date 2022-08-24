@@ -29,7 +29,7 @@ public class LivroUtilTeste {
     private LivroRepository livroRepository;
 
     @Test
-    public void testarBuscarPorId(){
+    void testarBuscarPorId(){
         var obj = livroMock();
         when(livroRepository.findById(any())).thenReturn(Optional.of(obj));
         var mock = livroUtil.buscarId(1);
@@ -38,7 +38,7 @@ public class LivroUtilTeste {
     }
     
     @Test
-    public void testarChecarExcecaoBuscarPorId(){
+    void testarChecarExcecaoBuscarPorId(){
         var obj = livroMockVazio();
         when(livroRepository.findById(any())).thenReturn(obj);
 
@@ -49,7 +49,7 @@ public class LivroUtilTeste {
     }
     
     @Test
-    public void testarChecarExcecaoChecarIsbn(){
+    void testarChecarExcecaoChecarIsbn(){
         var obj = livroMock();
         when(livroRepository.findByIsbn(any())).thenReturn(obj);
 
