@@ -60,7 +60,7 @@ public class PedidoUtil {
 
         return pedidoRepository.findById(id)
             .orElseThrow(new DefaultException(
-            HttpStatus.BAD_REQUEST,"Não foi encontrado pedido com esse id!!"));
+            HttpStatus.NOT_FOUND,"Não foi encontrado pedido com esse id!!"));
 
     }
 

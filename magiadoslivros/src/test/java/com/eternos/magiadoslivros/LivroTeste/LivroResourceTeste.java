@@ -41,7 +41,7 @@ public class LivroResourceTeste {
     private Livro livro;
 
     @Test
-    public void testarSalvarLivro() {
+    void testarSalvarLivro() {
         var obj = livroMock();
         when(livroService.salvar(any())).thenReturn(obj);
 
