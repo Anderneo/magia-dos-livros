@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
-import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.eternos.magiadoslivros.domain.model.Fornecedor;
@@ -27,12 +26,12 @@ public class LivroResourceTeste {
     private static final Integer idLivro = 1;
     private static final String descricao = "Livro 5";
     private static final String isbn = "SP-667244404";
-    private static final String nome = "novo3";
+    private static final String nome = "Diário de Anne Frank";
     private static final Integer quantLivros = 20;
     private static final String tagEstoque = "2b3";
     private static final Double valorRecebimento = 30.15;
     private static final Double valorVenda = 50.00;
-    private static final Integer idFornecedor = 1;
+    //private static final Integer idFornecedor = 1;
 
     @InjectMocks
     private LivroResource livroResource;
@@ -48,7 +47,6 @@ public class LivroResourceTeste {
 
     @BeforeEach
     void setup() {
-        MockitoAnnotations.openMocks(this);
         startLivro();
     }
 
@@ -58,7 +56,9 @@ public class LivroResourceTeste {
 
         Livro response = livroResource.salvar(livroRequest);
 
+        assertEquals(livro, response);
         assertNotNull(response);
+        assertEquals(Livro.class, response.getClass());
 
     }
 
@@ -72,7 +72,11 @@ public class LivroResourceTeste {
 
     @Test
     void testarBuscarPorNome(){
-       
+        when(livroService.buscarNome(any())).thenReturn(List.of(livro));
+
+        List<Livro> response = livroResource.buscarNome("Diário de Anne Frank");
+        assertNotNull(response);
+        
     }
 
     @Test
@@ -85,25 +89,36 @@ public class LivroResourceTeste {
         assertEquals(Livro.class, response.getClass());
     }
 
-    @Test
-    void testarDeletarLivro(){
-       
-    }
+    // @Test
+    // void testarDeletarLivro(){
+    //       doNothing().when(livroService).deleteById(any());
+    // }
 
     @Test
     void testaraAualizarEstoque(){
-       
+        when(livroService.atualizarQtdeLivro(any(), any())).thenReturn(livro);
+        var response = livroResource.atualizarEstoque(idLivro, quantLivros);
+
+        assertEquals(livro, response);
+        assertNotNull(response);
+        assertEquals(Livro.class, response.getClass());
+
     }
 
     @Test
     void testarUpdateLivro(){
-       
+        when(livroService.atualizarLivro(any(), any())).thenReturn(livro);
+        var response = livroResource.update(idLivro, livroRequest);
+
+        
     }
     
     public void startLivro(){
-        livroRequest = 
+        LivroRequest livroRequest = new LivroRequest();
         Fornecedor fornecedor = new Fornecedor();
         livro = new Livro(idLivro, tagEstoque, nome, descricao, isbn, quantLivros, valorRecebimento, valorVenda, fornecedor);
+     
     }
+
 }
 ;

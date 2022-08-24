@@ -5,7 +5,7 @@ services:
     image: mysql:5.7
     environment:
       MYSQL_ROOT_PASSWORD: user
-      MYSQL_DATABASE: profissional
+      MYSQL_DATABASE: livraria
       MYSQL_USER: user
       MYSQL_PASSWORD: user
 

@@ -76,7 +76,7 @@ public class LivroServiceTeste {
     }
 
     @Test
-    public void testarChecarExcecaouscarPorNome(){
+    public void testarChecarExcecaBuscarPorNome(){
         var obj = listaLivroMocada();
         when(livroRepository.findByNomeContainingIgnoreCase(any())).thenReturn(obj);
 
