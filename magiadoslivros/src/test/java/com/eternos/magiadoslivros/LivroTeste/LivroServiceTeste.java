@@ -98,6 +98,7 @@ public class LivroServiceTeste {
         var mock = livroService.buscarIsbn("Teste_Teste");
         assertEquals(mock, obj);
         assertNotNull(mock); 
+        assertEquals(obj.getClass(), mock.getClass());
     }
     
     @Test
