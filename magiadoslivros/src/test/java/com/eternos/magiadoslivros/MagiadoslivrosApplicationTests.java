@@ -8,6 +8,7 @@ class MagiadoslivrosApplicationTests {
 
 	@Test
 	void contextLoads() {
+		System.out.println("Elegante");
 	}
 
 }

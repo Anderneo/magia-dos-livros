@@ -90,7 +90,7 @@ public class LivroService {
 
         var livro = livroUtil.buscarId(id);
 
-        Fornecedor fornecedor = fornecedorUtil.buscarId(livroRequest.getIdFornecedor());
+        Fornecedor fornecedor = fornecedorUtil.buscarFornecedor(livroRequest.getIdFornecedor());
      
         BeanUtils.copyProperties(livroRequest, livro, "id", "isbn");
 

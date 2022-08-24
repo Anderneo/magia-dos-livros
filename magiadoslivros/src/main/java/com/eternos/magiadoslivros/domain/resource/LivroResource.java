@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -29,7 +30,8 @@ public class LivroResource {
     private final LivroService livroService;
 
     @PostMapping
-    public Livro salvar(@RequestBody @Valid LivroRequest livroRequest){
+    public Livro salvar(@Validated @RequestBody LivroRequest livroRequest){
+  
         return livroService.salvar(livroRequest);
     }
 
@@ -40,28 +42,28 @@ public class LivroResource {
     }
 
     @GetMapping(path = "buscar/nome")
-    public List<Livro> buscarNome(@RequestParam String nome ){
+    public List<Livro> buscarNome(@Valid @RequestParam String nome ){
         return livroService.buscarNome(nome);
     }
     
     @GetMapping(path = "buscar/isbn")
-    public Livro buscarIsbn(@RequestParam String isbn){
+    public Livro buscarIsbn(@Valid @RequestParam String isbn){
             return livroService.buscarIsbn(isbn);
     }
 
 
     @DeleteMapping(path = "deletar/{id}")
-    public void deletar(@PathVariable Integer id){
+    public void deletar(@Valid @PathVariable Integer id){
         livroService.deletar(id);
     }
 
     @PatchMapping(path = "adicionarestoque/{id}")
-    public Livro atualizarEstoque(@PathVariable Integer id, @RequestBody Integer quantLivros ){
+    public Livro atualizarEstoque(@Validated @PathVariable Integer id, @RequestBody Integer quantLivros ){
         return livroService.atualizarQtdeLivro(id, quantLivros);
     }
 
     @PutMapping(path = "atualizar/{id}")
-    public Livro update(@PathVariable("id") Integer id, @RequestBody LivroRequest livroRequest){
+    public Livro update(@Validated @PathVariable("id") Integer id, @RequestBody LivroRequest livroRequest){
         return livroService.atualizarLivro(id, livroRequest);
     }
 

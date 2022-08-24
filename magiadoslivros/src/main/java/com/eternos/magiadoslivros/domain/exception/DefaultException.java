@@ -27,9 +27,9 @@ public class DefaultException extends RuntimeException implements Supplier<Defau
     }
     
     public ErrorResponse getErrorResponse() {
-    	ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setCode(String.valueOf(httpStatus.value()));
-        errorResponse.setMessage(this.message);
+    
+    	ErrorResponse errorResponse = new ErrorResponse(this.httpStatus, this.message);
+        
         return errorResponse;
     }
    

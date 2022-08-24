@@ -2,8 +2,7 @@ package com.eternos.magiadoslivros.domain.resource;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,7 +26,8 @@ public class FornecedorResource {
     private final FornecedorService fornecedorService;
 
     @PostMapping
-    public Fornecedor salvar(@RequestBody @Valid FornecedorRequest fornecedorRequest){
+    public Fornecedor salvar(@Validated @RequestBody FornecedorRequest fornecedorRequest){
+        
         return fornecedorService.salvar(fornecedorRequest);
     }
 

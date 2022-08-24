@@ -5,13 +5,13 @@ POST http://localhost:8080/livro HTTP/1.1
 Content-Type: application/json
 
 {
-  "descricao": "Livro 5",
-  "isbn": "5-5-5-56891012",
-  "nome": "novo3",
-  "quantLivros": "20",
+  "descricao": "",
+  "isbn": "978-5228-21-511-5",
+  "nome": "novo10",
+  "quantLivros": 1,
   "tagEstoque": "2b3",
-  "valorRecebimento": "30",
-  "valorVenda": "50",
+  "valorRecebimento": "60",
+  "valorVenda": "120",
   "idFornecedor":1
 }
 
@@ -59,14 +59,14 @@ POST http://localhost:8080/pedido HTTP/1.1
 Content-Type: application/json
 
 {
-  "valorVenda": "450",
+  "valorVenda": 450,
   "enderecoEntrega": "rua da entrega 14",
   "formaDePgto": "cartao",
-  "parcela": "10",
+  "parcela": 2,
   "dataVenda": "03/01/2014",
   "dataPgto": "03/02/2014",
   "dataEntrega": "16/02/2014",
-  "idUsuario": 6,
+  "idUsuario": 1,
   "listaLivro": [
     {
       "idLivro": 1,
