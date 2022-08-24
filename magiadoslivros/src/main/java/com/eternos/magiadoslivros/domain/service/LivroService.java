@@ -55,9 +55,10 @@ public class LivroService {
 
     public Livro buscarIsbn(String isbn){
 
-        livroUtil.checarIsbn(isbn);
-
         Livro livro = livroRepository.findByIsbn(isbn);
+
+        if(livro == null) throw new DefaultException(HttpStatus.NOT_FOUND, 
+                     "Não foi possivel encontrar nenhum registro com o ISBN:" + isbn);
 
         return livro;
 
@@ -78,9 +79,6 @@ public class LivroService {
     public Livro atualizarQtdeLivro(Integer id, Integer quantLivros){
 
         var livro = livroUtil.buscarId(id);
-
-        if(livro.getQuantLivros() < 0) throw new DefaultException(HttpStatus.INTERNAL_SERVER_ERROR, 
-                "O estoque está com o valor negativo!!");
 
         livro.setQuantLivros(quantLivros + livro.getQuantLivros());
 
