@@ -13,7 +13,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
+@Getter 
+@Setter
 public class PedidoRequest {
     
     @NotNull(message = "O Campo Valor de Venda não pode estar vazio")
@@ -49,7 +50,7 @@ public class PedidoRequest {
 
     public PedidoRequest(Double valorVenda, String enderecoEntrega, String formaDePgto, 
                           Integer parcela, String dataVenda, String dataPgto, String dataEntrega,
-                          Integer idUsuario){
+                          Integer idUsuario, ArrayList<PedidoLivroRequest> listaLivro){
         this.valorVenda = valorVenda;
         this.enderecoEntrega = enderecoEntrega;
         this.formaDePgto = formaDePgto;
@@ -58,11 +59,14 @@ public class PedidoRequest {
         this.dataPgto = toDate(dataPgto);
         this.dataEntrega = toDate(dataEntrega);
         this.idUsuario = idUsuario;
+        this.listaLivro = listaLivro;
     }
 
     private final LocalDate toDate(String data){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return LocalDate.parse(data, formatter);
     }
+
+    public PedidoRequest() {}
 
 }
