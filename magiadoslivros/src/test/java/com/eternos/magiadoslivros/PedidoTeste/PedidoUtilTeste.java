@@ -71,7 +71,7 @@ public class PedidoUtilTeste {
     void testarExcecaoChecarEstoqueLivro(){
 
         var excecao = assertThrows(DefaultException.class, () ->{
-            pedidoUtil.checarEstoque(getListaLivroMock(), livroMock(), index);
+            pedidoUtil.checarEstoque(getListaLivroMock(), livroMock(), 0);
         });
             
         assertEquals(HttpStatus.BAD_REQUEST, excecao.httpStatus);
