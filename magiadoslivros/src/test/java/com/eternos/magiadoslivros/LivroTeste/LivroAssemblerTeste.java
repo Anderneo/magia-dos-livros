@@ -2,6 +2,8 @@ package com.eternos.magiadoslivros.LivroTeste;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.Test;
@@ -38,17 +40,31 @@ public class LivroAssemblerTeste {
     @Test
     void testarToModel(){
         var objFornecedor = fornecedorMock();
-        var objTypeMap = typeMapMock();
+        TypeMap<Object, Object> objTypeMap = typeMapMock();
+        var objLivroRequest = livroRequestMock();
+
 
         when(fornecedorUtil.buscarFornecedor(any())).thenReturn(objFornecedor);
-        modelMapper.createTypeMap(LivroRequest.class, Livro.class);
 
-        when(modelMapper.map(any(), any())).thenReturn(livro);
+        when(modelMapper.getTypeMap(any(), any())).thenReturn(objTypeMap);
         
-        var mock = livroAssembler.toModel(livroRequest);
+        
+
+        // when(modelMapper.map(any(), any())).thenReturn(livro);
+        
+        var mock = livroAssembler.toModel(objLivroRequest);
       
         assertNotNull(mock);
 
+        
+
+    }
+
+    private TypeMap<LivroRequest, Livro> typeMapMock(){
+        TypeMap<LivroRequest, Livro> typeMap = modelMapper.getTypeMap(LivroRequest.class, 
+       Livro.class);
+            
+       return typeMap;
     }
 
 
@@ -61,11 +77,18 @@ public class LivroAssemblerTeste {
         return fornecedor;
     }
 
-    private TypeMap<LivroRequest, Livro> typeMapMock(){
-        TypeMap<LivroRequest, Livro> typeMap = modelMapper.getTypeMap(LivroRequest.class, 
-       Livro.class);
-            
-       return typeMap;
+
+
+    private LivroRequest livroRequestMock() {
+        LivroRequest livroRequest = new LivroRequest();
+        livroRequest.setDescricao("teste");
+        livroRequest.setIsbn("teste");
+        livroRequest.setNome("O diário de Anne Frank");
+        livroRequest.setTagEstoque("fds");
+        livroRequest.setQuantLivros(2);
+        livroRequest.setValorRecebimento(50.00);
+        livroRequest.setValorVenda(55.00);
+        return livroRequest;
     }
     
 }
