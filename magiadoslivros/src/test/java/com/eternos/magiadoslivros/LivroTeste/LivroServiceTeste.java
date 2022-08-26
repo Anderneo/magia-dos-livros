@@ -202,6 +202,11 @@ public class LivroServiceTeste {
 
     private Fornecedor fornecedorMock(){
         Fornecedor fornecedor = new Fornecedor();
+        fornecedor.setId(1);
+        fornecedor.setNomeFantasia("Teste");
+        fornecedor.setRazaoSocial("teste");
+        fornecedor.setCnpj("56.235.789/0001-52");
+        fornecedor.setEmail("teste@teste.com");
         return fornecedor;
     }
 }
