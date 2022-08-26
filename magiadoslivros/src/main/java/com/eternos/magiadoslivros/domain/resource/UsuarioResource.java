@@ -3,6 +3,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,17 +38,17 @@ public class UsuarioResource {
     }
 
     @GetMapping(path = "busca/cpf")
-    public Usuario atualizarCpf(@RequestParam String cpf ){
+    public Usuario buscarCpf(@RequestParam String cpf ){
         return usuarioService.buscarCpf(cpf);
     }
 
     @GetMapping(path = "busca/nome")
-    public List<Usuario> atualizarNome(@RequestParam String nome ){
+    public List<Usuario> buscarNome(@RequestParam String nome ){
         return usuarioService.buscarNome(nome);
     }
 
     @PutMapping(path = "{id}")
-    public Usuario update(@PathVariable Integer id, @RequestBody UsuarioRequest usuarioRequest){
+    public Usuario update(@Validated @PathVariable Integer id, @RequestBody UsuarioRequest usuarioRequest){
         return usuarioService.atualizarUsuario(id, usuarioRequest);
     }
 
