@@ -56,12 +56,23 @@ public class PedidoResourceTeste {
 
     private Pedido pedidoMock() {
         Pedido pedido = new Pedido();
+        pedido.setIdVenda(1);
+        pedido.setParcela(2);
+        pedido.setFormaDePgto("á vista");
+        pedido.setValorVenda(50.00);
         return pedido;
     }
 
     private List<Pedido> listaPedidoMocada(){
 
+        Pedido pedido = new Pedido();
+        pedido.setIdVenda(1);
+        pedido.setParcela(2);
+        pedido.setFormaDePgto("á vista");
+        pedido.setValorVenda(50.00);
+
         List<Pedido> pedidos = new ArrayList<>();
+        pedidos.add(pedido);
 
         return pedidos;
     }

@@ -74,8 +74,14 @@ public class PedidoServiceTeste {
     }
 
     private List<Pedido> listaPedidoMocada(){
+        Pedido pedido = new Pedido();
+        pedido.setIdVenda(1);
+        pedido.setParcela(2);
+        pedido.setFormaDePgto("á vista");
+        pedido.setValorVenda(50.00);
 
         List<Pedido> pedidos = new ArrayList<>();
+        pedidos.add(pedido);
 
         return pedidos;
     }
@@ -83,12 +89,22 @@ public class PedidoServiceTeste {
     private Pedido pedidoMock(){
 
         Pedido pedido = new Pedido();
+        pedido.setIdVenda(1);
+        pedido.setParcela(2);
+        pedido.setFormaDePgto("á vista");
+        pedido.setValorVenda(50.00);
 
         return pedido;
     }
 
     private ArrayList<Livro> listaLivroMock(){
         ArrayList<Livro> livros = new ArrayList<>();
+
+        Livro livro = new Livro();
+        livro.setNome("O diário de Anne Frank");
+        livro.setIdLivro(1);
+        livro.setIsbn("Teste_Teste");
+        livros.add(livro);
 
         return livros;
     }

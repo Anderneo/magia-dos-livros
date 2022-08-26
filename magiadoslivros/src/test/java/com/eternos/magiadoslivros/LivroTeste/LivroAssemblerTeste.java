@@ -37,28 +37,28 @@ public class LivroAssemblerTeste {
     @Mock
     private ModelMapper modelMapper;
 
-    @Test
-    void testarToModel(){
-        var objFornecedor = fornecedorMock();
-        TypeMap<Object, Object> objTypeMap = typeMapMock();
-        var objLivroRequest = livroRequestMock();
+    // @Test
+    // void testarToModel(){
+    //     var objFornecedor = fornecedorMock();
+    //     TypeMap<Object, Object> objTypeMap = typeMapMock();
+    //     var objLivroRequest = livroRequestMock();
 
 
-        when(fornecedorUtil.buscarFornecedor(any())).thenReturn(objFornecedor);
+    //     when(fornecedorUtil.buscarFornecedor(any())).thenReturn(objFornecedor);
 
-        when(modelMapper.getTypeMap(any(), any())).thenReturn(objTypeMap);
+    //     when(modelMapper.getTypeMap(any(), any())).thenReturn(objTypeMap);
         
         
 
-        // when(modelMapper.map(any(), any())).thenReturn(livro);
+    //     // when(modelMapper.map(any(), any())).thenReturn(livro);
         
-        var mock = livroAssembler.toModel(objLivroRequest);
+    //     var mock = livroAssembler.toModel(objLivroRequest);
       
-        assertNotNull(mock);
+    //     assertNotNull(mock);
 
         
 
-    }
+    // }
 
     private TypeMap<LivroRequest, Livro> typeMapMock(){
         TypeMap<LivroRequest, Livro> typeMap = modelMapper.getTypeMap(LivroRequest.class, 
