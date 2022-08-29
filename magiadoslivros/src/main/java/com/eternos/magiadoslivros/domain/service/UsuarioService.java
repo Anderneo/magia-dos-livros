@@ -1,6 +1,7 @@
 package com.eternos.magiadoslivros.domain.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
@@ -41,17 +42,20 @@ public class UsuarioService {
     public Usuario atualizarUsuario(Integer id, UsuarioRequest usuarioRequest){
 
         Usuario usuario = usuarioUtil.buscarId(id);
-
-        Usuario request = usuarioAssembler.toModel(usuarioRequest);
+         
+       // Usuario request = usuarioAssembler.toModel(usuarioRequest);
      
-        BeanUtils.copyProperties(request, usuario, "id");
+        BeanUtils.copyProperties(usuarioRequest, usuario, "id");
 
         return usuarioRepository.save(usuario);
 
     }
 
     public Usuario buscarCpf(String cpf){
-            
+         
+        Optional<Usuario> usuario = usuarioRepository.findByCpf(cpf);
+        if(usuario == null) throw new DefaultException(HttpStatus.NOT_FOUND, 
+                     "Não foi possivel encontrar nenhum registro com o CPF:" + cpf);
         return usuarioRepository.findByCpf(cpf)
             .orElseThrow(new DefaultException(HttpStatus.NOT_FOUND, 
                     "Não foi possivel encontrar nenhum registro com esse CPF!!"));

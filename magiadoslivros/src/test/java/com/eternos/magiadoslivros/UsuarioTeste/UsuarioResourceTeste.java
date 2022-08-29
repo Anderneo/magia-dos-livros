@@ -104,7 +104,7 @@ public class UsuarioResourceTeste {
     }
     
     @Test
-    void testarUpdateLivro(){
+    void testarUpdateUsuario(){
         var obj = usuarioMock();
         when(usuarioService.atualizarUsuario(any(), any())).thenReturn(obj);
         var mock = usuarioResource.update(id, usuarioRequest);
@@ -117,17 +117,17 @@ public class UsuarioResourceTeste {
     private Usuario usuarioMock() {
         Usuario usuario = new Usuario();
         usuario.setId(1);
-        usuario.setNome("Camila Lima");
-        usuario.setEndereco("Rua Moema, 342");
-        usuario.setEmail( "camila.lima@hotmail.com");
-        usuario.setTelefone( "342342342");
-        usuario.setRg("22342342342");
+      //  usuario.setNome("Camila Lima");
+      //  usuario.setEndereco("Rua Moema, 342");
+      //  usuario.setEmail( "camila.lima@hotmail.com");
+      //  usuario.setTelefone( "342342342");
+      //  usuario.setRg("22342342342");
         usuario.setCpf("345232342224");       
-        usuario.setDataDeNas(LocalDate.of(1980,01,01));
-        usuario.setGenero(Genero.NAOBINARIO);
-        usuario.setObservacao( "sdfsdfsdf");      
-        usuario.setDataDeCadastro(LocalDate.of(1990,3,15));
-        usuario.setPerfil(Perfil.ADMINISTRADOR);
+     //   usuario.setDataDeNas(LocalDate.of(1980,01,01));
+      //  usuario.setGenero(Genero.NAOBINARIO);
+      //  usuario.setObservacao( "sdfsdfsdf");      
+      //  usuario.setDataDeCadastro(LocalDate.of(1990,3,15));
+      //  usuario.setPerfil(Perfil.ADMINISTRADOR);
         return usuario;
     }
 
