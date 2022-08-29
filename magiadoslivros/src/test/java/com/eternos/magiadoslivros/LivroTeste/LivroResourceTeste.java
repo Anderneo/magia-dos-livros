@@ -129,8 +129,14 @@ public class LivroResourceTeste {
     }
 
     private List<Livro> listaLivroMocada(){
+        Livro livro = new Livro();
+        livro.setNome("O diário de Anne Frank");
+        livro.setIdLivro(1);
+        livro.setIsbn("Teste_Teste");
 
         List<Livro> livros = new ArrayList<>();
+
+        livros.add(livro);
 
         return livros;
     }

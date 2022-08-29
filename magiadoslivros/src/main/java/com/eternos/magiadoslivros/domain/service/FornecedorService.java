@@ -63,6 +63,10 @@ public class FornecedorService {
         var objeto = fornecedorUtil.buscarFornecedor(id);
 
         fornecedorRepository.delete(objeto);
+        
+        throw new DefaultException(
+            HttpStatus.ACCEPTED,
+            "Registro " + id + " deletado com sucesso!!");
 
     }
 

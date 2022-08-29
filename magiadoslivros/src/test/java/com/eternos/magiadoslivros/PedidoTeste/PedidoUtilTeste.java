@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
+
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -18,9 +19,11 @@ import org.springframework.http.HttpStatus;
 import com.eternos.magiadoslivros.domain.exception.DefaultException;
 import com.eternos.magiadoslivros.domain.model.Livro;
 import com.eternos.magiadoslivros.domain.model.Pedido;
+import com.eternos.magiadoslivros.domain.repository.PedidoLivroRepository;
 import com.eternos.magiadoslivros.domain.repository.PedidoRepository;
 import com.eternos.magiadoslivros.domain.request.PedidoLivroRequest;
 import com.eternos.magiadoslivros.domain.request.PedidoRequest;
+import com.eternos.magiadoslivros.domain.util.LivroUtil;
 import com.eternos.magiadoslivros.domain.util.PedidoUtil;
 
 @SpringBootTest
@@ -35,10 +38,28 @@ public class PedidoUtilTeste {
     @Mock
     private PedidoRequest pedidoRequest;
 
+    @Mock
+    private LivroUtil livroUtil;
+
+    @Mock
+    private PedidoLivroRepository pedidoLivroRepository;
+
     int index = 1;
 
     @Test
     void testarCriarListaLivroPedido(){
+        var objPedidoRequest = pedidoRequestmock();
+        var objLivro = livroMock();
+        var objPedido = pedidoMock();
+        var obj = getListaLivroMock();
+        when(livroUtil.buscarId(any())).thenReturn(objLivro);
+        //doNothing().when(checarEstoque(any(), any(), any()));
+        when(pedidoLivroRepository.save(any()));
+
+        var mock = pedidoUtil.listaLivro(objPedido, objPedidoRequest);
+        assertEquals(mock, obj);
+        assertNotNull(mock); 
+        assertEquals(mock.getClass(), obj.getClass());     
         
     }
 
@@ -71,7 +92,7 @@ public class PedidoUtilTeste {
     void testarExcecaoChecarEstoqueLivro(){
 
         var excecao = assertThrows(DefaultException.class, () ->{
-            pedidoUtil.checarEstoque(getListaLivroMock(), livroMock(), index);
+            pedidoUtil.checarEstoque(getListaLivroMock(), livroMock(), 0);
         });
             
         assertEquals(HttpStatus.BAD_REQUEST, excecao.httpStatus);
@@ -82,6 +103,9 @@ public class PedidoUtilTeste {
         Pedido pedido = new Pedido();
 
         pedido.setIdVenda(1);
+        pedido.setParcela(2);
+        pedido.setFormaDePgto("á vista");
+        pedido.setValorVenda(50.00);
 
         return pedido;
     }
@@ -111,6 +135,25 @@ public class PedidoUtilTeste {
         livro.setIdLivro(1);
         livro.setQuantLivros(1);
         return livro;
+    }
+
+    private PedidoRequest pedidoRequestmock() {
+        ArrayList<PedidoLivroRequest> listaLivro = new ArrayList<PedidoLivroRequest>();
+
+        PedidoLivroRequest pedidoLivroRequest = new PedidoLivroRequest();
+
+        pedidoLivroRequest.setQuantidade(3);
+        pedidoLivroRequest.setIdLivro(1);
+
+        listaLivro.add(pedidoLivroRequest);
+
+        PedidoRequest pedidoRequest = new PedidoRequest();
+
+        pedidoRequest.setEnderecoEntrega("Teste, 23");
+        pedidoRequest.setFormaDePgto("parcelado");
+        pedidoRequest.setListaLivro(listaLivro);
+
+        return pedidoRequest;
     }
     
 }

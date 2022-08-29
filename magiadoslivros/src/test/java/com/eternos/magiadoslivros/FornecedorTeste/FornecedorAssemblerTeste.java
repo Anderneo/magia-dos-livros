@@ -1,4 +1,4 @@
-package com.eternos.magiadoslivros.LivroTeste;
+package com.eternos.magiadoslivros.FornecedorTeste;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
@@ -13,26 +13,26 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.eternos.magiadoslivros.domain.assembler.LivroAssembler;
+import com.eternos.magiadoslivros.domain.assembler.FornecedorAssembler;
 import com.eternos.magiadoslivros.domain.model.Fornecedor;
-import com.eternos.magiadoslivros.domain.model.Livro;
-import com.eternos.magiadoslivros.domain.request.LivroRequest;
+import com.eternos.magiadoslivros.domain.model.Fornecedor;
+import com.eternos.magiadoslivros.domain.request.FornecedorRequest;
 import com.eternos.magiadoslivros.domain.util.FornecedorUtil;
 
 @SpringBootTest
-public class LivroAssemblerTeste {
+public class FornecedorAssemblerTeste {
 
     @InjectMocks
-    private LivroAssembler livroAssembler;
+    private FornecedorAssembler fornecedorAssembler;
 
     @Mock
     private FornecedorUtil fornecedorUtil;
 
     @Mock
-    private LivroRequest livroRequest;
+    private FornecedorRequest fornecedorRequest;
 
     @Mock
-    private Livro livro;
+    private Fornecedor fornecedor;
 
     @Mock
     private ModelMapper modelMapper;
@@ -41,7 +41,7 @@ public class LivroAssemblerTeste {
     // void testarToModel(){
     //     var objFornecedor = fornecedorMock();
     //     TypeMap<Object, Object> objTypeMap = typeMapMock();
-    //     var objLivroRequest = livroRequestMock();
+    //     var objFornecedorRequest = fornecedorRequestMock();
 
 
     //     when(fornecedorUtil.buscarFornecedor(any())).thenReturn(objFornecedor);
@@ -50,9 +50,9 @@ public class LivroAssemblerTeste {
         
         
 
-    //     // when(modelMapper.map(any(), any())).thenReturn(livro);
+    //     // when(modelMapper.map(any(), any())).thenReturn(fornecedor);
         
-    //     var mock = livroAssembler.toModel(objLivroRequest);
+    //     var mock = fornecedorAssembler.toModel(objFornecedorRequest);
       
     //     assertNotNull(mock);
 
@@ -60,9 +60,9 @@ public class LivroAssemblerTeste {
 
     // }
 
-    private TypeMap<LivroRequest, Livro> typeMapMock(){
-        TypeMap<LivroRequest, Livro> typeMap = modelMapper.getTypeMap(LivroRequest.class, 
-       Livro.class);
+    private TypeMap<FornecedorRequest, Fornecedor> typeMapMock(){
+        TypeMap<FornecedorRequest, Fornecedor> typeMap = modelMapper.getTypeMap(FornecedorRequest.class, 
+       Fornecedor.class);
             
        return typeMap;
     }
@@ -79,16 +79,16 @@ public class LivroAssemblerTeste {
 
 
 
-    private LivroRequest livroRequestMock() {
-        LivroRequest livroRequest = new LivroRequest();
-        livroRequest.setDescricao("teste");
-        livroRequest.setIsbn("teste");
-        livroRequest.setNome("O diário de Anne Frank");
-        livroRequest.setTagEstoque("fds");
-        livroRequest.setQuantLivros(2);
-        livroRequest.setValorRecebimento(50.00);
-        livroRequest.setValorVenda(55.00);
-        return livroRequest;
+    private FornecedorRequest fornecedorRequestMock() {
+        FornecedorRequest fornecedorRequest = new FornecedorRequest();
+        fornecedorRequest.setEndereco("teste");
+        fornecedorRequest.setEmail("teste");
+        fornecedorRequest.setTelefone("19988776655");
+        fornecedorRequest.setObservacao("fds");
+        fornecedorRequest.setNomeFantasia("Teste");
+        fornecedorRequest.setRazaoSocial("Teste");
+        fornecedorRequest.setCnpj("60.575.973/0001-80");
+        return fornecedorRequest;
     }
     
 }
