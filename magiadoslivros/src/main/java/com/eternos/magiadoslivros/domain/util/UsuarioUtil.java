@@ -44,5 +44,13 @@ public class UsuarioUtil {
                                             + usuario.getCpf());
 
     }
-    
+      
+    public void checarCpf(String cpf){
+
+        if(usuarioRepository.findByCpf(cpf) != null) throw new DefaultException(
+                                                                 HttpStatus.BAD_REQUEST,
+                                                        "CPF já existe!!");
+                                                        
+    }
+
 }
