@@ -81,7 +81,7 @@ public class PedidoResourceTeste {
         //doNothing().when(pedidoService).cancelarPedido(any(),any());
         
         var ex = assertThrows(DefaultException.class, () ->{
-            pedidoService.cancelarPedido(pedido.getIdVenda(),usuario.getId());
+            pedidoResource.cancelarPedido(pedido.getIdVenda(),usuario.getId());
         }); 
         
         assertEquals(HttpStatus.ACCEPTED,ex.httpStatus);
