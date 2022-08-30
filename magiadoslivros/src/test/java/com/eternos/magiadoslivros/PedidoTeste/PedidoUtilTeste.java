@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
-
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -16,9 +15,12 @@ import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 
+import com.eternos.magiadoslivros.domain.assembler.PedidoLivroAssembler;
 import com.eternos.magiadoslivros.domain.exception.DefaultException;
 import com.eternos.magiadoslivros.domain.model.Livro;
 import com.eternos.magiadoslivros.domain.model.Pedido;
+import com.eternos.magiadoslivros.domain.model.PedidoLivro;
+import com.eternos.magiadoslivros.domain.repository.LivroRepository;
 import com.eternos.magiadoslivros.domain.repository.PedidoLivroRepository;
 import com.eternos.magiadoslivros.domain.repository.PedidoRepository;
 import com.eternos.magiadoslivros.domain.request.PedidoLivroRequest;
@@ -43,23 +45,33 @@ public class PedidoUtilTeste {
 
     @Mock
     private PedidoLivroRepository pedidoLivroRepository;
-
+    
+    @Mock
+    private LivroRepository livroRepository;
+    
+    @Mock
+    PedidoLivroAssembler pedidoLivroAssembler;
+    
     int index = 1;
 
     @Test
     void testarCriarListaLivroPedido(){
-        var objPedidoRequest = pedidoRequestmock();
-        var objLivro = livroMock();
-        var objPedido = pedidoMock();
-        var obj = getListaLivroMock();
-        when(livroUtil.buscarId(any())).thenReturn(objLivro);
-        //doNothing().when(checarEstoque(any(), any(), any()));
-        when(pedidoLivroRepository.save(any()));
+        var listaLivroMock = getListaLivroMock();
+        var livroMock = livroMock();
+        var pedidoLivroMock = pedidoLivroMock();
+        var pedidoMock = pedidoMock();
+        var pedidoRequestmock = pedidoRequestmock();
+        var listaTeste = listaTeste();
+    
+        when(livroUtil.buscarId(any())).thenReturn(livroMock);
+        when(pedidoRequest.getListaLivro()).thenReturn(listaLivroMock);
+        when(pedidoLivroAssembler.toModel(any(),any())).thenReturn(pedidoLivroMock);
 
-        var mock = pedidoUtil.listaLivro(objPedido, objPedidoRequest);
-        assertEquals(mock, obj);
-        assertNotNull(mock); 
-        assertEquals(mock.getClass(), obj.getClass());     
+        var mock = pedidoUtil.listaLivro(pedidoMock, pedidoRequestmock);
+        
+        assertEquals(listaTeste, mock);
+        assertNotNull(mock);
+        assertEquals(listaTeste.getClass(), mock.getClass());     
         
     }
 
@@ -122,7 +134,7 @@ public class PedidoUtilTeste {
 
         PedidoLivroRequest pedidoLivroRequest = new PedidoLivroRequest();
 
-        pedidoLivroRequest.setQuantidade(3);
+        pedidoLivroRequest.setQuantidade(1);
         pedidoLivroRequest.setIdLivro(1);
 
         listaLivro.add(pedidoLivroRequest);
@@ -133,16 +145,25 @@ public class PedidoUtilTeste {
     private Livro livroMock(){
         Livro livro = new Livro();
         livro.setIdLivro(1);
-        livro.setQuantLivros(1);
+        livro.setDescricao("teste");
+        livro.setIsbn("0-6852-3673-0");
+        livro.setNome("teste");
+        livro.setQuantLivros(10);
+        livro.setTagEstoque("teste");
+        livro.setValorRecebimento(50.00);
+        livro.setValorVenda(50.00);
         return livro;
+        
+
     }
+        
 
     private PedidoRequest pedidoRequestmock() {
         ArrayList<PedidoLivroRequest> listaLivro = new ArrayList<PedidoLivroRequest>();
 
         PedidoLivroRequest pedidoLivroRequest = new PedidoLivroRequest();
 
-        pedidoLivroRequest.setQuantidade(3);
+        pedidoLivroRequest.setQuantidade(1);
         pedidoLivroRequest.setIdLivro(1);
 
         listaLivro.add(pedidoLivroRequest);
@@ -154,6 +175,34 @@ public class PedidoUtilTeste {
         pedidoRequest.setListaLivro(listaLivro);
 
         return pedidoRequest;
+    }
+    
+    private  ArrayList<Livro> listaTeste() {
+        ArrayList<Livro> listaLivro = new ArrayList<Livro>();
+
+        Livro livro = new Livro();
+
+        livro.setIdLivro(1);
+        livro.setDescricao("teste");
+        livro.setIsbn("0-6852-3673-0");
+        livro.setNome("teste");
+        livro.setQuantLivros(9);
+        livro.setTagEstoque("teste");
+        livro.setValorRecebimento(50.00);
+        livro.setValorVenda(50.00);
+
+        listaLivro.add(livro);
+
+        return listaLivro;
+    }
+    
+    private PedidoLivro pedidoLivroMock(){
+        PedidoLivro pedidoLivro = new PedidoLivro();
+
+        pedidoLivro.setId_livro(1);
+        pedidoLivro.setQuantidade(1);
+
+        return pedidoLivro;
     }
     
 }

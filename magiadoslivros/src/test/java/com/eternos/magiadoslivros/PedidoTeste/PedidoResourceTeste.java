@@ -2,39 +2,52 @@ package com.eternos.magiadoslivros.PedidoTeste;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
 
+import com.eternos.magiadoslivros.domain.exception.DefaultException;
 import com.eternos.magiadoslivros.domain.model.Pedido;
 import com.eternos.magiadoslivros.domain.model.Usuario;
 import com.eternos.magiadoslivros.domain.model.enums.Genero;
 import com.eternos.magiadoslivros.domain.model.enums.Perfil;
+import com.eternos.magiadoslivros.domain.repository.PedidoRepository;
 import com.eternos.magiadoslivros.domain.request.PedidoRequest;
 import com.eternos.magiadoslivros.domain.resource.PedidoResource;
 import com.eternos.magiadoslivros.domain.service.PedidoService;
+import com.eternos.magiadoslivros.domain.util.PedidoUtil;
+import com.eternos.magiadoslivros.domain.util.UsuarioUtil;
 
 @SpringBootTest
 public class PedidoResourceTeste {
 
     @InjectMocks
     private PedidoResource pedidoResource;
+    
+    @Mock
+    private PedidoRepository pedidoRepository;
 
     @Mock
     private PedidoService pedidoService;
     
     @Mock
     private PedidoRequest pedidoRequest;
+    
+    @Mock
+    private PedidoUtil pedidoUtil;
+    
+    @Mock
+    private UsuarioUtil usuarioUtil;
 
     @Test
     void testarSalvarPedido(){
@@ -60,8 +73,18 @@ public class PedidoResourceTeste {
         assertEquals(obj.getClass(), mock.getClass());
     }
     
+    @Test
     void cancelarPedido(){
+        var pedido = pedidoMock();
+        var usuario = usuarioMock();
         
+        //doNothing().when(pedidoService).cancelarPedido(any(),any());
+        
+        var ex = assertThrows(DefaultException.class, () ->{
+            pedidoService.cancelarPedido(pedido.getIdVenda(),usuario.getId());
+        }); 
+        
+        assertEquals(HttpStatus.ACCEPTED,ex.httpStatus);
 
     }
 
@@ -71,6 +94,7 @@ public class PedidoResourceTeste {
         pedido.setParcela(2);
         pedido.setFormaDePgto("á vista");
         pedido.setValorVenda(50.00);
+        pedido.setVendaCancelada(false);
         return pedido;
     }
     

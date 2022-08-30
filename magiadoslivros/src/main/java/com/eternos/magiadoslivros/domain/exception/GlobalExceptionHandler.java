@@ -41,7 +41,7 @@ public class GlobalExceptionHandler {
     
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(InvalidFormatException.class)
-    protected ResponseEntity<ErrorResponse> handleInvalidFormatException(InvalidFormatException exception) {
+    public ResponseEntity<ErrorResponse> handleInvalidFormatException(InvalidFormatException exception) {
           
         String exMessage = exception.getPathReference();
                     
