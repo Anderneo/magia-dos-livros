@@ -20,6 +20,7 @@ Authorization: Basic root:root
 
 ### Recupera Todos os Regristros Em Fornecedor
 GET http://localhost:8080/fornecedor/todos HTTP/1.1
+Authorization: Basic root:root
 
 ### Recupera os Regristros Em Fornecedor Por Razão Social
 @varRazaosocial = teste t
