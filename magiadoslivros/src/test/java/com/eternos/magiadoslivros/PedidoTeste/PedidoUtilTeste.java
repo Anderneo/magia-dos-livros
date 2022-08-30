@@ -65,19 +65,17 @@ public class PedidoUtilTeste {
         var pedidoLivroMock = pedidoLivroMock();
         var pedidoMock = pedidoMock();
         var pedidoRequestmock = pedidoRequestmock();
+        var listaTeste = listaTeste();
     
         when(livroUtil.buscarId(any())).thenReturn(livroMock);
         when(pedidoRequest.getListaLivro()).thenReturn(listaLivroMock);
         when(pedidoLivroAssembler.toModel(any(),any())).thenReturn(pedidoLivroMock);
-        //doNothing().when(checarEstoque(any(), any(), any()));
-        //when(pedidoLivroRepository.save(any())).thenReturn(objLivro);
-        //when(listaLivro.add(any())).do(objLivro);
 
         var mock = pedidoUtil.listaLivro(pedidoMock, pedidoRequestmock);
         
-        assertEquals(mock, listaLivroMock);
+        assertEquals(listaTeste, mock);
         assertNotNull(mock);
-        assertEquals(mock.getClass(), livroMock.getClass());     
+        assertEquals(listaTeste.getClass(), mock.getClass());     
         
     }
 
@@ -156,8 +154,8 @@ public class PedidoUtilTeste {
         livro.setNome("teste");
         livro.setQuantLivros(10);
         livro.setTagEstoque("teste");
-        livro.setValorRecebimento(Double.valueOf(50));
-        livro.setValorVenda(Double.valueOf(50));
+        livro.setValorRecebimento(50.00);
+        livro.setValorVenda(50.00);
         return livro;
         
 
@@ -181,6 +179,25 @@ public class PedidoUtilTeste {
         pedidoRequest.setListaLivro(listaLivro);
 
         return pedidoRequest;
+    }
+    
+    private  ArrayList<Livro> listaTeste() {
+        ArrayList<Livro> listaLivro = new ArrayList<Livro>();
+
+        Livro livro = new Livro();
+
+        livro.setIdLivro(1);
+        livro.setDescricao("teste");
+        livro.setIsbn("0-6852-3673-0");
+        livro.setNome("teste");
+        livro.setQuantLivros(9);
+        livro.setTagEstoque("teste");
+        livro.setValorRecebimento(50.00);
+        livro.setValorVenda(50.00);
+
+        listaLivro.add(livro);
+
+        return listaLivro;
     }
     
     private PedidoLivro pedidoLivroMock(){

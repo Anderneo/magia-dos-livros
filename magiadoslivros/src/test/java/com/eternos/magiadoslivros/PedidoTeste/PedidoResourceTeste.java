@@ -80,14 +80,10 @@ public class PedidoResourceTeste {
         var pedido = pedidoMock();
         var usuario = usuarioMock();
         
-        when(pedidoUtil.buscarId(any())).thenReturn(pedido);
-        when(usuarioUtil.buscarId(any())).thenReturn(usuario);
-        //when(pedidoRepository.save(any()).thenReturn(pedido));
-        
-        //doNothing().when(usuarioUtil.checarUsuario(any()));
+        //doNothing().when(pedidoService).cancelarPedido(any(),any());
         
         var ex = assertThrows(DefaultException.class, () ->{
-            pedidoService.cancelarPedido(1,1);
+            pedidoService.cancelarPedido(pedido.getIdVenda(),usuario.getId());
         }); 
         
         assertEquals(HttpStatus.ACCEPTED,ex.httpStatus);
@@ -100,6 +96,7 @@ public class PedidoResourceTeste {
         pedido.setParcela(2);
         pedido.setFormaDePgto("á vista");
         pedido.setValorVenda(50.00);
+        pedido.setVendaCancelada(false);
         return pedido;
     }
     
