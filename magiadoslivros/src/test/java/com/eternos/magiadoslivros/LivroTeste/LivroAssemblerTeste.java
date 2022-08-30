@@ -2,15 +2,13 @@ package com.eternos.magiadoslivros.LivroTeste;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyCollection;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.Spy;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,7 +16,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.eternos.magiadoslivros.domain.assembler.LivroAssembler;
 import com.eternos.magiadoslivros.domain.model.Fornecedor;
 import com.eternos.magiadoslivros.domain.model.Livro;
-import com.eternos.magiadoslivros.domain.request.FornecedorRequest;
 import com.eternos.magiadoslivros.domain.request.LivroRequest;
 import com.eternos.magiadoslivros.domain.util.FornecedorUtil;
 
@@ -31,10 +28,10 @@ public class LivroAssemblerTeste {
     @Mock
     private FornecedorUtil fornecedorUtil;
 
-    @Mock
+    @Spy
     private LivroRequest livroRequest;
 
-    @Mock
+    @Spy
     private Livro livro;
 
     @Mock
@@ -43,17 +40,18 @@ public class LivroAssemblerTeste {
     @Test
     void testarToModel(){
         var objFornecedor = fornecedorMock();
-        TypeMap<LivroRequest, Livro> objTypeMap = typeMapMock();
+        //TypeMap<LivroRequest, Livro> objTypeMap = typeMapMock();
+        var objLivro = livroMock();
         var objLivroRequest = livroRequestMock();
 
 
         when(fornecedorUtil.buscarFornecedor(any())).thenReturn(objFornecedor);
 
-        Mockito.doReturn(objTypeMap).when(modelMapper).getTypeMap(any(), any());
+        Mockito.spy(modelMapper.getTypeMap(LivroRequest.class, Livro.class));
         
-        Mockito.doReturn(objTypeMap).when(modelMapper).createTypeMap(any(), any());
+        Mockito.spy(modelMapper.createTypeMap(LivroRequest.class, Livro.class));
 
-        when(modelMapper.map(any(), any())).thenReturn(livro);
+        when(modelMapper.map(any(), any())).thenReturn(objLivro);
         
         var mock = livroAssembler.toModel(objLivroRequest);
       
@@ -96,4 +94,15 @@ public class LivroAssemblerTeste {
         return livroRequest;
     }
     
+    private Livro livroMock() {
+        Livro livro = new Livro();
+        livro.setDescricao("teste");
+        livro.setIsbn("teste");
+        livro.setNome("O diário de Anne Frank");
+        livro.setTagEstoque("fds");
+        livro.setQuantLivros(2);
+        livro.setValorRecebimento(50.00);
+        livro.setValorVenda(55.00);
+        return livro;
+    }
 }
