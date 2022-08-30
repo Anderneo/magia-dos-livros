@@ -8,23 +8,17 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.validation.constraints.Email;
-
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.eternos.magiadoslivros.domain.model.Usuario;
 import com.eternos.magiadoslivros.domain.model.enums.Genero;
-import com.eternos.magiadoslivros.domain.model.enums.Perfil;
 import com.eternos.magiadoslivros.domain.request.UsuarioRequest;
 import com.eternos.magiadoslivros.domain.resource.UsuarioResource;
 import com.eternos.magiadoslivros.domain.service.UsuarioService;

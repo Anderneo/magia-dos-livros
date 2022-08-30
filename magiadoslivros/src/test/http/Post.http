@@ -3,6 +3,7 @@
 ### Salva Um Registro Em Livro
 POST http://localhost:8080/livro HTTP/1.1
 Content-Type: application/json
+Authorization: Basic root:root
 
 {
   "descricao": "",
@@ -20,6 +21,7 @@ Content-Type: application/json
 ### Salva Um Registro Em Fornecedor
 POST http://localhost:8080/fornecedor HTTP/1.1
 Content-Type: application/json
+Authorization: Basic root:root
 
 {
   "endereco": "Novo Fornecedor ",
@@ -37,6 +39,7 @@ Content-Type: application/json
 ### Salva Um Registro Em Usuario
 POST http://localhost:8080/usuario HTTP/1.1
 Content-Type: application/json
+Authorization: Basic root:root
 
 {
 	"endereco": "rua Teste 4",
@@ -57,6 +60,7 @@ Content-Type: application/json
 ### Salva Um Registro Em Pedido
 POST http://localhost:8080/pedido HTTP/1.1
 Content-Type: application/json
+Authorization: Basic root:root
 
 {
   "valorVenda": 450,
