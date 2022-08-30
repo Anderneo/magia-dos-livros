@@ -10,7 +10,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.test.context.support.WithMockUser;
 
 import com.eternos.magiadoslivros.domain.assembler.FornecedorAssembler;
 import com.eternos.magiadoslivros.domain.model.Fornecedor;
@@ -36,7 +35,6 @@ public class FornecedorAssemblerTeste {
     private ModelMapper modelMapper;
 
     @Test
-    @WithMockUser
     void testarToModel(){
         var objFornecedor = fornecedorMock();
         var objFornecedorRequest = fornecedorRequestMock();
