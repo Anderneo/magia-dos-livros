@@ -51,6 +51,10 @@ public class UsuarioRequest {
     
     @DateTimeFormat(fallbackPatterns = { "dd/MM/yyyy" })
     LocalDate dataDeCadastro;
+    
+    //public UsuarioRequest() {}
+    
+
 
     public UsuarioRequest(String endereco, String email, String telefone, 
                       String observacao, String nome, String rg, String cpf,Genero genero, 
@@ -67,6 +71,13 @@ public class UsuarioRequest {
     this.dataDeNas = toDate(dataDeNas);
     this.dataDeCadastro = toDate(dataDeCadastro);
     }
+    
+  
+
+    public UsuarioRequest() {
+    }
+
+
 
     private final LocalDate toDate(String data){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");

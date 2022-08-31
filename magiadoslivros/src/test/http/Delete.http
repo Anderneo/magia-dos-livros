@@ -3,21 +3,25 @@
 ### Deleta Um Registro Em Livro
 @idLivro = 1
 DELETE http://localhost:8080/livro/deletar/{{idLivro}} HTTP/1.1
+Authorization: Basic root:root
 
 ==============================================================================================================================
                 Fornecedor
 ### Deleta Um Registro Em Fornecedor
 @idFornecedor = 1
 DELETE http://localhost:8080/fornecedor/{{idFornecedor}} HTTP/1.1
+Authorization: Basic root:root
 
 ==============================================================================================================================
                 Usuario
 ### Deleta Um Registro Em Usuario
 @idUsuario = 1
 DELETE http://localhost:8080/usuario/{{idUsuario}} HTTP/1.1
+Authorization: Basic root:root
 
 ==============================================================================================================================
                 Pedido
 ### Deleta Um Registro Em Pedido
 @idPedido = 1
 DELETE http://localhost:8080/pedido/{{idPedido}} HTTP/1.1
+Authorization: Basic root:root

@@ -2,13 +2,13 @@ package com.eternos.magiadoslivros.LivroTeste;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.Spy;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -28,10 +28,10 @@ public class LivroAssemblerTeste {
     @Mock
     private FornecedorUtil fornecedorUtil;
 
-    @Mock
+    @Spy
     private LivroRequest livroRequest;
 
-    @Mock
+    @Spy
     private Livro livro;
 
     @Mock
@@ -40,29 +40,31 @@ public class LivroAssemblerTeste {
     // @Test
     // void testarToModel(){
     //     var objFornecedor = fornecedorMock();
-    //     TypeMap<LivroRequest, Livro> objTypeMap = typeMapMock();
+    //     TypeMap<Object, Object> objTypeMap = typeMapMock();
     //     var objLivroRequest = livroRequestMock();
 
 
-    //     when(fornecedorUtil.buscarFornecedor(any())).thenReturn(objFornecedor);
+        when(fornecedorUtil.buscarFornecedor(any())).thenReturn(objFornecedor);
 
-    //     when(modelMapper.getTypeMap(any(), any())).thenReturn(objTypeMap);
+        Mockito.spy(modelMapper.getTypeMap(LivroRequest.class, Livro.class));
         
-        
+        Mockito.spy(modelMapper.createTypeMap(LivroRequest.class, Livro.class));
 
-    //     // when(modelMapper.map(any(), any())).thenReturn(livro);
+        when(modelMapper.map(any(), any())).thenReturn(objLivro);
         
-    //     var mock = livroAssembler.toModel(objLivroRequest);
+        var mock = livroAssembler.toModel(objLivroRequest);
       
-    //     assertNotNull(mock);
+        assertNotNull(mock);
 
         
 
-    // }
+    }
 
     private TypeMap<LivroRequest, Livro> typeMapMock(){
-        TypeMap<LivroRequest, Livro> typeMap = modelMapper.getTypeMap(LivroRequest.class, 
-       Livro.class);
+        TypeMap<LivroRequest, Livro> typeMap = 
+                modelMapper.createTypeMap(LivroRequest.class, Livro.class)
+                        .addMappings(mapper-> mapper.skip(Livro::setIdLivro))
+                        .addMapping(LivroRequest::getIdFornecedor, Livro::setIdFornecedor);
             
        return typeMap;
     }
@@ -91,4 +93,15 @@ public class LivroAssemblerTeste {
         return livroRequest;
     }
     
+    private Livro livroMock() {
+        Livro livro = new Livro();
+        livro.setDescricao("teste");
+        livro.setIsbn("teste");
+        livro.setNome("O diário de Anne Frank");
+        livro.setTagEstoque("fds");
+        livro.setQuantLivros(2);
+        livro.setValorRecebimento(50.00);
+        livro.setValorVenda(55.00);
+        return livro;
+    }
 }
