@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
@@ -15,8 +18,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import com.eternos.magiadoslivros.domain.exception.DefaultException;
+import com.eternos.magiadoslivros.domain.exception.ErrorResponse;
 import com.eternos.magiadoslivros.domain.model.Pedido;
 import com.eternos.magiadoslivros.domain.model.Usuario;
 import com.eternos.magiadoslivros.domain.model.enums.Genero;
@@ -75,16 +80,11 @@ public class PedidoResourceTeste {
     
     @Test
     void cancelarPedido(){
-        var pedido = pedidoMock();
-        var usuario = usuarioMock();
         
-        //doNothing().when(pedidoService).cancelarPedido(any(),any());
-        
-        var ex = assertThrows(DefaultException.class, () ->{
-            pedidoResource.cancelarPedido(pedido.getIdVenda(),usuario.getId());
-        }); 
-        
-        assertEquals(HttpStatus.ACCEPTED,ex.httpStatus);
+        doNothing().when(pedidoService).cancelarPedido(any(), any());
+        pedidoResource.cancelarPedido(1, 1);
+
+        verify(pedidoService, times(1)).cancelarPedido(any(), any());
 
     }
 

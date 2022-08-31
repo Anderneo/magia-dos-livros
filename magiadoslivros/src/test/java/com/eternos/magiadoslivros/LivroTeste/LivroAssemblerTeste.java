@@ -44,7 +44,6 @@ public class LivroAssemblerTeste {
         var objLivro = livroMock();
         var objLivroRequest = livroRequestMock();
 
-
         when(fornecedorUtil.buscarFornecedor(any())).thenReturn(objFornecedor);
 
         Mockito.spy(modelMapper.getTypeMap(LivroRequest.class, Livro.class));

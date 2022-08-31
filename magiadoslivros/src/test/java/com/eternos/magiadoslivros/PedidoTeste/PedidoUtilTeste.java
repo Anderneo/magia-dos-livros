@@ -56,22 +56,18 @@ public class PedidoUtilTeste {
 
     @Test
     void testarCriarListaLivroPedido(){
-        var listaLivroMock = getListaLivroMock();
-        var livroMock = livroMock();
-        var pedidoLivroMock = pedidoLivroMock();
-        var pedidoMock = pedidoMock();
-        var pedidoRequestmock = pedidoRequestmock();
-        var listaTeste = listaTeste();
-    
-        when(livroUtil.buscarId(any())).thenReturn(livroMock);
-        when(pedidoRequest.getListaLivro()).thenReturn(listaLivroMock);
-        when(pedidoLivroAssembler.toModel(any(),any())).thenReturn(pedidoLivroMock);
+        var objPedidoRequest = pedidoRequestmock();
+        var objLivro = livroMock();
+        var objPedido = pedidoMock();
+        var obj = getListaLivroMock();
+        when(livroUtil.buscarId(any())).thenReturn(objLivro);
+        //doNothing().when(checarEstoque(any(), any(), any()));
+        when(pedidoLivroRepository.save(any()));
 
-        var mock = pedidoUtil.listaLivro(pedidoMock, pedidoRequestmock);
-        
-        assertEquals(listaTeste, mock);
-        assertNotNull(mock);
-        assertEquals(listaTeste.getClass(), mock.getClass());     
+        var mock = pedidoUtil.listaLivro(objPedido, objPedidoRequest);
+        assertEquals(mock, obj);
+        assertNotNull(mock); 
+        assertEquals(mock.getClass(), obj.getClass());     
         
     }
 
@@ -134,7 +130,7 @@ public class PedidoUtilTeste {
 
         PedidoLivroRequest pedidoLivroRequest = new PedidoLivroRequest();
 
-        pedidoLivroRequest.setQuantidade(1);
+        pedidoLivroRequest.setQuantidade(2);
         pedidoLivroRequest.setIdLivro(1);
 
         listaLivro.add(pedidoLivroRequest);
@@ -145,13 +141,7 @@ public class PedidoUtilTeste {
     private Livro livroMock(){
         Livro livro = new Livro();
         livro.setIdLivro(1);
-        livro.setDescricao("teste");
-        livro.setIsbn("0-6852-3673-0");
-        livro.setNome("teste");
-        livro.setQuantLivros(10);
-        livro.setTagEstoque("teste");
-        livro.setValorRecebimento(50.00);
-        livro.setValorVenda(50.00);
+        livro.setQuantLivros(1);
         return livro;
         
 
