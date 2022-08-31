@@ -55,6 +55,7 @@ public class PedidoUtilTeste {
         when(livroUtil.buscarId(any())).thenReturn(objLivro);
         //doNothing().when(checarEstoque(any(), any(), any()));
         when(pedidoLivroRepository.save(any()));
+        // when(pedidoLivroAssembler)
 
         var mock = pedidoUtil.listaLivro(objPedido, objPedidoRequest);
         assertEquals(mock, obj);
@@ -133,7 +134,7 @@ public class PedidoUtilTeste {
     private Livro livroMock(){
         Livro livro = new Livro();
         livro.setIdLivro(1);
-        livro.setQuantLivros(1);
+        livro.setQuantLivros(2);
         return livro;
     }
 
