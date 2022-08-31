@@ -130,7 +130,7 @@ public class PedidoUtilTeste {
 
         PedidoLivroRequest pedidoLivroRequest = new PedidoLivroRequest();
 
-        pedidoLivroRequest.setQuantidade(1);
+        pedidoLivroRequest.setQuantidade(2);
         pedidoLivroRequest.setIdLivro(1);
 
         listaLivro.add(pedidoLivroRequest);

@@ -37,12 +37,12 @@ public class LivroAssemblerTeste {
     @Mock
     private ModelMapper modelMapper;
 
-    // @Test
-    // void testarToModel(){
-    //     var objFornecedor = fornecedorMock();
-    //     TypeMap<Object, Object> objTypeMap = typeMapMock();
-    //     var objLivroRequest = livroRequestMock();
-
+    @Test
+    void testarToModel(){
+        var objFornecedor = fornecedorMock();
+        //TypeMap<LivroRequest, Livro> objTypeMap = typeMapMock();
+        var objLivro = livroMock();
+        var objLivroRequest = livroRequestMock();
 
         when(fornecedorUtil.buscarFornecedor(any())).thenReturn(objFornecedor);
 
