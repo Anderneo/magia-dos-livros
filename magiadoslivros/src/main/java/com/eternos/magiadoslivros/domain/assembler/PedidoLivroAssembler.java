@@ -19,19 +19,6 @@ public class PedidoLivroAssembler {
 
         PedidoLivroId pedidoLivroId = new PedidoLivroId(pedidoLivroRequest.getIdLivro(), pedidoIdVenda);
 
-        TypeMap<PedidoLivroRequest, PedidoLivro> typeMap = modelMapper.getTypeMap(
-                                                            PedidoLivroRequest.class, 
-                                                       PedidoLivro.class);
-
-        if (typeMap == null) {
-
-            modelMapper.createTypeMap(PedidoLivroRequest.class, PedidoLivro.class)
-                .addMappings(mapper-> mapper.skip(PedidoLivro::setId_pedido))
-                .addMapping(PedidoLivroRequest::getIdLivro, PedidoLivro::setId_livro)
-                .addMapping(PedidoLivroRequest::getQuantidade, PedidoLivro::setQuantidade);
-
-        }
-
         var pedidoRequestModel = modelMapper.map(pedidoLivroRequest, PedidoLivro.class);
 
         pedidoRequestModel.setId_pedido(pedidoIdVenda);
