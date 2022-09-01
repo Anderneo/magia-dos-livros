@@ -67,7 +67,7 @@ Authorization: Basic root:root
   "enderecoEntrega": "rua da entrega 14",
   "formaDePgto": "cartao",
   "parcela": 2,
-  "dataVenda": "03/01/2014",
+  "dataVenda": "03/01/2018",
   "dataPgto": "03/02/2014",
   "dataEntrega": "16/02/2014",
   "idUsuario": 1,

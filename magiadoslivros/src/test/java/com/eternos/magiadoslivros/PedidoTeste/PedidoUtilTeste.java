@@ -19,7 +19,6 @@ import com.eternos.magiadoslivros.domain.assembler.PedidoLivroAssembler;
 import com.eternos.magiadoslivros.domain.exception.DefaultException;
 import com.eternos.magiadoslivros.domain.model.Livro;
 import com.eternos.magiadoslivros.domain.model.Pedido;
-import com.eternos.magiadoslivros.domain.model.PedidoLivro;
 import com.eternos.magiadoslivros.domain.repository.LivroRepository;
 import com.eternos.magiadoslivros.domain.repository.PedidoLivroRepository;
 import com.eternos.magiadoslivros.domain.repository.PedidoRepository;
@@ -51,23 +50,26 @@ public class PedidoUtilTeste {
     
     @Mock
     PedidoLivroAssembler pedidoLivroAssembler;
-    
-    int index = 1;
 
     @Test
     void testarCriarListaLivroPedido(){
-        var objPedidoRequest = pedidoRequestmock();
+        var objGetListaLivro = getListaLivroMock();
         var objLivro = livroMock();
         var objPedido = pedidoMock();
-        var obj = getListaLivroMock();
+        var objPedidoRequest = pedidoRequestmock();
+        var objListaTeste = listaTeste();
+        
+        when(pedidoRequest.getListaLivro()).thenReturn(objGetListaLivro);
         when(livroUtil.buscarId(any())).thenReturn(objLivro);
-        //doNothing().when(checarEstoque(any(), any(), any()));
-        when(pedidoLivroRepository.save(any()));
+        when(pedidoLivroRepository.save(any())).thenReturn(null);
+        when(livroUtil.buscarId(any())).thenReturn(objLivro);
+        when(livroRepository.save(any())).thenReturn(objLivro);
 
         var mock = pedidoUtil.listaLivro(objPedido, objPedidoRequest);
-        assertEquals(mock, obj);
+        
+        assertEquals(mock, objListaTeste);
         assertNotNull(mock); 
-        assertEquals(mock.getClass(), obj.getClass());     
+        assertEquals(mock.getClass(), objListaTeste.getClass());     
         
     }
 
@@ -98,9 +100,12 @@ public class PedidoUtilTeste {
 
     @Test
     void testarExcecaoChecarEstoqueLivro(){
+        
+        var objLivro = livroMock();
+        objLivro.setQuantLivros(0);
 
         var excecao = assertThrows(DefaultException.class, () ->{
-            pedidoUtil.checarEstoque(getListaLivroMock(), livroMock(), 0);
+            pedidoUtil.checarEstoque(getListaLivroMock(), objLivro, 0);
         });
             
         assertEquals(HttpStatus.BAD_REQUEST, excecao.httpStatus);
@@ -139,12 +144,18 @@ public class PedidoUtilTeste {
     }  
 
     private Livro livroMock(){
+    
         Livro livro = new Livro();
         livro.setIdLivro(1);
-        livro.setQuantLivros(1);
+        livro.setDescricao("teste");
+        livro.setIsbn("0-6852-3673-0");
+        livro.setNome("teste");
+        livro.setQuantLivros(10);
+        livro.setTagEstoque("teste");
+        livro.setValorRecebimento(50.00);
+        livro.setValorVenda(50.00);
         return livro;
         
-
     }
         
 
@@ -184,15 +195,6 @@ public class PedidoUtilTeste {
         listaLivro.add(livro);
 
         return listaLivro;
-    }
-    
-    private PedidoLivro pedidoLivroMock(){
-        PedidoLivro pedidoLivro = new PedidoLivro();
-
-        pedidoLivro.setId_livro(1);
-        pedidoLivro.setQuantidade(1);
-
-        return pedidoLivro;
     }
     
 }

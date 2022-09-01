@@ -25,17 +25,17 @@ public class LivroAssembler {
 
         Fornecedor fornecedor = fornecedorUtil.buscarFornecedor(livroRequest.getIdFornecedor());
 
-        TypeMap<LivroRequest, Livro> typeMap = modelMapper.getTypeMap(
-                                                            LivroRequest.class, 
-                                                       Livro.class);
+        // TypeMap<LivroRequest, Livro> typeMap = modelMapper.getTypeMap(
+        //                                                     LivroRequest.class, 
+        //                                                Livro.class);
         
-        if (typeMap == null) {
+        // if (typeMap == null) {
 
-		    modelMapper.createTypeMap(LivroRequest.class, Livro.class)
-                .addMappings(mapper-> mapper.skip(Livro::setIdLivro))
-		        .addMapping(LivroRequest::getIdFornecedor, Livro::setIdFornecedor);
+		//     modelMapper.createTypeMap(LivroRequest.class, Livro.class)
+        //         .addMappings(mapper-> mapper.skip(Livro::setIdLivro))
+		//         .addMapping(LivroRequest::getIdFornecedor, Livro::setIdFornecedor);
 
-        }
+        // }
 
         var livroRequestModel = modelMapper.map(livroRequest, Livro.class);
 

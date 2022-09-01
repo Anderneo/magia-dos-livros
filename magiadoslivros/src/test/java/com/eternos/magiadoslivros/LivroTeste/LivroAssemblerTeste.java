@@ -8,27 +8,16 @@ import static org.mockito.Mockito.when;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.Spy;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeMap;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.web.servlet.MockMvc;
 
 import com.eternos.magiadoslivros.domain.assembler.LivroAssembler;
-import com.eternos.magiadoslivros.domain.model.Fornecedor;
 import com.eternos.magiadoslivros.domain.model.Livro;
 import com.eternos.magiadoslivros.domain.request.LivroRequest;
 import com.eternos.magiadoslivros.domain.util.FornecedorUtil;
 
 @SpringBootTest
-// @AutoConfigureMockMvc
 public class LivroAssemblerTeste {
-    
-    // @Autowired
-    // private MockMvc mockMvc;
     
     @InjectMocks
     private LivroAssembler livroAssembler;
@@ -47,57 +36,19 @@ public class LivroAssemblerTeste {
 
     @Test
     void testarToModel(){
-        // var objFornecedor = fornecedorMock();
-        // //TypeMap<LivroRequest, Livro> objTypeMap = typeMapMock();
-        // var objLivro = livroMock();
-        // var objLivroRequest = livroRequestMock();
 
-        // when(fornecedorUtil.buscarFornecedor(any())).thenReturn(objFornecedor);
-
-        // when(modelMapper.getTypeMap(any(), any())).thenReturn(null);
-        
-        // when(modelMapper.createTypeMap(any(), any())).thenReturn(null);
-
-        // when(modelMapper.map(any(), any())).thenReturn(objLivro);
-        
-        // var mock = Mockito.spy(livroAssembler.toModel(objLivroRequest));
-      
-        // assertNotNull(mock);
-        
-        var objFornecedor = fornecedorMock();
         var objLivro = livroMock();
         var objLivroRequest = livroRequestMock();
         
-        when(modelMapper.map(any(), any())).thenReturn(objFornecedor);
+        when(modelMapper.map(any(), any())).thenReturn(objLivro);
         
         var mock = livroAssembler.toModel(objLivroRequest);
       
         assertNotNull(mock);
-        assertEquals(objFornecedor, mock);
-        assertEquals(objFornecedor.getClass(), mock.getClass());
+        assertEquals(objLivro, mock);
+        assertEquals(objLivro.getClass(), mock.getClass());
 
     }
-
-    private TypeMap<LivroRequest, Livro> typeMapMock(){
-        TypeMap<LivroRequest, Livro> typeMap = 
-                modelMapper.createTypeMap(LivroRequest.class, Livro.class)
-                        .addMappings(mapper-> mapper.skip(Livro::setIdLivro))
-                        .addMapping(LivroRequest::getIdFornecedor, Livro::setIdFornecedor);
-            
-       return typeMap;
-    }
-
-
-    @Test
-    void testarToCollectionModel(){
-    }
-
-    private Fornecedor fornecedorMock(){
-        Fornecedor fornecedor = new Fornecedor();
-        return fornecedor;
-    }
-
-
 
     private LivroRequest livroRequestMock() {
         LivroRequest livroRequest = new LivroRequest();
