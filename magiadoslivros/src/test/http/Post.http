@@ -7,7 +7,7 @@ Authorization: Basic root:root
 
 {
   "descricao": "",
-  "isbn": "978-5228-21-511-5",
+  "isbn": "979-97-8770-504-8",
   "nome": "novo10",
   "quantLivros": 1,
   "tagEstoque": "2b3",
@@ -26,11 +26,11 @@ Authorization: Basic root:root
 {
   "endereco": "Novo Fornecedor ",
   "email": "a@b",
-  "telefone": "123-213",
+  "telefone": "99123-2138",
   "observacao": "bla",
   "nomeFantasia": "Novidade",
   "razaoSocial": "novo 2",
-  "cnpj": "222222225",
+  "cnpj": "12.333.280/0001-39",
   "insEstadual": "MG"
 }
 
