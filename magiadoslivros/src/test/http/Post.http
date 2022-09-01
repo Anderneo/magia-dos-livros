@@ -26,7 +26,7 @@ Authorization: Basic root:root
 {
   "endereco": "Novo Fornecedor ",
   "email": "a@b",
-  "telefone": "99123-2138",
+  "telefone": "98923-2138",
   "observacao": "bla",
   "nomeFantasia": "Novidade",
   "razaoSocial": "novo 2",

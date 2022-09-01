@@ -25,7 +25,7 @@ public class UsuarioRequest {
     @Email(message = "O Campo Email é inválido")
     String email;
     
-    @Pattern(regexp="(^$|[0-9]{9,11})", message = "O Campo telefone é inválido")
+    @Pattern(regexp="^[1-9]{2}[2-8]|9[1-9][0-9]{3}-?[0-9]{4}$", message = "O Campo telefone é inválido")
     String telefone;
     
     String observacao;
