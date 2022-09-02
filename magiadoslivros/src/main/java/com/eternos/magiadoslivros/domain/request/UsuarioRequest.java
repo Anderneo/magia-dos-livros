@@ -9,10 +9,10 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.br.CPF;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import com.eternos.magiadoslivros.domain.model.enums.Genero;
 import com.eternos.magiadoslivros.domain.model.enums.Perfil;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -25,7 +25,7 @@ public class UsuarioRequest {
     @Email(message = "O Campo Email é inválido")
     String email;
     
-    @Pattern(regexp="^[1-9]{2}[2-8]|9[1-9][0-9]{3}-?[0-9]{4}$", message = "O Campo telefone é inválido")
+    @Pattern(regexp="^[1-9]{4}?-[0-9]{4}$", message = "O Campo telefone é inválido")
     String telefone;
     
     String observacao;
@@ -34,7 +34,7 @@ public class UsuarioRequest {
     @NotBlank(message = "O Campo Nome não pode estar vazio")
     String nome;
     
-    @Pattern(regexp="(^$|[0-9.-]{9})", message = "O Campo RG é inválido")
+    @Pattern(regexp="^[0-9]{2}.[0-9]{3}.[0-9]{3}-[0-9]{1}$", message = "O Campo RG é inválido")
     String rg;
     
     @CPF(message = "O Campo CPF é inválido")
@@ -46,15 +46,11 @@ public class UsuarioRequest {
     @NotNull(message = "O Campo Perfil não pode estar vazio")
     Perfil perfil;
     
-    @DateTimeFormat(fallbackPatterns = { "dd/MM/yyyy" })
+    @JsonFormat(pattern="dd/MM/yyyy")
     LocalDate dataDeNas;
     
-    @DateTimeFormat(fallbackPatterns = { "dd/MM/yyyy" })
+    @JsonFormat(pattern="dd/MM/yyyy")
     LocalDate dataDeCadastro;
-    
-    //public UsuarioRequest() {}
-    
-
 
     public UsuarioRequest(String endereco, String email, String telefone, 
                       String observacao, String nome, String rg, String cpf,Genero genero, 
@@ -71,12 +67,9 @@ public class UsuarioRequest {
     this.dataDeNas = toDate(dataDeNas);
     this.dataDeCadastro = toDate(dataDeCadastro);
     }
-    
   
-
     public UsuarioRequest() {
     }
-
 
 
     private final LocalDate toDate(String data){
