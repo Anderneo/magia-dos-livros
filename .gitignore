@@ -1,7 +1,6 @@
 
 # Package Files #
 \target
-\.mvn
 
 # propriedades
 *\application.properties
