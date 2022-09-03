@@ -26,7 +26,7 @@ Authorization: Basic root:root
 {
   "endereco": "Novo Fornecedor ",
   "email": "a@b",
-  "telefone": "99123-2138",
+  "telefone": "98923-2138",
   "observacao": "bla",
   "nomeFantasia": "Novidade",
   "razaoSocial": "novo 2",
@@ -44,11 +44,11 @@ Authorization: Basic root:root
 {
 	"endereco": "rua Teste 4",
 	"email": "t@t",
-	"telefone": "123-321",
+	"telefone": "9853-9225",
 	"observacao": "testando",
 	"nome": "Anderson Nardi1",
-	"rg": "123-6232413",
-	"cpf": "2351-2323241",
+	"rg": "14.306.797-7",
+	"cpf": "437.507.100-15",
 	"genero": 0,
 	"perfil": 1,
 	"dataDeNas": "02/02/2222",

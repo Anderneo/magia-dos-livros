@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -33,13 +33,13 @@ public class PedidoRequest {
     @PositiveOrZero
     Integer parcela;
     
-    @DateTimeFormat(fallbackPatterns = { "dd/MM/yyyy" })
+    @JsonFormat(pattern="dd/MM/yyyy")
     LocalDate dataVenda;
     
-    @DateTimeFormat(fallbackPatterns = { "dd/MM/yyyy" })
+    @JsonFormat(pattern="dd/MM/yyyy")
     LocalDate dataPgto;
     
-    @DateTimeFormat(fallbackPatterns = { "dd/MM/yyyy" })
+    @JsonFormat(pattern="dd/MM/yyyy")
     LocalDate dataEntrega;
     
     @NotNull(message = "O idUsuario não pode estar vazio")

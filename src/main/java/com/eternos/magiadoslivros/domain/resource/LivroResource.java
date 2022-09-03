@@ -53,7 +53,7 @@ public class LivroResource {
 
 
     @DeleteMapping(path = "deletar/{id}")
-    public void deletar(@Valid @PathVariable Integer id){
+    public void deletar(@Valid @PathVariable("id") Integer id){
         livroService.deletar(id);
     }
 

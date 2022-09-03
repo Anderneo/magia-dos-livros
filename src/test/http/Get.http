@@ -23,12 +23,12 @@ GET http://localhost:8080/fornecedor/todos HTTP/1.1
 Authorization: Basic root:root
 
 ### Recupera os Regristros Em Fornecedor Por Razão Social
-@varRazaosocial = teste t
+@varRazaosocial = novo 2
 GET http://localhost:8080/fornecedor/buscar/razaosocial?razaosocial={{varRazaosocial}} HTTP/1.1
 Authorization: Basic root:root
 
 ### Recupera os Regristros Em Fornecedor Por CNPJ
-@varCnpj = 1123123
+@varCnpj = 12.333.280/0001-39
 GET http://localhost:8080/fornecedor/buscar/cnpj?cnpj={{varCnpj}} HTTP/1.1
 Authorization: Basic root:root
 
@@ -40,7 +40,7 @@ GET http://localhost:8080/usuario/todos HTTP/1.1
 Authorization: Basic root:root
 
 ### Recupera Os Regristros Em Usuario por CPF
-@varCpf= 2351-23
+@varCpf= 437.507.100-15
 GET http://localhost:8080/usuario/busca/cpf?cpf={{varCpf}} HTTP/1.1
 Authorization: Basic root:root
 
