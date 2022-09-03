@@ -1,0 +1,86 @@
+==============================================================================================================================
+                Livros
+### Salva Um Registro Em Livro
+POST http://localhost:8080/livro HTTP/1.1
+Content-Type: application/json
+Authorization: Basic root:root
+
+{
+  "descricao": "",
+  "isbn": "979-97-8770-504-8",
+  "nome": "novo10",
+  "quantLivros": 1,
+  "tagEstoque": "2b3",
+  "valorRecebimento": "60",
+  "valorVenda": "120",
+  "idFornecedor":1
+}
+
+==============================================================================================================================
+                Fornecedor
+### Salva Um Registro Em Fornecedor
+POST http://localhost:8080/fornecedor HTTP/1.1
+Content-Type: application/json
+Authorization: Basic root:root
+
+{
+  "endereco": "Novo Fornecedor ",
+  "email": "a@b",
+  "telefone": "98923-2138",
+  "observacao": "bla",
+  "nomeFantasia": "Novidade",
+  "razaoSocial": "novo 2",
+  "cnpj": "12.333.280/0001-39",
+  "insEstadual": "MG"
+}
+
+==============================================================================================================================
+                Usuario
+### Salva Um Registro Em Usuario
+POST http://localhost:8080/usuario HTTP/1.1
+Content-Type: application/json
+Authorization: Basic root:root
+
+{
+	"endereco": "rua Teste 4",
+	"email": "t@t",
+	"telefone": "9853-9225",
+	"observacao": "testando",
+	"nome": "Anderson Nardi1",
+	"rg": "14.306.797-7",
+	"cpf": "437.507.100-15",
+	"genero": 0,
+	"perfil": 1,
+	"dataDeNas": "02/02/2222",
+	"dataDeCadastro": "12/05/2225"
+}
+
+==============================================================================================================================
+                Pedido
+### Salva Um Registro Em Pedido
+POST http://localhost:8080/pedido HTTP/1.1
+Content-Type: application/json
+Authorization: Basic root:root
+
+{
+  "valorVenda": 450,
+  "enderecoEntrega": "rua da entrega 14",
+  "formaDePgto": "cartao",
+  "parcela": 2,
+  "dataVenda": "03/01/2018",
+  "dataPgto": "03/02/2014",
+  "dataEntrega": "16/02/2014",
+  "idUsuario": 1,
+  "listaLivro": [
+    {
+      "idLivro": 1,
+      "quantidade": 1
+    },
+    {
+      "idLivro": 1,
+      "quantidade": 1
+    }
+  ]
+}
+
+
