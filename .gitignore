@@ -1,14 +1,10 @@
-
-# Package Files #
-\target
-
 # propriedades
 *\application.properties
 
 #docker
 *\docker-compose.yaml
 
-### VS Code ###
+### VS Code ### 
 \.vscode
 
 
