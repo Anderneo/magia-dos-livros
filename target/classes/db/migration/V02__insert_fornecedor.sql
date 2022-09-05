@@ -51,57 +51,57 @@ VALUES ('Inovação Distribuidora de Livros', 'Inovação Distribuidora de Livro
 INSERT INTO usuario (endereco, email, telefone, observacao, 
 nome, rg, cpf, genero, data_de_cadastro, perfil , data_de_nascimento)
 VALUES ('Rua Sabia, 309, Moema - SP', 'camila.teste@gmail.com', 
-'5555-5555', 'Teste01', 'Camila Java', '44.423.232-1', '333.000.000-22', 2, '2021-12-25', 1, '1979-02-10'); 
+'5555-5555', 'Teste01', 'Camila Java', '44.423.232-1', '333.000.000-22', 'MULHERCIS', '2021-12-25', 'USUARIO', '1979-02-10'); 
 
 INSERT INTO usuario (endereco, email, telefone, observacao, 
 nome, rg, cpf, genero, data_de_cadastro, perfil , data_de_nascimento)
 VALUES ('Rua Doutor Arnaldo Junior, 309 , Pinheiros - SP', 'jonathan.thoughworks@gmail.com', 
-'4419-9933', '', 'Jonathan Mires Souza', '11.477.090-6', '465.772.421-42', 1 , '2021-09-26', 1, '1980-09-05');
+'4419-9933', '', 'Jonathan Mires Souza', '11.477.090-6', '465.772.421-42', 'HOMEMCIS', '2021-09-26', 'USUARIO', '1980-09-05');
 
 INSERT INTO usuario (endereco, email, telefone, observacao, 
 nome, rg, cpf, genero, data_de_cadastro, perfil , data_de_nascimento)
 VALUES ('Rua Brigadeiro Galvão, 566, Alto da Lapa - SP', 'renato.barcelos@gmail.com', 
-'2977-7676', '', 'Renato Barcelos', '45.888.542-1', '778.992.342-12', 1, '2022-02-16', 1, '1967-07-04');
+'2977-7676', '', 'Renato Barcelos', '45.888.542-1', '778.992.342-12', 'HOMEMCIS', '2022-02-16', 'ADMINISTRADOR', '1967-07-04');
 
 INSERT INTO usuario (endereco, email, telefone, observacao, 
 nome, rg, cpf, genero, data_de_cadastro, perfil , data_de_nascimento)
 VALUES ('Rua Afonso Celso, 111, Vila Mariana - SP', 'ana.maria_ramos@gmail.com', 
-'5411-1176', '', 'Ana Maria Ribeiro', '43.653.9236-1', '778.992.342-12', 4, '2022-09-03',1, '1983-09-13');
+'5411-1176', '', 'Ana Maria Ribeiro', '43.653.9236-1', '778.992.342-12', 'NAOBINARIO', '2022-09-03', 'ADMINISTRADOR', '1983-09-13');
 
 INSERT INTO usuario (endereco, email, telefone, observacao, 
 nome, rg, cpf, genero, data_de_cadastro, perfil , data_de_nascimento)
 VALUES ('Alameda Rui, 1000, Lago Claro, Paraná ', 'horacioalmeida@hotmail.com', 
-'3211-5687', '', 'Horácio Almeida dos Santos', '67.432.476-4', '278.459.231-09', 1,'2020-08-17', 1, '1984-07-09');
+'3211-5687', '', 'Horácio Almeida dos Santos', '67.432.476-4', '278.459.231-09', 'HOMEMCIS','2020-08-17', 'USUARIO', '1984-07-09');
 
 INSERT INTO usuario (endereco, email, telefone, observacao, 
 nome, rg, cpf, genero, data_de_cadastro, perfil , data_de_nascimento)
 VALUES ('Rua Copacabana, 1009 - RJ', 'antoniapimental@gmail.com', 
-'3475-1154', '', 'Antonia Bentes', '76.335.712-1', '118.432.666-12', 2, '2022-01-14', 1, '1985-04-04'); 
+'3475-1154', '', 'Antonia Bentes', '76.335.712-1', '118.432.666-12', 'MULHERCIS', '2022-01-14', 'ADMINISTRADOR', '1985-04-04'); 
 
 INSERT INTO usuario (endereco, email, telefone, observacao, 
 nome, rg, cpf, genero, data_de_cadastro, perfil , data_de_nascimento)
 VALUES ('Rua Harmonia, 1111, Vila Madalena', 'deborateles@hotmail.com', 
-'4311-7633', '', 'Debora Teles', '87.231.144-6', '452.773.231-99', 5, '2021-05-23',1, '1987-05-20');
+'4311-7633', '', 'Debora Teles', '87.231.144-6', '452.773.231-99', 'AGENERO', '2021-05-23', 'USUARIO', '1987-05-20');
 
 INSERT INTO usuario (endereco, email, telefone, observacao, 
 nome, rg, cpf, genero, data_de_cadastro, perfil , data_de_nascimento)
 VALUES ('Rua Capitao Bastos, 1167, Centro, BH', 'lea_oliveira@gmail.com', 
-'9982-4576', '', 'Lea Oliveira', '11.541.239-1', '653.767.888-12', 6, '2022-03-27',  1, '1967-07-04');
+'9982-4576', '', 'Lea Oliveira', '11.541.239-1', '653.767.888-12', 'HOMEMTRANS', '2022-03-27',  'USUARIO', '1967-07-04');
 
 INSERT INTO usuario (endereco, email, telefone, observacao, 
 nome, rg, cpf, genero, data_de_cadastro, perfil , data_de_nascimento)
 VALUES ('Alameda Campinas, 534', 'isadora_fernandes_reis.com', 
-'2977-7676', '', 'Isadora Fernandes Reis ', '12.342.239-1', '545.788.876-78',1, '2021-11-20',1, '1970-09-23');
+'2977-7676', '', 'Isadora Fernandes Reis ', '12.342.239-1', '545.788.876-78', 'MULHERCIS', '2021-11-20','USUARIO', '1970-09-23');
 
 INSERT INTO usuario (endereco, email, telefone, observacao, 
 nome, rg, cpf, genero, data_de_cadastro, perfil , data_de_nascimento)
 VALUES ('Rua Barra Funda, 502', 'lia_havas@gmail.com', 
-'6733-1087', '', 'Lia Havas', '43.653.127-1', '453.782.545-56', 2,  '2021-08-15', 1, '1967-07-04');
+'6733-1087', '', 'Lia Havas', '43.653.127-1', '453.782.545-56', 'MULHERCIS',  '2021-08-15', 'ADMINISTRADOR', '1967-07-04');
 
 INSERT INTO usuario (endereco, email, telefone, observacao, 
 nome, rg, cpf, genero, data_de_cadastro, perfil , data_de_nascimento)
 VALUES ('Rua Doutor Alburquerque, 504', 'fernando_carvalho@gmail.com', 
-'2977-7676', '', 'Fernanda Carvalho', '52.532.112-9', '745.343.895-55', 1, '2020-04-12', 1, '1959-08-23');
+'2977-7676', '', 'Fernanda Carvalho', '52.532.112-9', '745.343.895-55', 'HOMEMCIS', '2020-04-12', 'USUARIO', '1959-08-23');
 
 INSERT INTO livro ( nome, descricao, localizacao_estoque, isbn, valor_venda, valor_recebimento, quantidade_livro, id_fornecedor)
 VALUES ( "Ikigai", "Viver uma vida plena, longa e feliz?", "SP_00003", 343434403,  24.60 , 29.54, 100, 2 );
