@@ -59,13 +59,13 @@ public class PedidoService {
 
         usuarioUtil.checarUsuario(usuario);
 
-        if (pedido.getVendaCancelada() == true) throw new DefaultException(HttpStatus.ALREADY_REPORTED, "O pedido já foi cancelado!!!");
+        if (pedido.getVendaCancelada() == true) throw new DefaultException(HttpStatus.ALREADY_REPORTED, "O pedido com id = " + idPedido + " já foi cancelado!!!");
         
         pedido.setVendaCancelada(true);
 
         pedidoRepository.save(pedido);
 
-        throw new DefaultException(HttpStatus.ACCEPTED, "O pedido foi cancelado!!!");
+        throw new DefaultException(HttpStatus.ACCEPTED, "O pedido com id = " + idPedido + " foi cancelado!!!");
         
     }
 }
