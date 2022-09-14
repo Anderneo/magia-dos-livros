@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UsuarioService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">magiadoslivros</a> &gt; <a href="index.source.html" class="el_package">com.eternos.magiadoslivros.domain.service</a> &gt; <span class="el_source">UsuarioService.java</span></div><h1>UsuarioService.java</h1><pre class="source lang-java linenums">package com.eternos.magiadoslivros.domain.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+
+import com.eternos.magiadoslivros.domain.assembler.UsuarioAssembler;
+import com.eternos.magiadoslivros.domain.exception.DefaultException;
+import com.eternos.magiadoslivros.domain.model.Usuario;
+import com.eternos.magiadoslivros.domain.repository.UsuarioRepository;
+import com.eternos.magiadoslivros.domain.request.UsuarioRequest;
+import com.eternos.magiadoslivros.domain.util.UsuarioUtil;
+
+import lombok.AllArgsConstructor;
+
+@Service
+<span class="fc" id="L20">@AllArgsConstructor</span>
+public class UsuarioService {
+    
+    private final UsuarioRepository usuarioRepository;
+    private final UsuarioAssembler usuarioAssembler;
+    private final UsuarioUtil usuarioUtil;
+
+
+    public Usuario salvar(UsuarioRequest usuarioRequest){
+
+<span class="fc" id="L30">        Usuario usuario = usuarioAssembler.toModel(usuarioRequest);</span>
+
+<span class="fc" id="L32">        usuarioUtil.checarConstraintUsuario(usuario);</span>
+
+<span class="fc" id="L34">        return usuarioRepository.save(usuario);</span>
+
+    }
+
+    public List&lt;Usuario&gt; buscarTodos(){
+<span class="fc" id="L39">        return usuarioRepository.findAll();</span>
+    }
+
+    public Usuario atualizarUsuario(Integer id, UsuarioRequest usuarioRequest){
+
+<span class="fc" id="L44">        Usuario usuario = usuarioUtil.buscarId(id);</span>
+         
+       // Usuario request = usuarioAssembler.toModel(usuarioRequest);
+     
+<span class="fc" id="L48">        BeanUtils.copyProperties(usuarioRequest, usuario, &quot;id&quot;);</span>
+
+<span class="fc" id="L50">        return usuarioRepository.save(usuario);</span>
+
+    }
+
+    public Usuario buscarCpf(String cpf){
+         
+<span class="fc" id="L56">        Optional&lt;Usuario&gt; usuario = usuarioRepository.findByCpf(cpf);</span>
+<span class="fc bfc" id="L57" title="All 2 branches covered.">        if(usuario == null) throw new DefaultException(HttpStatus.NOT_FOUND, </span>
+                     &quot;Não foi possivel encontrar nenhum registro com o CPF:&quot; + cpf);
+<span class="fc" id="L59">        return usuarioRepository.findByCpf(cpf)</span>
+<span class="fc" id="L60">            .orElseThrow(new DefaultException(HttpStatus.NOT_FOUND, </span>
+                    &quot;Não foi possivel encontrar nenhum registro com esse CPF!!&quot;));
+
+    }
+
+    public List&lt;Usuario&gt; buscarNome(String nome){
+
+<span class="fc" id="L67">        List&lt;Usuario&gt; usuario = usuarioRepository.findByNomeContainingIgnoreCase(nome);</span>
+
+<span class="fc bfc" id="L69" title="All 2 branches covered.">        if(usuario.isEmpty()) throw new DefaultException(HttpStatus.NOT_FOUND, </span>
+                     &quot;Não foi possivel encontrar nenhum registro com esse NOME!!&quot;);
+
+<span class="fc" id="L72">        return usuario;</span>
+
+    }
+
+    public void deletar(Integer id){
+
+<span class="fc" id="L78">        var objecto = usuarioUtil.buscarId(id);</span>
+
+<span class="fc" id="L80">        usuarioRepository.delete(objecto);</span>
+
+<span class="fc" id="L82">        throw new DefaultException(</span>
+                                    HttpStatus.ACCEPTED,
+                                    &quot;Registro &quot; + id + &quot; deletado com sucesso!!&quot;);
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
