@@ -17,7 +17,7 @@ import com.eternos.magiadoslivros.domain.assembler.PedidoAssembler;
 import lombok.AllArgsConstructor;
 
 @Service
-<span class="fc" id="L20">@AllArgsConstructor </span>
+@AllArgsConstructor 
 public class PedidoService {
     
     private final PedidoRepository pedidoRepository;
@@ -52,10 +52,10 @@ public class PedidoService {
 
     }
 
-    public void cancelarPedido(Integer idPedido, Integer idUsuario){
+    public void cancelarPedido(Integer idPedido, PedidoRequest idUsuario){
 
 <span class="fc" id="L57">        Pedido pedido = pedidoUtil.buscarId(idPedido);</span>
-<span class="fc" id="L58">        Usuario usuario = usuarioUtil.buscarId(idUsuario);</span>
+<span class="fc" id="L58">        Usuario usuario = usuarioUtil.buscarId(idUsuario.getIdUsuario());</span>
 
 <span class="fc" id="L60">        usuarioUtil.checarUsuario(usuario);</span>
 

@@ -19,18 +19,15 @@ com\eternos\magiadoslivros\domain\model\Pedido$PedidoBuilder.class
 com\eternos\magiadoslivros\domain\assembler\PedidoAssembler.class
 com\eternos\magiadoslivros\domain\assembler\LivroAssembler.class
 com\eternos\magiadoslivros\domain\service\UsuarioService.class
-com\eternos\magiadoslivros\domain\service\RelatorioDeEstoque.class
 com\eternos\magiadoslivros\domain\repository\UsuarioRepository.class
 com\eternos\magiadoslivros\domain\assembler\FornecedorAssembler.class
 com\eternos\magiadoslivros\domain\service\PedidoService.class
 com\eternos\magiadoslivros\domain\util\LivroUtil.class
 com\eternos\magiadoslivros\domain\model\PedidoLivroId.class
-com\eternos\magiadoslivros\domain\service\RelatorioDeVendas.class
 com\eternos\magiadoslivros\domain\model\enums\Genero.class
 com\eternos\magiadoslivros\domain\service\FornecedorService.class
 com\eternos\magiadoslivros\domain\security\WebSecurityConfig.class
 com\eternos\magiadoslivros\domain\resource\LivroResource.class
-com\eternos\magiadoslivros\domain\service\CarrinhoDeCompras.class
 com\eternos\magiadoslivros\domain\model\Livro$LivroBuilder.class
 com\eternos\magiadoslivros\domain\model\Usuario.class
 com\eternos\magiadoslivros\domain\exception\ErrorResponse.class
@@ -38,7 +35,6 @@ com\eternos\magiadoslivros\domain\request\UsuarioRequest.class
 com\eternos\magiadoslivros\domain\assembler\UsuarioAssembler.class
 com\eternos\magiadoslivros\domain\resource\FornecedorResource.class
 com\eternos\magiadoslivros\domain\util\UsuarioUtil.class
-com\eternos\magiadoslivros\domain\service\CarrinhoDeCompras$CarrinhoDeComprasBuilder.class
 com\eternos\magiadoslivros\domain\repository\PedidoLivroRepository.class
 com\eternos\magiadoslivros\domain\model\Livro.class
 com\eternos\magiadoslivros\domain\resource\UsuarioResource.class

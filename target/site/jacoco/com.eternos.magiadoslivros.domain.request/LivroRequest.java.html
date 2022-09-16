@@ -7,7 +7,7 @@ import javax.validation.constraints.PositiveOrZero;
 import org.hibernate.validator.constraints.ISBN;
 
 import lombok.Data;
-<span class="pc bnc" id="L10" title="All 70 branches missed.">@Data</span>
+@Data
 public class LivroRequest {
 
     public LivroRequest(String descricao, String isbn, String nome, Integer quantlivros, String tagestoque,
@@ -16,31 +16,31 @@ public class LivroRequest {
 
 <span class="fc" id="L17">    public LivroRequest(){};</span>
     
-<span class="nc" id="L19">    String descricao;</span>
+    String descricao;
     
     @ISBN(message = &quot;O Campo ISBN é inválido&quot;)
-<span class="nc" id="L22">    String isbn;</span>
+    String isbn;
     
     @NotBlank(message = &quot;O Campo nome não pode estar vazio&quot;)
-<span class="nc" id="L25">    String nome;</span>
+    String nome;
     
     @NotNull(message = &quot;O Campo quantidade não pode estar vazio&quot;)
     @PositiveOrZero(message = &quot;O Campo quantLivros deve ser um inteiro&quot;)
-<span class="nc" id="L29">    Integer quantLivros;</span>
+    Integer quantLivros;
     
-<span class="nc" id="L31">    String tagEstoque;</span>
+    String tagEstoque;
     
     @NotNull(message = &quot;O Campo Valor de Recebimento não pode estar vazio&quot;)
     @PositiveOrZero(message = &quot;O Campo valorRecebimento deve ser um inteiro&quot;)
-<span class="nc" id="L35">    Double valorRecebimento;</span>
+    Double valorRecebimento;
     
     @NotNull(message = &quot;O Campo Valor de Venda não pode estar vazio&quot;)
     @PositiveOrZero(message = &quot;O Campo valorVenda deve ser um inteiro&quot;)
-<span class="nc" id="L39">    Double valorVenda; </span>
+    Double valorVenda; 
     
     @NotNull(message = &quot;O Campo Id Fornecedor não pode estar vazio&quot;)
     @PositiveOrZero(message = &quot;O Campo idFornecedor deve ser um inteiro&quot;)
-<span class="fc" id="L43">    Integer idFornecedor;</span>
+    Integer idFornecedor;
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

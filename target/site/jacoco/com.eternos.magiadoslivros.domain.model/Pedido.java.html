@@ -21,51 +21,51 @@ import lombok.Data;
 
 @Entity
 @Table(name = &quot;pedido&quot;)
-<span class="pc bpc" id="L24" title="93 of 94 branches missed.">@Data</span>
-<span class="nc bnc" id="L25" title="All 4 branches missed.">@Builder</span>
-<span class="nc" id="L26">@AllArgsConstructor</span>
+@Data
+@Builder
+@AllArgsConstructor
 public class Pedido{
 
    @Id
    @Column(name=&quot;id&quot;)
    @GeneratedValue(strategy = GenerationType.IDENTITY)
-<span class="fc" id="L32">   private Integer idVenda;</span>
+   private Integer idVenda;
 
    @Column(name=&quot;valor_de_venda&quot;, nullable = false)  
-<span class="nc" id="L35">   private Double valorVenda;</span>
+   private Double valorVenda;
 
    @Column(name=&quot;endereco_entrega&quot;, nullable = false)
-<span class="nc" id="L38">   private String enderecoEntrega;</span>
+   private String enderecoEntrega;
 
    @Column(name=&quot;forma_de_pagto&quot;, nullable = false) 
-<span class="nc" id="L41">   private String formaDePgto;</span>
+   private String formaDePgto;
 
    @Column(name=&quot;parcela&quot;, nullable = false)
-<span class="nc" id="L44">   private Integer parcela;</span>
+   private Integer parcela;
 
    @Column(name=&quot;data_venda&quot;, nullable = false)
-<span class="nc" id="L47">   private LocalDate dataVenda;</span>
+   private LocalDate dataVenda;
 
    @Column(name=&quot;data_pagto&quot;, nullable = false)
-<span class="nc" id="L50">   private LocalDate dataPgto;</span>
+   private LocalDate dataPgto;
 
    @Column(name=&quot;data_entrega&quot;, nullable = false) 
-<span class="nc" id="L53">   private LocalDate dataEntrega;</span>
+   private LocalDate dataEntrega;
 
    @ManyToOne
    @JoinColumn(name = &quot;id_usuario&quot;)
-<span class="nc" id="L57">   private Usuario idUsuario;</span>
+   private Usuario idUsuario;
    
    @Builder.Default
    @Column(name = &quot;cancelada&quot;, columnDefinition=&quot;boolean default false&quot;)
-<span class="pc" id="L61">   private Boolean vendaCancelada = false;</span>
+   private Boolean vendaCancelada = false;
 
    @Builder.Default
    @ManyToMany
    @JoinTable(name=&quot;pedido_livro&quot;,
    joinColumns = {@JoinColumn(name=&quot;id_pedido&quot;)},
    inverseJoinColumns = {@JoinColumn(name=&quot;id_livro&quot;)})
-<span class="nc" id="L68">   private List&lt;Livro&gt; listaLivro = new ArrayList&lt;&gt;();</span>
+   private List&lt;Livro&gt; listaLivro = new ArrayList&lt;&gt;();
 
 <span class="fc" id="L70">   public Pedido(){};</span>
 

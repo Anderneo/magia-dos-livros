@@ -10,16 +10,16 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import lombok.Data;
-<span class="nc bnc" id="L13" title="All 46 branches missed.">@Data</span>
+@Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ErrorResponse implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-<span class="nc" id="L18">	private String timeStamp;</span>
-<span class="fc" id="L19">	private Integer code;</span>
-<span class="fc" id="L20">    private HttpStatus httpStatus;</span>
-<span class="fc" id="L21">    private String message;</span>
-<span class="nc" id="L22">    private JsonNode details;</span>
+	private String timeStamp;
+	private Integer code;
+    private HttpStatus httpStatus;
+    private String message;
+    private JsonNode details;
 
 <span class="fc" id="L24">    public ErrorResponse(HttpStatus httpStatus, String message){</span>
     

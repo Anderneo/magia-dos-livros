@@ -19,7 +19,7 @@ import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping(value = &quot;pedido&quot;)
-<span class="fc" id="L22">@AllArgsConstructor</span>
+@AllArgsConstructor
 public class PedidoResource {
 
     private final PedidoService pedidoService;
@@ -29,9 +29,9 @@ public class PedidoResource {
 <span class="fc" id="L29">        return pedidoService.salvar(pedidoRequest);</span>
     }
 
-    @PatchMapping(path = &quot;cancelar/pedido/{idPedido}/usuario/{idUsuario}&quot;)
+    @PatchMapping(path = &quot;cancelar/pedido/{idPedido}&quot;)
     public void cancelarPedido(@Valid @PathVariable(&quot;idPedido&quot;) Integer idPedido, 
-                               @Valid @PathVariable(&quot;idUsuario&quot;)Integer idUsuario){
+                               @RequestBody PedidoRequest idUsuario){
 
 <span class="fc" id="L36">        pedidoService.cancelarPedido(idPedido, idUsuario);</span>
 

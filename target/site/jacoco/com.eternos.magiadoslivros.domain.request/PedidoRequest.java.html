@@ -8,45 +8,45 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter 
-<span class="pc" id="L17">@Setter</span>
+@Setter
 public class PedidoRequest {
     
     @NotNull(message = &quot;O Campo Valor de Venda não pode estar vazio&quot;)
     @PositiveOrZero
-<span class="nc" id="L22">    Double valorVenda;</span>
+    Double valorVenda;
     
     @NotNull
     @NotBlank(message = &quot;O Campo Forma de Pagamento não pode estar vazio&quot;)
-<span class="nc" id="L26">    String enderecoEntrega;</span>
+    String enderecoEntrega;
     
     @NotNull
     @NotBlank(message = &quot;O Campo Forma de Pagamento não pode estar vazio&quot;)
-<span class="nc" id="L30">    String formaDePgto;</span>
+    String formaDePgto;
     
     @NotNull(message = &quot;O Campo Quantidade de Parcelas não pode estar vazio&quot;)
     @PositiveOrZero
-<span class="nc" id="L34">    Integer parcela;</span>
+    Integer parcela;
     
-    @DateTimeFormat(fallbackPatterns = { &quot;dd/MM/yyyy&quot; })
-<span class="nc" id="L37">    LocalDate dataVenda;</span>
+    @JsonFormat(pattern=&quot;dd/MM/yyyy&quot;)
+    LocalDate dataVenda;
     
-    @DateTimeFormat(fallbackPatterns = { &quot;dd/MM/yyyy&quot; })
-<span class="nc" id="L40">    LocalDate dataPgto;</span>
+    @JsonFormat(pattern=&quot;dd/MM/yyyy&quot;)
+    LocalDate dataPgto;
     
-    @DateTimeFormat(fallbackPatterns = { &quot;dd/MM/yyyy&quot; })
-<span class="nc" id="L43">    LocalDate dataEntrega;</span>
+    @JsonFormat(pattern=&quot;dd/MM/yyyy&quot;)
+    LocalDate dataEntrega;
     
     @NotNull(message = &quot;O idUsuario não pode estar vazio&quot;)
     @PositiveOrZero
-<span class="fc" id="L47">    Integer idUsuario;</span>
+    Integer idUsuario;
     
-<span class="fc" id="L49">    ArrayList&lt;PedidoLivroRequest&gt; listaLivro;</span>
+    ArrayList&lt;PedidoLivroRequest&gt; listaLivro;
 
     public PedidoRequest(Double valorVenda, String enderecoEntrega, String formaDePgto, 
                           Integer parcela, String dataVenda, String dataPgto, String dataEntrega,

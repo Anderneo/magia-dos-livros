@@ -9,79 +9,72 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.br.CPF;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import com.eternos.magiadoslivros.domain.model.enums.Genero;
 import com.eternos.magiadoslivros.domain.model.enums.Perfil;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Getter;
 import lombok.Setter;
 
-<span class="fc" id="L20">@Getter @Setter</span>
+@Getter @Setter
 public class UsuarioRequest {
 
-<span class="fc" id="L23">    String endereco;</span>
+    String endereco;
     
     @Email(message = &quot;O Campo Email é inválido&quot;)
-<span class="fc" id="L26">    String email;</span>
+    String email;
     
-    @Pattern(regexp=&quot;(^$|[0-9]{9,11})&quot;, message = &quot;O Campo telefone é inválido&quot;)
-<span class="fc" id="L29">    String telefone;</span>
+    @Pattern(regexp=&quot;^[1-9]{4}?-[0-9]{4}$&quot;, message = &quot;O Campo telefone é inválido&quot;)
+    String telefone;
     
-<span class="fc" id="L31">    String observacao;</span>
+    String observacao;
     
     @NotNull
     @NotBlank(message = &quot;O Campo Nome não pode estar vazio&quot;)
-<span class="fc" id="L35">    String nome;</span>
+    String nome;
     
-    @Pattern(regexp=&quot;(^$|[0-9.-]{9})&quot;, message = &quot;O Campo RG é inválido&quot;)
-<span class="fc" id="L38">    String rg;</span>
+    @Pattern(regexp=&quot;^[0-9]{2}.[0-9]{3}.[0-9]{3}-[0-9]{1}$&quot;, message = &quot;O Campo RG é inválido&quot;)
+    String rg;
     
     @CPF(message = &quot;O Campo CPF é inválido&quot;)
-<span class="fc" id="L41">    String cpf;</span>
+    String cpf;
     
     @NotNull(message = &quot;O Campo Perfil não pode estar vazio&quot;)
-<span class="fc" id="L44">    Genero genero;</span>
+    Genero genero;
     
     @NotNull(message = &quot;O Campo Perfil não pode estar vazio&quot;)
-<span class="fc" id="L47">    Perfil perfil;</span>
+    Perfil perfil;
     
-    @DateTimeFormat(fallbackPatterns = { &quot;dd/MM/yyyy&quot; })
-<span class="fc" id="L50">    LocalDate dataDeNas;</span>
+    @JsonFormat(pattern=&quot;dd/MM/yyyy&quot;)
+    LocalDate dataDeNas;
     
-    @DateTimeFormat(fallbackPatterns = { &quot;dd/MM/yyyy&quot; })
-<span class="fc" id="L53">    LocalDate dataDeCadastro;</span>
-    
-    //public UsuarioRequest() {}
-    
-
+    @JsonFormat(pattern=&quot;dd/MM/yyyy&quot;)
+    LocalDate dataDeCadastro;
 
     public UsuarioRequest(String endereco, String email, String telefone, 
                       String observacao, String nome, String rg, String cpf,Genero genero, 
-<span class="nc" id="L61">                      Perfil perfil, String dataDeNas, String dataDeCadastro){</span>
-<span class="nc" id="L62">    this.endereco = endereco;</span>
-<span class="nc" id="L63">    this.email = email;</span>
-<span class="nc" id="L64">    this.telefone = telefone;</span>
-<span class="nc" id="L65">    this.observacao = observacao;</span>
-<span class="nc" id="L66">    this.nome = nome;</span>
-<span class="nc" id="L67">    this.rg = rg;</span>
-<span class="nc" id="L68">    this.cpf = cpf;</span>
-<span class="nc" id="L69">    this.genero = genero;</span>
-<span class="nc" id="L70">    this.perfil = perfil;</span>
-<span class="nc" id="L71">    this.dataDeNas = toDate(dataDeNas);</span>
-<span class="nc" id="L72">    this.dataDeCadastro = toDate(dataDeCadastro);</span>
-<span class="nc" id="L73">    }</span>
-    
+<span class="nc" id="L57">                      Perfil perfil, String dataDeNas, String dataDeCadastro){</span>
+<span class="nc" id="L58">    this.endereco = endereco;</span>
+<span class="nc" id="L59">    this.email = email;</span>
+<span class="nc" id="L60">    this.telefone = telefone;</span>
+<span class="nc" id="L61">    this.observacao = observacao;</span>
+<span class="nc" id="L62">    this.nome = nome;</span>
+<span class="nc" id="L63">    this.rg = rg;</span>
+<span class="nc" id="L64">    this.cpf = cpf;</span>
+<span class="nc" id="L65">    this.genero = genero;</span>
+<span class="nc" id="L66">    this.perfil = perfil;</span>
+<span class="nc" id="L67">    this.dataDeNas = toDate(dataDeNas);</span>
+<span class="nc" id="L68">    this.dataDeCadastro = toDate(dataDeCadastro);</span>
+<span class="nc" id="L69">    }</span>
   
-
-<span class="fc" id="L77">    public UsuarioRequest() {</span>
-<span class="fc" id="L78">    }</span>
-
+<span class="fc" id="L71">    public UsuarioRequest() {</span>
+<span class="fc" id="L72">    }</span>
 
 
     private final LocalDate toDate(String data){
-<span class="nc" id="L83">        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(&quot;dd/MM/yyyy&quot;);</span>
-<span class="nc" id="L84">        return LocalDate.parse(data, formatter);</span>
+<span class="nc" id="L76">        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(&quot;dd/MM/yyyy&quot;);</span>
+<span class="nc" id="L77">        return LocalDate.parse(data, formatter);</span>
     }
 
 }

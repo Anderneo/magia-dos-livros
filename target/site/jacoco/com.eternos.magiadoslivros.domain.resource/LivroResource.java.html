@@ -24,7 +24,7 @@ import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping(value = &quot;livro&quot;)
-<span class="fc" id="L27">@AllArgsConstructor</span>
+@AllArgsConstructor
 public class LivroResource {
     
     private final LivroService livroService;
@@ -53,12 +53,12 @@ public class LivroResource {
 
 
     @DeleteMapping(path = &quot;deletar/{id}&quot;)
-    public void deletar(@Valid @PathVariable Integer id){
+    public void deletar(@Valid @PathVariable(&quot;id&quot;) Integer id){
 <span class="fc" id="L57">        livroService.deletar(id);</span>
 <span class="fc" id="L58">    }</span>
 
     @PatchMapping(path = &quot;adicionarestoque/{id}&quot;)
-    public Livro atualizarEstoque(@Validated @PathVariable Integer id, @RequestBody Integer quantLivros ){
+    public Livro atualizarEstoque(@Validated @PathVariable Integer id, @RequestBody LivroRequest quantLivros ){
 <span class="fc" id="L62">        return livroService.atualizarQtdeLivro(id, quantLivros);</span>
     }
 

@@ -15,40 +15,40 @@ import lombok.Data;
 
 @Entity
 @Table(name = &quot;livro&quot;)
-<span class="pc bpc" id="L18" title="56 of 78 branches missed.">@Data</span>
-<span class="nc" id="L19">@Builder</span>
-<span class="nc" id="L20">@AllArgsConstructor</span>
+@Data
+@Builder
+@AllArgsConstructor
 public class Livro{
     
     @Id
     @Column(name=&quot;id&quot;)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-<span class="fc" id="L26">    private Integer idLivro;</span>
+    private Integer idLivro;
 
     @Column(name=&quot;localizacao_estoque&quot;)
-<span class="fc" id="L29">    private String tagEstoque;</span>
+    private String tagEstoque;
 
     @Column(name=&quot;nome&quot;)
-<span class="fc" id="L32">    private String nome;</span>
+    private String nome;
 
     @Column(name=&quot;descricao&quot;)
-<span class="fc" id="L35">    private String descricao;</span>
+    private String descricao;
 
     @Column(name=&quot;isbn&quot;, unique=true)
-<span class="fc" id="L38">    private String isbn;</span>
+    private String isbn;
 
     @Column(name=&quot;quantidade_livro&quot;)
-<span class="fc" id="L41">    private Integer quantLivros;</span>
+    private Integer quantLivros;
 
     @Column(name=&quot;valor_recebimento&quot;)
-<span class="fc" id="L44">    private Double valorRecebimento;</span>
+    private Double valorRecebimento;
     
     @Column(name=&quot;valor_venda&quot;)
-<span class="fc" id="L47">    private Double valorVenda;</span>
+    private Double valorVenda;
 
     @ManyToOne
     @JoinColumn(name = &quot;id_fornecedor&quot;, referencedColumnName = &quot;id&quot;)
-<span class="fc" id="L51">    private Fornecedor idFornecedor;</span>
+    private Fornecedor idFornecedor;
 
 <span class="fc" id="L53">    public Livro() {</span>
 <span class="fc" id="L54">    }</span>
