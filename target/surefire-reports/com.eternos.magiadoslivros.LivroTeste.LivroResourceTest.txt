@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.eternos.magiadoslivros.LivroTeste.LivroResourceTest
--------------------------------------------------------------------------------
-Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.087 s - in com.eternos.magiadoslivros.LivroTeste.LivroResourceTest
