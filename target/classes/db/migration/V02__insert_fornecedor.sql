@@ -125,8 +125,8 @@ VALUES ('Rua Doutor Alburquerque, 504', 'fernando_carvalho@gmail.com',
 '2977-7676', '', 'Fernanda Carvalho', '52.532.112-9', '745.343.895-55', 'HOMEMCIS', '2020-04-12', 'USUARIO', '1959-08-23');
 
 -- SQLINES LICENSE FOR EVALUATION USE ONLY
-INSERT INTO livro ( nome, descricao, localizacao_estoque, isbn, valor_venda, valor_recebimento, quantidade_livro, id_fornecedor)
-VALUES ( "Ikigai", "Viver uma vida plena, longa e feliz?", "SP_00003", 343434403,  24.60 , 29.54, 100, 2 );
+-- INSERT INTO livro ( nome, descricao, localizacao_estoque, isbn, valor_venda, valor_recebimento, quantidade_livro, id_fornecedor)
+-- VALUES ( "Ikigai", "Viver uma vida plena, longa e feliz?", "SP_00003", 343434403,  24.60 , 29.54, 100, 2 );
 
 -- SQLINES LICENSE FOR EVALUATION USE ONLY
 INSERT INTO livro ( nome, descricao, localizacao_estoque, isbn, valor_venda, valor_recebimento, quantidade_livro, id_fornecedor)
