@@ -1,6 +1,11 @@
 -- SQLINES LICENSE FOR EVALUATION USE ONLY
 CREATE SEQUENCE usuario_seq;
 
+CREATE TYPE genero AS ENUM ('HOMEMCIS','MULHERCIS','HOMEMTRANS','MULHERTRANS',
+                            'NAOBINARIO','INTERSEXO','AGENERO','OUTRO');
+                            
+CREATE TYPE perfil AS ENUM ('USUARIO','ADMINISTRADOR');
+
 CREATE TABLE IF NOT EXISTS usuario (
         id INT DEFAULT NEXTVAL ('usuario_seq'),
         nome VARCHAR(150) NOT NULL,
@@ -10,11 +15,9 @@ CREATE TABLE IF NOT EXISTS usuario (
         rg VARCHAR(15) NOT NULL,
         cpf VARCHAR(18) NOT NULL,
         data_de_nascimento DATE NOT NULL,
-        genero ENUM('HOMEMCIS','MULHERCIS','HOMEMTRANS','MULHERTRANS',
-                    'NAOBINARIO','INTERSEXO','AGENERO','OUTRO') 
-                     NOT NULL,
+        genero genero NOT NULL,
         data_de_cadastro DATE,
-        perfil ENUM('USUARIO','ADMINISTRADOR') NOT NULL,
+        perfil perfil NOT NULL,
         observacao VARCHAR(500),
         PRIMARY KEY (id)
 );
