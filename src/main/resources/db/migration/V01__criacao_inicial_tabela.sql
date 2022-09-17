@@ -1,3 +1,4 @@
+CREATE SCHEMA IF NOT EXISTS livraria;
 
 CREATE SEQUENCE usuario_seq;
 
