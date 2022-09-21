@@ -12,7 +12,7 @@
 	<artifactId>magiadoslivros</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>magiadoslivros</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Projeto Integrador para o curso de Java Backend da Digital House</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
