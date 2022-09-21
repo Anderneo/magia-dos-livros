@@ -30,11 +30,4 @@ public class LivroAssembler {
 
         return livroRequestModel;
     }
-
-    public List<Livro> toCollectionModel(List<LivroRequest> livroRequest){
-        //lambda functions JAVA 8
-        return  livroRequest.stream()
-                             .map(livro -> toModel(livro))
-                             .collect(Collectors.toList());                             
-    }
 }
