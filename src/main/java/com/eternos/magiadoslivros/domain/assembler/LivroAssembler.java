@@ -1,8 +1,5 @@
 package com.eternos.magiadoslivros.domain.assembler;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
@@ -29,12 +26,5 @@ public class LivroAssembler {
         livroRequestModel.setIdFornecedor(fornecedor);
 
         return livroRequestModel;
-    }
-
-    public List<Livro> toCollectionModel(List<LivroRequest> livroRequest){
-        //lambda functions JAVA 8
-        return  livroRequest.stream()
-                             .map(livro -> toModel(livro))
-                             .collect(Collectors.toList());                             
     }
 }

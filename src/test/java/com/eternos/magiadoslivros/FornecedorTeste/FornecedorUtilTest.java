@@ -60,6 +60,20 @@ public class FornecedorUtilTest {
         
     }
 
+
+    @Test
+    void testarChecarExcecaoConstraintFornecedorRazaoSocial(){
+        var obj = fornecedorMockVazio();
+        var objRazaoSocial = fornecedorMock();        
+        when(fornecedorRepository.findByCnpj(any())).thenReturn(obj);
+        when(fornecedorRepository.findByRazaoSocial(any())).thenReturn(Optional.of(objRazaoSocial));
+
+        var excecao = assertThrows(DefaultException.class, () ->{
+            fornecedorUtil.checarConstraintFornecedor(objRazaoSocial);
+        });          
+        assertEquals(HttpStatus.FOUND, excecao.httpStatus);
+    }
+
     private Fornecedor fornecedorMock() {
         Fornecedor fornecedor = new Fornecedor();
         fornecedor.setEndereco("teste");

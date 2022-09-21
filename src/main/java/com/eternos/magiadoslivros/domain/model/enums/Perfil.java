@@ -14,5 +14,10 @@ public enum Perfil {
         return descricao;
     }
 
+    @Override
+    public String toString() {
+        return descricao;
+    }
+
 }
 

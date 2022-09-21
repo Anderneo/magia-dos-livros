@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 
 import com.eternos.magiadoslivros.domain.exception.DefaultException;
 import com.eternos.magiadoslivros.domain.model.Usuario;
+import com.eternos.magiadoslivros.domain.model.enums.Perfil;
 import com.eternos.magiadoslivros.domain.repository.UsuarioRepository;
 import com.eternos.magiadoslivros.domain.util.UsuarioUtil;
 
@@ -50,6 +51,31 @@ public class UsuarioUtilTest {
         });          
         assertEquals(HttpStatus.BAD_REQUEST, excecao.httpStatus);
     }
+
+    @Test
+    void testarChecarExcecaoConstraintUsuarioRg(){
+        var obj = usuarioMockConstraintRg();
+        when(usuarioRepository.findByCpf(any())).thenReturn(Optional.of(obj));
+        when(usuarioRepository.findByRg(any())).thenReturn(Optional.of(obj));
+
+        var excecao = assertThrows(DefaultException.class, () ->{
+            usuarioUtil.checarConstraintUsuario(obj);
+        });          
+        assertEquals(HttpStatus.FOUND, excecao.httpStatus);
+    }
+
+    @Test
+    void testarChecarExcecaoConstraintUsuarioCpf(){
+        var obj = usuarioMockVazio();
+        var objCpf = usuarioMockCPF();        
+        when(usuarioRepository.findByRg(any())).thenReturn(obj);
+        when(usuarioRepository.findByCpf(any())).thenReturn(Optional.of(objCpf));
+
+        var excecao = assertThrows(DefaultException.class, () ->{
+            usuarioUtil.checarConstraintUsuario(objCpf);
+        });          
+        assertEquals(HttpStatus.FOUND, excecao.httpStatus);
+    }
     
     @Test
     void testarChecarExcecaoChecarCpf(){
@@ -61,6 +87,19 @@ public class UsuarioUtilTest {
             usuarioUtil.checarCpf("2548512655");
         });          
         assertEquals(HttpStatus.BAD_REQUEST, excecao.httpStatus);
+    }
+
+    @Test
+    void testarChecarExcecaoUsuario(){
+
+        var obj = usuarioMock();
+        obj.setPerfil(Perfil.USUARIO);
+        //when(usuario.getPerfil().toString().compareToIgnoreCase(any())).thenReturn(1);
+
+        var excecao = assertThrows(DefaultException.class, () ->{
+            usuarioUtil.checarUsuario(obj);
+        });          
+        assertEquals(HttpStatus.FORBIDDEN, excecao.httpStatus);
     }
 
     private Usuario usuarioMock() {
@@ -79,4 +118,12 @@ public class UsuarioUtilTest {
         Optional<Usuario> usuario = Optional.empty();
         return usuario;
     }
+
+    private Usuario usuarioMockConstraintRg() {
+        Usuario usuario =  new Usuario();  
+        usuario.setRg("4555555544");
+        usuario.setCpf("2342342342");  
+        return usuario;
+    }
+
 }
