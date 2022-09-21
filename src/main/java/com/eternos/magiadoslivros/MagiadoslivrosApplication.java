@@ -11,7 +11,9 @@ import com.eternos.magiadoslivros.domain.model.PedidoLivro;
 import com.eternos.magiadoslivros.domain.request.LivroRequest;
 import com.eternos.magiadoslivros.domain.request.PedidoLivroRequest;
 import com.eternos.magiadoslivros.domain.request.PedidoRequest;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
+@EnableSwagger2
 public class MagiadoslivrosApplication {
 
 	public static void main(String[] args) {
